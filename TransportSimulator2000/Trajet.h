@@ -28,31 +28,22 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
+    //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
+    bool checkIfGoesTo(const char* ville1, const char* ville2);
+    
+     //Méthode abstraite d'affichage des trajets
+    virtual String toString() = 0;
+    
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+   
+    Trajet();
 
-    Trajet ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    Trajet (const char* villeDep, const char* villeArr, const Transport transp );
+    // Mode d'emploi : constructeur d'un trajet (paramétré)
 
     virtual ~Trajet ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+ 
+
 
 //------------------------------------------------------------------ PRIVE
 
@@ -65,6 +56,9 @@ private:
 protected:
 //----------------------------------------------------- Attributs protégés
 
+	char* villeDepart;		//Chaine représentant la ville de départ
+	char* villeArrivee;		//Chaine représentant la ville d'arrivée
+	
 private:
 //------------------------------------------------------- Attributs privés
 

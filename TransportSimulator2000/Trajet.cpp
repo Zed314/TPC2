@@ -15,6 +15,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -36,7 +37,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-//-------------------------------------------- Constructeurs - destructeur
+/*-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
 // Algorithme :
 //
@@ -44,7 +45,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
-} //----- Fin de Trajet::Trajet (constructeur de copie)
+} //----- Fin de Trajet::Trajet (constructeur de copie)*/
 
 
 Trajet::Trajet ( )
@@ -56,6 +57,18 @@ Trajet::Trajet ( )
 #endif
 } //----- Fin de Trajet
 
+Trajet (const char* villeDep, const char* villeArr, const Transport transp )
+{
+	this->villeDepart = new char[strlen(villeDep) + 1];
+	strcpy(this->villeDepart, villeDep);
+	
+	this->villeArrivee = new char[strlen(villeArr) + 1];
+	strcpy(this->villeArrivee, villeArr);
+	
+	
+}  //-- Fin du constructeur paramétré
+
+
 
 Trajet::~Trajet ( )
 // Algorithme :
@@ -64,8 +77,19 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
+
+	delete [] this->villeDepart;
+	delete[] this->villeArrivee;
+
 } //----- Fin de ~Trajet
 
+
+ bool checkIfGoesTo(const char* ville1, const char* ville2)
+ {
+	 return true;
+	 
+ }  // ------ Fin de checkIfGoesTo
+    
 
 //------------------------------------------------------------------ PRIVE
 

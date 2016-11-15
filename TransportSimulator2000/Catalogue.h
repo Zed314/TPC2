@@ -30,31 +30,18 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
+    // Méthode ajoutant un trajet à la liste des trajets
+    void addTrajet(const Trajet* unTrajet);
+    
+    // Méthode vérifiant si un trajet reliant une ville à une autre existe dans la liste
+    bool checkTrajet(const char* const ville1, const char* ville2);
+    
 //-------------------------------------------- Constructeurs - destructeur
-    Catalogue ( const Catalogue & unCatalogue );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    Catalogue ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+     Catalogue ( );				
+    // Mode d'emploi : Constructeur sans paramètre
+    
     virtual ~Catalogue ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
@@ -62,12 +49,16 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 private:
+
 //------------------------------------------------------- Méthodes privées
 
 protected:
 //----------------------------------------------------- Attributs protégés
 
 private:
+
+	ListeTrajet listeTrajets;		//Liste des trajets
+
 //------------------------------------------------------- Attributs privés
 
 //---------------------------------------------------------- Classes amies

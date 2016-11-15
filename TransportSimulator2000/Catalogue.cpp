@@ -39,19 +39,17 @@ using namespace std;
 //} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-Catalogue::Catalogue ( const Catalogue & unCatalogue )
+/*Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Catalogue>" << endl;
 #endif
-} //----- Fin de Catalogue::Catalogue (constructeur de copie)
+} //----- Fin de Catalogue::Catalogue (constructeur de copie)*/
 
 
 Catalogue::Catalogue ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
@@ -60,14 +58,25 @@ Catalogue::Catalogue ( )
 
 
 Catalogue::~Catalogue ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 } //----- Fin de ~Catalogue
 
+
+ void Catalogue::addTrajet(const Trajet* unTrajet)
+ {
+	 
+	 
+ } //----- Fin de addTrajet
+ 
+ 
+
+ bool Catalogue::checkTrajet(const char* const ville1, const char* ville2)
+ {
+	 return true;
+ } //----- Fin de checkTrajet
 
 //------------------------------------------------------------------ PRIVE
 
