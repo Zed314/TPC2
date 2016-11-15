@@ -3,7 +3,22 @@ COMP= g++
 COMPFLAG = -Wall -std=c++11
 
 TrajetSimulator2000 : $(OBJ)
-	$(COMP) -o TrajetSimulator2000 $(OBJ)
-main.o : main.cpp Catalogue.h
-	$(COMP) -c main.cpp 
+	$(COMP) $(COMPFLAG) -o TrajetSimulator2000 $(OBJ)
+	
+main.o : main.cpp Catalogue.h Trajet.h
+	$(COMP) $(COMPFLAG) -c main.cpp 
 
+Catalogue.o : Catalogue.h Catalogue.cpp Trajet.h
+	$(COMP) $(COMPFLAG) -c Catalogue.cpp
+
+TrajetCompose.o : TrajetCompose.h Trajet.h ListeTrajets.h TrajetCompose.cpp
+	$(COMP) $(COMPFLAG) -c TrajetCompose.cpp
+
+TrajetSimple.o : TrajetSimple.h Trajet.h TrajetSimple.cpp
+	$(COMP) $(COMPFLAG) -c TrajetSimple.cpp
+	
+Trajet.o : Trajet.h Trajet.cpp
+	$(COMP) $(COMPFLAG) -c Trajet.cpp
+
+ListeTrajets.o : ListeTrajets.h Trajet.h TrajetCompose.cpp
+	$(COMP) $(COMPFLAG) -c ListeTrajets.cpp
