@@ -35,7 +35,10 @@ public:
     //
     // Contrat :
     //
-
+    void toString();
+    // Mode d'emploi : Affiche le trajet simple
+    //
+    // Contrat :
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajet );
@@ -69,7 +72,7 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-
+Transport transportUtilise;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées

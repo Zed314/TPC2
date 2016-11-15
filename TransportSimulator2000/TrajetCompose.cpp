@@ -56,6 +56,9 @@ TrajetCompose::TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
+
+
+
 } //----- Fin de TrajetCompose
 
 

@@ -25,7 +25,7 @@
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose
+class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,7 +36,15 @@ public:
     //
     // Contrat :
     //
-
+    void addTrajet(Trajet * trajetToAdd);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    
+    void toString() const;
+	  // Mode d'emploi : Permet d'afficher le trajet composé
+    //
+    // Contrat :
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetCompose ( const TrajetCompose & unTrajetCompose );
@@ -45,7 +53,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose ( );
+    TrajetCompose (Transport transportUtilise);
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,6 +77,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 private:
+ListeTrajets listeDesTrajets;
 //------------------------------------------------------- Attributs privés
 
 //---------------------------------------------------------- Classes amies

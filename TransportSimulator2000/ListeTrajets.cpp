@@ -36,6 +36,14 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+bool ListeTrajets::EstVide()
+{
+	if(this->ptrDeb==nullptr ||this->ptrFin==nullptr  )
+	{
+		return true;
+	}
+	return false;	
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
@@ -48,13 +56,14 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
 } //----- Fin de ListeTrajets::ListeTrajets (constructeur de copie)
 
 
-ListeTrajets::ListeTrajets ( )
+ListeTrajets::ListeTrajets ( ): ptrDebut(nullptr),ptrFin(nullptr)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
+
 } //----- Fin de ListeTrajets
 
 

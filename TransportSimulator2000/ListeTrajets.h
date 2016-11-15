@@ -16,7 +16,11 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+typedef struct eLT{
+	Trajet TrajetEnCours;
+	ElementListeTrajet * ElementTrajetSuivant;
 
+} ElementListeTrajet;
 //------------------------------------------------------------------------
 // Rôle de la classe <ListeTrajets>
 //
@@ -34,6 +38,24 @@ public:
     //
     // Contrat :
     //
+    void AddT(Trajet * trajetAAjouter);
+    // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
+    //
+    // Contrat :
+    //
+    void Affichage() const;
+    // Affiche les éléments de la liste de trajets
+    //
+    // Contrat :
+    //
+    bool EstVide() const;
+    // Renvoie true si la file est vide
+    //
+    // Contrat :
+    //
+    
+    
+	
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -68,7 +90,8 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-
+ElementListeTrajet * ptrDebut;
+ElementListeTrajet * ptrFin;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées
