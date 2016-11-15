@@ -17,8 +17,8 @@
 
 //------------------------------------------------------------------ Types
 typedef struct eLT{
-	Trajet TrajetEnCours;
-	ElementListeTrajet * ElementTrajetSuivant;
+	Trajet * TrajetEnCours;
+	eLT * ElementTrajetSuivant;
 
 } ElementListeTrajet;
 //------------------------------------------------------------------------

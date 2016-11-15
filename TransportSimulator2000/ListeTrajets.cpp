@@ -36,9 +36,9 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-bool ListeTrajets::EstVide()
+bool ListeTrajets::EstVide() const
 {
-	if(this->ptrDeb==nullptr ||this->ptrFin==nullptr  )
+	if(this->ptrDebut==nullptr ||this->ptrFin==nullptr  )
 	{
 		return true;
 	}

@@ -49,7 +49,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
 
-TrajetCompose::TrajetCompose ( )
+TrajetCompose::TrajetCompose (Transport transportUtilise)
 // Algorithme :
 //
 {

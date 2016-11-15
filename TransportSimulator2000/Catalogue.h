@@ -57,7 +57,7 @@ protected:
 
 private:
 
-	ListeTrajet listeTrajets;		//Liste des trajets
+	ListeTrajets listeTrajets;		//Liste des trajets
 
 //------------------------------------------------------- Attributs privés
 

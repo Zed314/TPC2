@@ -57,7 +57,7 @@ Trajet::Trajet ( )
 #endif
 } //----- Fin de Trajet
 
-Trajet (const char* villeDep, const char* villeArr, const Transport transp )
+Trajet::Trajet(const char* villeDep, const char* villeArr, const Transport transp )
 {
 	this->villeDepart = new char[strlen(villeDep) + 1];
 	strcpy(this->villeDepart, villeDep);
