@@ -32,7 +32,7 @@ public:
     bool checkIfGoesTo(const char* ville1, const char* ville2);
     
      //Méthode abstraite d'affichage des trajets
-    virtual String toString() = 0;
+    virtual void toString() = 0;
     
 //-------------------------------------------- Constructeurs - destructeur
    
