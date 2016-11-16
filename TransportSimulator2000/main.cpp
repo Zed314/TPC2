@@ -10,6 +10,7 @@
      
 	 Application permettant de gérer, ajouter et rechercher des trajets entre plusieurs villes.
 *************************************************************************/
+#define MAP
 
 #include <iostream>
 #include <cstring>
@@ -18,9 +19,20 @@
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "ListeTrajets.h"
 
 using namespace std;
 
+//Methode de test de la liste
+static void testListe()
+
+{
+	ListeTrajets lt;
+	TrajetSimple t1("Lyon", "Paris", Transport::Automobile);
+	lt.AddT(&t1);
+	lt.Affichage();
+	
+}
 
 /*
 
@@ -30,5 +42,6 @@ using namespace std;
 */
 int main(int argc, char** argv)
 {
+	testListe();
 	return 0;
 }  //----- Fin du main

@@ -16,9 +16,9 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef struct eLT{
+typedef struct Elt{
 	Trajet * TrajetEnCours;
-	eLT * ElementTrajetSuivant;
+	Elt * ElementTrajetSuivant;
 
 } ElementListeTrajet;
 //------------------------------------------------------------------------
@@ -36,20 +36,16 @@ public:
 
     void AddT(Trajet * trajetAAjouter);
     // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
-    //
-    // Contrat :
+    // L'ajout est fait en queue de liste chaînée
+	
+    // Contrat : Le pointeur passé en paramètre n'est pas NULL
     //
     void Affichage() const;
     // Affiche les éléments de la liste de trajets
-    //
-    // Contrat :
-    //
+
     bool EstVide() const;
     // Renvoie true si la file est vide
-    //
-    // Contrat :
-    //
-    
+
     
 	
 

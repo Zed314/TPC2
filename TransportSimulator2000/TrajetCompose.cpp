@@ -14,6 +14,7 @@
 
 //-------------------------------------------------------- Include système
 using namespace std;
+#define MAP
 #include <iostream>
 
 //------------------------------------------------------ Include personnel

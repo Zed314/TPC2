@@ -14,9 +14,11 @@
 
 //-------------------------------------------------------- Include système
 using namespace std;
+#define MAP
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
+
 #include "TrajetSimple.h"
 #include "Trajet.h"
 //------------------------------------------------------------- Constantes
@@ -30,15 +32,10 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetSimple::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 void TrajetSimple::ToString()
 {
-
+	cout << "Trajet reliant la ville " << villeDepart<< " a la ville " << villeArrivee << endl;
 }  // --- Fin de ToString
 
 
@@ -53,7 +50,25 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajet )
 #endif
 } //----- Fin de TrajetSimple::TrajetSimple (constructeur de copie)
 
+//Constructeur paramétré
+ TrajetSimple::TrajetSimple(const char* villeDep, const char* villeArr, const Transport transp )
+ {
+	 
+	 #ifdef MAP
+		cout << "Appel au constructeur paramétré de <TrajetSimple>" << endl;
+	#endif
 
+	 this->villeDepart = new char[strlen(villeDep) + 1];
+	 strcpy(this->villeDepart, villeDep);
+	 
+	 this->villeArrivee = new char[strlen(villeArr) + 1];
+	 strcpy(this->villeArrivee, villeArr);
+	 
+	 this->transportUtilise = transp;
+	 
+ }  //--- Fin du constructeur
+ 
+ 
 TrajetSimple::TrajetSimple ( )
 // Algorithme :
 //
