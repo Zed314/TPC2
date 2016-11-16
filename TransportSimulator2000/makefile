@@ -5,7 +5,7 @@ COMPFLAG = -Wall -std=c++11
 TrajetSimulator2000 : $(OBJ)
 	$(COMP) $(COMPFLAG) -o TrajetSimulator2000 $(OBJ)
 	
-main.o : main.cpp Catalogue.h Trajet.h
+main.o : main.cpp Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h
 	$(COMP) $(COMPFLAG) -c main.cpp 
 
 Catalogue.o : Catalogue.h ListeTrajets.h Catalogue.cpp Trajet.h

@@ -4,6 +4,8 @@
 
 #include "Trajet.h"
 #include "Catalogue.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 using namespace std;
 
