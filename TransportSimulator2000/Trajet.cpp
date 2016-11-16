@@ -33,7 +33,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-void Trajet::transportToString(Transport transportAAfficher)
+void Trajet::transportToString( const Transport transportAAfficher) const
 {
 	switch(transportAAfficher)
 	{

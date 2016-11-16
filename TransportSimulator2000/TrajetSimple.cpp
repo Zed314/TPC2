@@ -36,7 +36,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void TrajetSimple::ToString()
+void TrajetSimple::ToString() const
 {
 	//enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana };
 	cout<<"de "<<villeDepart<<" à "<<villeArrivee<<" en ";

@@ -31,6 +31,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+
 void ListeTrajets::ToString() const
 {
 	if(this->EstVide())
@@ -91,7 +92,8 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ListeTrajets>" << endl;
 #endif
-
+//TODO
+//Après avoir fait le constructeur de copie de trajet
 } //----- Fin de ListeTrajets::ListeTrajets (constructeur de copie)
 
 
@@ -113,6 +115,16 @@ ListeTrajets::~ListeTrajets ( )
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
+	ElementListeTrajet * elementEnCours=this->ptrDebut;
+	ElementListeTrajet * elementTemporaire;
+		while(elementEnCours!=nullptr)
+		{
+			elementTemporaire=elementEnCours->ElementTrajetSuivant;
+			delete elementEnCours->TrajetEnCours;
+			delete elementEnCours;
+			elementEnCours=elementTemporaire;
+		}
+
 } //----- Fin de ~ListeTrajets
 
 

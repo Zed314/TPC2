@@ -10,7 +10,7 @@
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
-
+#define MAP
 //--------------------------------------------------- Interfaces utilisées
 //------------------------------------------------------------- Constantes
 
@@ -34,7 +34,7 @@ public:
     bool CheckIfGoesTo(const char* ville1, const char* ville2);
     
      //Méthode abstraite d'affichage des trajets
-    virtual void ToString() = 0;
+    virtual void ToString() const = 0;
     
 //-------------------------------------------- Constructeurs - destructeur
    //Constructeur non paramétré
@@ -54,7 +54,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
- void transportToString(Transport transportAAfficher);  
+ void transportToString(const Transport transportAAfficher)const;  
  //Affiche l'énumération Transport passée en paramètre
 private:
 //------------------------------------------------------- Méthodes privées

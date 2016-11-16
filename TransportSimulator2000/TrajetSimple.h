@@ -32,7 +32,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
  // Mode d'emploi : Affiche le trajet simple
-    void ToString();
+    void ToString() const;
 
 
 

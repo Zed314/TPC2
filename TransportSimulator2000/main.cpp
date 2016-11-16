@@ -19,6 +19,7 @@
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
+
 using namespace std;
 
 
@@ -35,6 +36,7 @@ void test1()
 	ListeTrajets l;
 	l.AddT(t);
 	l.ToString();
+	TrajetCompose * tc=new TrajetCompose("Paris","Londres",Avion);
 		
 }
 int main(int argc, char** argv)

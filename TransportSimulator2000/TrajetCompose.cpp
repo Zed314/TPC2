@@ -21,6 +21,7 @@ using namespace std;
 #include "ListeTrajets.h"
 #include "Trajet.h"
 
+
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -43,7 +44,7 @@ using namespace std;
 
     void TrajetCompose::ToString() const
 	{
-		
+		listeDesTrajets.ToString();
 		
 	}  // --- Fin de ToString
 
@@ -58,15 +59,17 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
 
-TrajetCompose::TrajetCompose (Transport transportUtilise)
+TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transport transportUtilise):Trajet(villeDep,villeArr)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
-
-
+/*
+Trajet * trajetAAjouter = new TrajetSimple(villeDep,villeArr,transportUtilise);
+listeDesTrajets.AddT(trajetAAjouter);
+*/
 
 } //----- Fin de TrajetCompose
 

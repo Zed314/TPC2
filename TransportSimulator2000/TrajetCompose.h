@@ -55,7 +55,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose (Transport transportUtilise);
+    TrajetCompose (const char* villeDep, const char* villeArr,Transport transportUtilise);
     // Mode d'emploi :
     //
     // Contrat :
