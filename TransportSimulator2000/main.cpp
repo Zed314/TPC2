@@ -51,11 +51,22 @@ void test1()
 //	TrajetCompose * tc=new TrajetCompose("Paris","Londres",Avion);
 		
 }
+void test2ConstructeurDeCopie()
+{
+	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
+	a.ToString();
+	{
+	TrajetSimple b(a);
+	b.ToString();
+	}
+	a.ToString();
+}
 int main(int argc, char** argv)
 {
 
-	test1();
-	testListe();
+	//test1();
+	//testListe();
+	test2ConstructeurDeCopie();
 
 	return 0;
 }  //----- Fin du main

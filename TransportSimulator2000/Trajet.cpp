@@ -78,6 +78,12 @@ Trajet::Trajet ( const Trajet & unTrajet )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
+	this->villeDepart = new char[strlen(unTrajet.villeDepart) + 1];
+	strcpy(this->villeDepart, unTrajet.villeDepart);
+	
+	this->villeArrivee = new char[strlen(unTrajet.villeArrivee) + 1];
+	strcpy(this->villeArrivee, unTrajet.villeArrivee);
+	
 } //----- Fin de Trajet::Trajet (constructeur de copie)
 
 

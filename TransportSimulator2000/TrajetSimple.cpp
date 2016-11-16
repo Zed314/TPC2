@@ -46,13 +46,18 @@ void TrajetSimple::ToString() const
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTrajetSimple)
 // Algorithme :
 //
 {
 #ifdef MAP
+
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+
 #endif
+
+this->transportUtilise=unTrajetSimple.transportUtilise;
+
 } //----- Fin de TrajetSimple::TrajetSimple (constructeur de copie)
 
 
