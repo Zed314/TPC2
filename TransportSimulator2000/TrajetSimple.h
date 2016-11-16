@@ -44,7 +44,7 @@ public:
     TrajetSimple ( const TrajetSimple & unTrajet );
 
 	//Constructeur par défaut d'un trajet simple
-    TrajetSimple ( );
+   // TrajetSimple ( );
 	
 	//Constructeur paramétré
     TrajetSimple (const char* villeDep, const char* villeArr, const Transport transp );

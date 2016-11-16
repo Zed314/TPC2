@@ -29,29 +29,16 @@ static void testListe()
 
 {
 	ListeTrajets lt;
+	lt.ToString();
 	TrajetSimple *t1=new TrajetSimple("Lyon", "Paris", Transport::Automobile);
+	t1->ToString();
 	lt.AddT(t1);
 	lt.ToString();
 	
 }
 
-/*
 
-	Méthode principale appelante de la classe
-	argc désigne le nombre d'éventuels arguments à fournir au programme
-    argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
-*/
-void test1()
-{
-	TrajetSimple * t=new TrajetSimple("Paris","Londres",Avion);
-	t->ToString();
-	ListeTrajets l;
-	l.AddT(t);
-	l.ToString();
-//	TrajetCompose * tc=new TrajetCompose("Paris","Londres",Avion);
-		
-}
-void test2ConstructeurDeCopie()
+void testConstructeurDeCopie()
 {
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	a.ToString();
@@ -61,12 +48,20 @@ void test2ConstructeurDeCopie()
 	}
 	a.ToString();
 }
+/*
+
+	Méthode principale appelante de la classe
+	argc désigne le nombre d'éventuels arguments à fournir au programme
+    argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
+*/
+
 int main(int argc, char** argv)
 {
 
 	//test1();
 	//testListe();
-	test2ConstructeurDeCopie();
+	testListe();
+	testConstructeurDeCopie();
 
 	return 0;
 }  //----- Fin du main
