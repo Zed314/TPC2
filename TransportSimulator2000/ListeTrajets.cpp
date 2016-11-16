@@ -52,7 +52,7 @@ void ListeTrajets::AddT(Trajet * trajetAAjouter)
 
 bool ListeTrajets::EstVide() const
 {
-	if(this->ptrDebut==nullptr ||this->ptrFin==nullptr  )
+	if(this->ptrDebut==nullptr || this->ptrFin==nullptr)
 	{
 		return true;
 	}
