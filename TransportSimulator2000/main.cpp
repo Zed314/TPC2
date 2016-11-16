@@ -28,7 +28,17 @@ using namespace std;
 	argc désigne le nombre d'éventuels arguments à fournir au programme
     argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
 */
+void test1()
+{
+	TrajetSimple * t=new TrajetSimple("Paris","Londres",Avion);
+	t->ToString();
+	ListeTrajets l;
+	l.AddT(t);
+	l.ToString();
+		
+}
 int main(int argc, char** argv)
 {
+test1();
 	return 0;
 }  //----- Fin du main

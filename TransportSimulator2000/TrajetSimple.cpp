@@ -38,13 +38,17 @@ using namespace std;
 
 void TrajetSimple::ToString()
 {
-
+	//enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana };
+	cout<<"de "<<villeDepart<<" à "<<villeArrivee<<" en ";
+	this->transportToString(transportUtilise);
+	cout<<endl;
+	
 }  // --- Fin de ToString
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajet )
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 // Algorithme :
 //
 {
@@ -54,7 +58,7 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajet )
 } //----- Fin de TrajetSimple::TrajetSimple (constructeur de copie)
 
 
-TrajetSimple::TrajetSimple ( )
+TrajetSimple::TrajetSimple (const char* villeDep, const char* villeArr,Transport transportDuTrajet) : Trajet (villeDep,villeArr),transportUtilise(transportDuTrajet) 
 // Algorithme :
 //
 {

@@ -49,6 +49,8 @@ public:
     //
     // Contrat :
     //
+    void ToString() const;
+    //Affiche la liste des trajets
     
     
 	

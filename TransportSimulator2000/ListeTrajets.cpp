@@ -31,6 +31,30 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+void ListeTrajets::ToString() const
+{
+	if(this->EstVide())
+	{
+		cout<<"La liste de trajets est vide!"<<endl;
+	}
+	else
+	{
+		ElementListeTrajet * elementEnCours=this->ptrDebut;
+	
+		while(elementEnCours!=nullptr)
+		{
+			elementEnCours->TrajetEnCours->ToString();
+		
+			elementEnCours=elementEnCours->ElementTrajetSuivant;
+			if (elementEnCours!=nullptr)
+			{
+				cout<<", ";
+			}
+		}
+		cout<<endl;
+	}
+	
+}
 
 void ListeTrajets::AddT(Trajet * trajetAAjouter)
 {

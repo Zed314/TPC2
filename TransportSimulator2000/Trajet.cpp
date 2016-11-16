@@ -32,7 +32,35 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
- bool checkIfGoesTo(const char* ville1, const char* ville2)
+
+void Trajet::transportToString(Transport transportAAfficher)
+{
+	switch(transportAAfficher)
+	{
+		case(Avion):
+		cout<<"Avion";
+		break;
+		case(Automobile):
+		cout<<"Automobile";
+		break;
+		case(Tank):
+		cout<<"Tank";
+		break;
+		case(Canard_geant):
+		cout<<"Canard géant";
+		break;
+		case(Tramway):
+		cout<<"Tramway";
+		break;
+		case(Bateau):
+		cout<<"Bateau";
+		break;
+		case(DosDeMathieuMaranzana):
+		cout<<"Missile Nord Coréen";
+		break;
+	}
+}
+ bool Trajet::CheckIfGoesTo(const char* ville1, const char* ville2)
  {
 	 return true;
 	 
@@ -60,7 +88,7 @@ Trajet::Trajet ( )
 #endif
 } //----- Fin de Trajet
 
-Trajet::Trajet(const char* villeDep, const char* villeArr, const Transport transp )
+Trajet::Trajet(const char* villeDep, const char* villeArr)
 {
 	this->villeDepart = new char[strlen(villeDep) + 1];
 	strcpy(this->villeDepart, villeDep);
@@ -81,7 +109,7 @@ Trajet::~Trajet ( )
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 
-	delete [] this->villeDepart;
+	delete[] this->villeDepart;
 	delete[] this->villeArrivee;
 
 } //----- Fin de ~Trajet

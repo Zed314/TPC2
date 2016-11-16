@@ -29,19 +29,21 @@ class Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
-    bool checkIfGoesTo(const char* ville1, const char* ville2);
+	  
+    
+    bool CheckIfGoesTo(const char* ville1, const char* ville2);
     
      //Méthode abstraite d'affichage des trajets
     virtual void ToString() = 0;
     
 //-------------------------------------------- Constructeurs - destructeur
-   //Constructeur paramétré
-    Trajet();
+   //Constructeur non paramétré
+   Trajet();
 	
 	//Constructeur par copie
 	Trajet(const Trajet & unTrajet);
 
-    Trajet (const char* villeDep, const char* villeArr, const Transport transp );
+    Trajet(const char* villeDep, const char* villeArr);
     // Mode d'emploi : constructeur d'un trajet (paramétré)
 
     virtual ~Trajet ( );
@@ -52,7 +54,8 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+ void transportToString(Transport transportAAfficher);  
+ //Affiche l'énumération Transport passée en paramètre
 private:
 //------------------------------------------------------- Méthodes privées
 
