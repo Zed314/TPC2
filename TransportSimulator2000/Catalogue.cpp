@@ -32,21 +32,16 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Catalogue::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Catalogue::Catalogue ( const Catalogue & unCatalogue )
+Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Catalogue>" << endl;
 #endif
-} //----- Fin de Catalogue::Catalogue (constructeur de copie)*/
+} //----- Fin de Catalogue::Catalogue (constructeur de copie)
 
 
 Catalogue::Catalogue ( )

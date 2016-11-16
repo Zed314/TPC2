@@ -31,11 +31,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type ListeTrajets::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 bool ListeTrajets::EstVide() const
 {
 	if(this->ptrDebut==nullptr ||this->ptrFin==nullptr  )

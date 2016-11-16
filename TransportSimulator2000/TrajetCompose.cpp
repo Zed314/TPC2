@@ -32,11 +32,20 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetCompose::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
+
+  void TrajetCompose::addTrajet(Trajet * trajetToAdd)
+  {
+	  
+	  
+  }   // --- Fin de addTrajet
+	
+
+    void TrajetCompose::ToString() const
+	{
+		
+		
+	}  // --- Fin de ToString
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )

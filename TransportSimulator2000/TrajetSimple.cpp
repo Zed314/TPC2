@@ -36,7 +36,14 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+void TrajetSimple::ToString()
+{
+
+}  // --- Fin de ToString
+
+
 //-------------------------------------------- Constructeurs - destructeur
+
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajet )
 // Algorithme :
 //

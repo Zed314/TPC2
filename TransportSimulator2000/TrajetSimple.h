@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
 //
-//
+//  Un Trajet simple, d'une ville A à une ville B, caractérisé par un moyen de transport (énumération)
 //------------------------------------------------------------------------
 
 class TrajetSimple
@@ -30,15 +30,11 @@ class TrajetSimple
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    void toString();
-    // Mode d'emploi : Affiche le trajet simple
-    //
-    // Contrat :
+
+ // Mode d'emploi : Affiche le trajet simple
+    void ToString();
+
+
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajet );

@@ -22,7 +22,7 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
 //
-//
+//	Un trajet composé de plusieurs trajets simples via une liste chaînée d'objets en mémoire
 //------------------------------------------------------------------------
 
 class TrajetCompose : public Trajet
@@ -40,13 +40,15 @@ public:
     // Mode d'emploi :
     //
     // Contrat :
-    
-    void toString() const;
-	  // Mode d'emploi : Permet d'afficher le trajet composé
-    //
-    // Contrat :
+	
+   // Mode d'emploi : Permet d'afficher le trajet composé
+
+    void ToString() const;
+
 
 //-------------------------------------------- Constructeurs - destructeur
+
+
     TrajetCompose ( const TrajetCompose & unTrajetCompose );
     // Mode d'emploi (constructeur de copie) :
     //

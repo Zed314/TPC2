@@ -23,8 +23,8 @@ typedef struct eLT{
 } ElementListeTrajet;
 //------------------------------------------------------------------------
 // Rôle de la classe <ListeTrajets>
-//
-//
+//	
+//	Liste contenant des pointeurs vers des éléments de type Trajet
 //------------------------------------------------------------------------
 
 class ListeTrajets
@@ -33,11 +33,7 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
     void AddT(Trajet * trajetAAjouter);
     // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
     //

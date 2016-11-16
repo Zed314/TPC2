@@ -20,7 +20,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-//
+//	
+//	"Catalogue" contenant une liste d'objets de type Trajet, sous forme de liste chaînée.
 //
 //------------------------------------------------------------------------
 
@@ -38,9 +39,14 @@ public:
     
 //-------------------------------------------- Constructeurs - destructeur
 
+	//Constructeur par copie
+	 Catalogue(const Catalogue & unCatalogue);
+	 
+	 
+	 // Mode d'emploi : Constructeur sans paramètre
      Catalogue ( );				
-    // Mode d'emploi : Constructeur sans paramètre
-    
+
+    //Destructeur de la classe
     virtual ~Catalogue ( );
 
 //------------------------------------------------------------------ PRIVE

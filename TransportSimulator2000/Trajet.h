@@ -19,7 +19,7 @@ enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMa
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
 //
-//
+//	Un trajet abstrait, reliant deux villes (départ et arrivée) entre elles.
 //------------------------------------------------------------------------
 
 class Trajet
@@ -32,11 +32,14 @@ public:
     bool checkIfGoesTo(const char* ville1, const char* ville2);
     
      //Méthode abstraite d'affichage des trajets
-    virtual void toString() = 0;
+    virtual void ToString() = 0;
     
 //-------------------------------------------- Constructeurs - destructeur
-   
+   //Constructeur paramétré
     Trajet();
+	
+	//Constructeur par copie
+	Trajet(const Trajet & unTrajet);
 
     Trajet (const char* villeDep, const char* villeArr, const Transport transp );
     // Mode d'emploi : constructeur d'un trajet (paramétré)

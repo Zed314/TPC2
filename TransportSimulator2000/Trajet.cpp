@@ -31,13 +31,16 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
-/*-------------------------------------------- Constructeurs - destructeur
+ bool checkIfGoesTo(const char* ville1, const char* ville2)
+ {
+	 return true;
+	 
+ }  // ------ Fin de checkIfGoesTo
+    
+	
+	
+//-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
 // Algorithme :
 //
@@ -45,7 +48,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
-} //----- Fin de Trajet::Trajet (constructeur de copie)*/
+} //----- Fin de Trajet::Trajet (constructeur de copie)
 
 
 Trajet::Trajet ( )
@@ -84,12 +87,6 @@ Trajet::~Trajet ( )
 } //----- Fin de ~Trajet
 
 
- bool checkIfGoesTo(const char* ville1, const char* ville2)
- {
-	 return true;
-	 
- }  // ------ Fin de checkIfGoesTo
-    
 
 //------------------------------------------------------------------ PRIVE
 
