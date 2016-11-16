@@ -32,6 +32,24 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+void ListeTrajets::AddT(Trajet * trajetAAjouter)
+{
+	if(this->EstVide())
+	{
+		this->ptrDebut = new ElementListeTrajet;
+		this->ptrDebut->TrajetEnCours=trajetAAjouter;
+		this->ptrDebut->ElementTrajetSuivant=nullptr;
+		this->ptrFin=ptrDebut;
+	}
+	else
+	{
+		this->ptrFin->ElementTrajetSuivant=new ElementListeTrajet;
+		this->ptrFin->ElementTrajetSuivant->TrajetEnCours=trajetAAjouter;
+		this->ptrFin->ElementTrajetSuivant->ElementTrajetSuivant=nullptr;
+		this->ptrFin=this->ptrFin->ElementTrajetSuivant;
+	}
+}
+
 bool ListeTrajets::EstVide() const
 {
 	if(this->ptrDebut==nullptr ||this->ptrFin==nullptr  )
@@ -49,6 +67,7 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ListeTrajets>" << endl;
 #endif
+
 } //----- Fin de ListeTrajets::ListeTrajets (constructeur de copie)
 
 
