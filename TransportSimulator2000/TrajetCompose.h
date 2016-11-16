@@ -48,6 +48,8 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+    TrajetCompose (const char* villeDep, const char* villeArr, const Transport transp );
+    // Mode d'emploi : constructeur d'un trajet (paramétré)
 
     TrajetCompose ( const TrajetCompose & unTrajetCompose );
     // Mode d'emploi (constructeur de copie) :
@@ -55,11 +57,6 @@ public:
     // Contrat :
     //
 
-    TrajetCompose (const char* villeDep, const char* villeArr,Transport transportUtilise);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~TrajetCompose ( );
     // Mode d'emploi :

@@ -24,7 +24,8 @@
 //  Un Trajet simple, d'une ville A à une ville B, caractérisé par un moyen de transport (énumération)
 //------------------------------------------------------------------------
 
-class TrajetSimple: public Trajet
+
+class TrajetSimple : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,23 +38,22 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple ( const TrajetSimple & unTrajetSimple );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    TrajetSimple (const char* villeDep, const char* villeArr,Transport transportDuTrajet);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
+	//Constructeur de copie d'un trajet simple
+    TrajetSimple ( const TrajetSimple & unTrajet );
+
+	//Constructeur par défaut d'un trajet simple
+    TrajetSimple ( );
+	
+	//Constructeur paramétré
+    TrajetSimple (const char* villeDep, const char* villeArr, const Transport transp );
+    // Mode d'emploi : constructeur d'un trajet (paramétré)
+
+
+	//Destructeur d'un trajet simple
     virtual ~TrajetSimple ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 //------------------------------------------------------------------ PRIVE
 

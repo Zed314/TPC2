@@ -15,16 +15,18 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana };
+
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
 //
 //	Un trajet abstrait, reliant deux villes (départ et arrivée) entre elles.
 //------------------------------------------------------------------------
+enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana };
 
 class Trajet
 {
 //----------------------------------------------------------------- PUBLIC
+
 
 public:
 //----------------------------------------------------- Méthodes publiques
