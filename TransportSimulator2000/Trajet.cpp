@@ -92,6 +92,9 @@ Trajet::Trajet ( )
 
 Trajet::Trajet(const char* villeDep, const char* villeArr)
 {
+	#ifdef MAP
+    cout << "Appel au constructeur paramétré de <Trajet>" << endl;
+	#endif
 	this->villeDepart = new char[strlen(villeDep) + 1];
 	strcpy(this->villeDepart, villeDep);
 	

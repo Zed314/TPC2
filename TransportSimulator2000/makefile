@@ -22,3 +22,5 @@ ListeTrajets.o : ListeTrajets.h Trajet.h TrajetCompose.cpp
 	
 Trajet.o : Trajet.h Trajet.cpp
 	$(COMP) $(COMPFLAG) -c Trajet.cpp
+clean :
+	rm $(OBJ)

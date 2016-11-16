@@ -66,7 +66,7 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 	 
  }  //--- Fin du constructeur
  
- 
+ /*
 TrajetSimple::TrajetSimple ( )
 // Algorithme :
 //
@@ -75,7 +75,7 @@ TrajetSimple::TrajetSimple ( )
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 } //----- Fin de TrajetSimple
-
+*/
 
 TrajetSimple::~TrajetSimple ( )
 // Algorithme :

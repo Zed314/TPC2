@@ -54,8 +54,7 @@ void test1()
 int main(int argc, char** argv)
 {
 
-test1();
-
+	test1();
 	testListe();
 
 	return 0;
