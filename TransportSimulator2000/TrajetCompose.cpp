@@ -39,12 +39,14 @@ using namespace std;
   void TrajetCompose::addTrajet(Trajet * trajetToAdd)
   {
 	  
-	  
+	  listeDesTrajets.AddT(trajetToAdd);
   }   // --- Fin de addTrajet
 	
 
     void TrajetCompose::ToString() const
 	{
+		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl;
+		
 		listeDesTrajets.ToString();
 		
 	}  // --- Fin de ToString
@@ -65,7 +67,7 @@ TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transpo
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <TrajetCompose>" << endl;
+    cout << "Appel au constructeur paramétré de <TrajetCompose>" << endl;
 #endif
 /*
 Trajet * trajetAAjouter = new TrajetSimple(villeDep,villeArr,transportUtilise);
@@ -73,6 +75,25 @@ listeDesTrajets.AddT(trajetAAjouter);
 */
 
 } //----- Fin de TrajetCompose
+
+TrajetCompose::TrajetCompose (const TrajetSimple &unTrajetSimple):Trajet(unTrajetSimple)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur paramétré avec un TrajetSimple de <TrajetCompose>" << endl;
+#endif
+
+Trajet * trajetAAjouter = new TrajetSimple(unTrajetSimple);
+
+TrajetCompose::addTrajet(trajetAAjouter);
+
+//listeDesTrajets.AddT(trajetAAjouter);
+
+
+} //----- Fin de TrajetCompose
+
+
 
 
 TrajetCompose::~TrajetCompose ( )

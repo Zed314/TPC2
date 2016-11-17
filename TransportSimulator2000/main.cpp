@@ -51,6 +51,14 @@ void testConstructeurDeCopie()
 	}
 	a.ToString();
 }
+void testTrajetCompose()
+{
+	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
+	a.ToString();
+	TrajetCompose b(a);
+	b.ToString();
+	
+}
 /*
 
 	Méthode principale appelante de la classe
@@ -64,7 +72,8 @@ int main(int argc, char** argv)
 	//test1();
 	//testListe();
 	//testListe();
-	testConstructeurDeCopie();
+	//testConstructeurDeCopie();
+	testTrajetCompose();
 
 	return 0;
 }  //----- Fin du main

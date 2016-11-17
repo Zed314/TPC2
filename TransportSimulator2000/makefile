@@ -11,7 +11,7 @@ main.o : main.cpp Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h ListeTraje
 Catalogue.o : Catalogue.h ListeTrajets.h Catalogue.cpp Trajet.h
 	$(COMP) $(COMPFLAG) -c Catalogue.cpp
 
-TrajetCompose.o : TrajetCompose.h Trajet.h ListeTrajets.h TrajetCompose.cpp
+TrajetCompose.o : TrajetCompose.h Trajet.h ListeTrajets.h TrajetSimple.h TrajetCompose.cpp
 	$(COMP) $(COMPFLAG) -c TrajetCompose.cpp
 
 TrajetSimple.o : TrajetSimple.h Trajet.h TrajetSimple.cpp

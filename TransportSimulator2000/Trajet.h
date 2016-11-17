@@ -33,7 +33,15 @@ public:
     //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
 	  
     
-    bool CheckIfGoesTo(const char* ville1, const char* ville2);
+    bool CheckIfGoesFromTo(const char* ville1, const char* ville2) const;
+    
+    //Méthode permettant de savoir si le trajet part de ville
+    
+    bool CheckIfGoesFrom(const char* ville) const;
+    
+    //Méthode permettant de savoir si le trajet arrive à ville
+    
+    bool CheckIfGoesTo(const char* ville)const;
     
      //Méthode abstraite d'affichage des trajets
     virtual void ToString() const = 0;

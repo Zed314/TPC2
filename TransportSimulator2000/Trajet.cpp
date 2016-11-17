@@ -34,9 +34,17 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+bool Trajet::CheckIfGoesFrom(const char* ville)const
+{
+return true;
+}
 
+ bool Trajet::CheckIfGoesTo(const char* ville)const
+ {
+ 	return false;
+ }
 
- bool Trajet::CheckIfGoesTo(const char* ville1, const char* ville2)
+ bool Trajet::CheckIfGoesFromTo(const char* ville1, const char* ville2) const
  {
 	 return true;
 	 
