@@ -68,7 +68,7 @@ void TrajetSimple::ToString() const
 
 	cout<<"de "<<villeDepart<<" à "<<villeArrivee<<" en ";
 	this->transportToString();
-	cout<<endl;
+	
 	
 
 }  // --- Fin de ToString

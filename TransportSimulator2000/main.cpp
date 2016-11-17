@@ -45,19 +45,32 @@ void testConstructeurDeCopie()
 {
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	a.ToString();
+cout<<endl;
 	{
 		TrajetSimple b(a);
 		b.ToString();
+		cout<<endl;
 	}
 	a.ToString();
+	cout<<endl;
+	TrajetCompose c(a);
+	{
+		TrajetCompose d(c);
+	}
+	c.ToString();
 }
 void testTrajetCompose()
 {
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
-	//a.ToString();
 
 	TrajetCompose b(a);
+	
+	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
+	TrajetSimple d("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
+	b.AddTrajet(c);
+	b.AddTrajet(d);
 	b.ToString();
+	
 	
 }
 /*
@@ -73,8 +86,8 @@ int main(int argc, char** argv)
 	//test1();
 	//testListe();
 	//testListe();
-	//testConstructeurDeCopie();
-	testTrajetCompose();
+	testConstructeurDeCopie();
+//	testTrajetCompose();
 
 	return 0;
 }  //----- Fin du main

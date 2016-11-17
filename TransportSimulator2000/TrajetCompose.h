@@ -38,7 +38,7 @@ public:
     //
     // Contrat :
     //
-    void addTrajet(const TrajetSimple  &trajetSimpleToAdd);
+    void AddTrajet(const TrajetSimple  &trajetSimpleToAdd);
     // Mode d'emploi :
     //
     // Contrat :

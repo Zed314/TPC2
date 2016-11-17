@@ -56,7 +56,9 @@ void ListeTrajets::ToString() const
 	
 }
 
-void ListeTrajets::AddT(Trajet * trajetAAjouter)
+void ListeTrajets::AddT(Trajet * trajetAAjouter)//Pas judicieux de faire une fonction où on ajoute des pointeurs
+//alors que cette fonction est publique et que elle ne fait pas de copie en profondeur...
+//A revoir entièrement
 {
 	if(this->EstVide())
 	{
@@ -93,6 +95,29 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
 #endif
 //TODO
 //Après avoir fait le constructeur de copie de trajet
+
+//Pour que ça fonctionne, il faudrait peut être passer par deux fonctions annexes renvoyant un pointeur sur Trajet
+//Pour pouvoir l'ajouter à la liste
+/*if(uneListe.EstVide())
+	{
+		this->ptrDebut=nullptr;
+		this->ptrFin=nullptr;
+	}
+	else
+	{
+		ElementListeTrajet * elementEnCours=uneListe.ptrDebut;
+	
+		while(elementEnCours!=nullptr)
+		{
+			Trajet *elementAAjouter= new Trajet(elementEnCours->TrajetEnCours);
+			this->AddT(elementAAjouter);
+		
+			elementEnCours=elementEnCours->ElementTrajetSuivant;
+
+		}
+		
+	}*/
+	
 } //----- Fin de ListeTrajets::ListeTrajets (constructeur de copie)
 
 

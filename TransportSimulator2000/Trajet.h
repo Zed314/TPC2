@@ -35,33 +35,33 @@ public:
 	//Méthode vérifiant si le trajet appellant peut être ajouté à la suite du Trajet en parametre
 	bool PeutServirDeBaseA(const Trajet &TrajetAAgrandir);
 
-
     //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
-    
     bool CheckIfGoesFromTo(const char* ville1, const char* ville2) const;
     
     //Méthode permettant de savoir si le trajet part de ville
-    
     bool CheckIfGoesFrom(const char* ville) const;
     
     //Méthode permettant de savoir si le trajet arrive à ville
-    
     bool CheckIfGoesTo(const char* ville)const;
     
-     //Méthode abstraite d'affichage des trajets
+    //Méthode abstraite d'affichage des trajets
     virtual void ToString() const = 0;
     
 //-------------------------------------------- Constructeurs - destructeur
-   //Constructeur non paramétré
+   
    Trajet();
+	//Constructeur non paramétré
+	//Génére un trajet partant de INCONNU vers INCONNU
 	
-	//Constructeur par copie
+	Trajet(const char* villeDep, const char* villeArr);
+   // Mode d'emploi : constructeur d'un trajet (paramétré)
+   
 	Trajet(const Trajet & unTrajet);
-
-    Trajet(const char* villeDep, const char* villeArr);
-    // Mode d'emploi : constructeur d'un trajet (paramétré)
+	//Constructeur par copie
+    
 
     virtual ~Trajet ( );
+    //Destructeur
  
 
 
@@ -70,6 +70,10 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
 	void MaJArrivee(const Trajet &TrajetSource);
+	//Mode d'emploi
+	//Change la valeur de ville arrivée par l'arrivée de TrajetSource
+	//Utilisée dans Trajet Composé
+	
 private:
 //------------------------------------------------------- Méthodes privées
 
