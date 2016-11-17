@@ -35,33 +35,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-void Trajet::transportToString( const Transport transportAAfficher) const
-{
-	switch(transportAAfficher)
-	{
-		case(Avion):
-		cout<<"Avion";
-		break;
-		case(Automobile):
-		cout<<"Automobile";
-		break;
-		case(Tank):
-		cout<<"Tank";
-		break;
-		case(Canard_geant):
-		cout<<"Canard géant";
-		break;
-		case(Tramway):
-		cout<<"Tramway";
-		break;
-		case(Bateau):
-		cout<<"Bateau";
-		break;
-		case(DosDeMathieuMaranzana):
-		cout<<"Missile Nord Coréen";
-		break;
-	}
-}
+
  bool Trajet::CheckIfGoesTo(const char* ville1, const char* ville2)
  {
 	 return true;

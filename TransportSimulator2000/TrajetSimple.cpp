@@ -32,6 +32,33 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+void TrajetSimple::transportToString( const Transport transportAAfficher) const
+{
+	switch(transportAAfficher)
+	{
+		case(Avion):
+		cout<<"Avion";
+		break;
+		case(Automobile):
+		cout<<"Automobile";
+		break;
+		case(Tank):
+		cout<<"Tank";
+		break;
+		case(Canard_geant):
+		cout<<"Canard géant";
+		break;
+		case(Tramway):
+		cout<<"Tramway";
+		break;
+		case(Bateau):
+		cout<<"Bateau";
+		break;
+		case(DosDeMathieuMaranzana):
+		cout<<"Missile Nord Coréen";
+		break;
+	}
+}
 
 void TrajetSimple::ToString() const
 {

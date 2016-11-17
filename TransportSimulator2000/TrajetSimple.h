@@ -34,6 +34,9 @@ public:
 
  // Mode d'emploi : Affiche le trajet simple
     void ToString() const;
+    
+    void transportToString(const Transport transportAAfficher)const;  
+ //Affiche l'énumération Transport passée en paramètre
 
 
 

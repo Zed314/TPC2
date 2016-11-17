@@ -56,8 +56,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
- void transportToString(const Transport transportAAfficher)const;  
- //Affiche l'énumération Transport passée en paramètre
+
 private:
 //------------------------------------------------------- Méthodes privées
 
