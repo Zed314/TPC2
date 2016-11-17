@@ -54,7 +54,8 @@ void testConstructeurDeCopie()
 void testTrajetCompose()
 {
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
-	a.ToString();
+	//a.ToString();
+
 	TrajetCompose b(a);
 	b.ToString();
 	

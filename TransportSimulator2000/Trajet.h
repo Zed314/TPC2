@@ -30,8 +30,13 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
+
+	
+	//Méthode vérifiant si le trajet appellant peut être ajouté à la suite du Trajet en parametre
+	bool PeutServirDeBaseA(const Trajet &TrajetAAgrandir);
+
+
     //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
-	  
     
     bool CheckIfGoesFromTo(const char* ville1, const char* ville2) const;
     
@@ -64,7 +69,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+	void MaJArrivee(const Trajet &TrajetSource);
 private:
 //------------------------------------------------------- Méthodes privées
 

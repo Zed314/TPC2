@@ -36,10 +36,22 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-  void TrajetCompose::addTrajet(Trajet * trajetToAdd)
+  void TrajetCompose::addTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
-	  
-	  listeDesTrajets.AddT(trajetToAdd);
+  	//Eviter d'ajouter un trajet a lui même
+	//Pas conçu pour la suppression
+	if(this->PeutServirDeBaseA(trajetSimpleToAdd)||listeDesTrajets.EstVide())
+		{
+		this->MaJArrivee(trajetSimpleToAdd);
+		TrajetSimple * pointeurVersNouveauTrajet=new TrajetSimple(trajetSimpleToAdd);
+	  	listeDesTrajets.AddT(pointeurVersNouveauTrajet);
+	  }
+	  else
+	
+		{
+			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet que l'on souhaite ajouter!"<<endl;
+		}
+	  //listeDesTrajets.AddT(trajetToAdd);
   }   // --- Fin de addTrajet
 	
 
@@ -69,10 +81,8 @@ TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transpo
 #ifdef MAP
     cout << "Appel au constructeur paramétré de <TrajetCompose>" << endl;
 #endif
-/*
-Trajet * trajetAAjouter = new TrajetSimple(villeDep,villeArr,transportUtilise);
-listeDesTrajets.AddT(trajetAAjouter);
-*/
+TrajetSimple trajetAAjouter(villeDep,villeArr,transportUtilise);
+addTrajet(trajetAAjouter);
 
 } //----- Fin de TrajetCompose
 
@@ -84,12 +94,7 @@ TrajetCompose::TrajetCompose (const TrajetSimple &unTrajetSimple):Trajet(unTraje
     cout << "Appel au constructeur paramétré avec un TrajetSimple de <TrajetCompose>" << endl;
 #endif
 
-Trajet * trajetAAjouter = new TrajetSimple(unTrajetSimple);
-
-TrajetCompose::addTrajet(trajetAAjouter);
-
-//listeDesTrajets.AddT(trajetAAjouter);
-
+addTrajet(unTrajetSimple);
 
 } //----- Fin de TrajetCompose
 

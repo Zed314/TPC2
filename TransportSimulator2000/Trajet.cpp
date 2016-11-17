@@ -34,19 +34,53 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+bool Trajet::PeutServirDeBaseA(const Trajet &TrajetAAjouter)
+{
+	if(strcmp(this->villeArrivee,TrajetAAjouter.villeDepart)==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool Trajet::CheckIfGoesFrom(const char* ville)const
 {
-return true;
+ 	if(strcmp(ville,this->villeDepart)==0)
+ 	{
+ 		return true;
+ 	}
+ 	else
+	{
+		return false;
+	}
 }
 
  bool Trajet::CheckIfGoesTo(const char* ville)const
  {
- 	return false;
+ 	if(strcmp(ville,this->villeArrivee)==0)
+ 	{
+ 		return true;
+ 	}
+ 	else
+	{
+		return false;
+	}
+ 	
  }
 
  bool Trajet::CheckIfGoesFromTo(const char* ville1, const char* ville2) const
  {
+ 	if(CheckIfGoesFrom(ville1)&&CheckIfGoesTo(ville2))
+ 	{
 	 return true;
+	 }
+	 else
+	 {
+	 	return false;
+	 }
 	 
  }  // ------ Fin de checkIfGoesTo
     
@@ -116,6 +150,12 @@ Trajet::~Trajet ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+void Trajet::MaJArrivee(const Trajet &TrajetSource)
+{
+	delete[] this->villeArrivee;
+	this->villeArrivee = new char[strlen(TrajetSource.villeArrivee) + 1];
+	strcpy(this->villeArrivee, TrajetSource.villeArrivee);
 
+}
 //------------------------------------------------------- Méthodes privées
 

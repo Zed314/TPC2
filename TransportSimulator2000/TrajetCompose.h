@@ -15,6 +15,7 @@
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "ListeTrajets.h"
+#include <cstring>
 
 //------------------------------------------------------------- Constantes
 
@@ -37,7 +38,7 @@ public:
     //
     // Contrat :
     //
-    void addTrajet(Trajet * trajetToAdd);
+    void addTrajet(const TrajetSimple  &trajetSimpleToAdd);
     // Mode d'emploi :
     //
     // Contrat :
