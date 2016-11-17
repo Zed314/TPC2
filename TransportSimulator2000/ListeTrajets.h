@@ -40,8 +40,6 @@ public:
 	
     // Contrat : Le pointeur passé en paramètre n'est pas NULL
     //
-    void Affichage() const;
-    // Affiche les éléments de la liste de trajets
 
     bool EstVide() const;
     // Renvoie true si la file est vide
@@ -49,7 +47,7 @@ public:
     // Contrat :
     //
     void ToString() const;
-    //Affiche la liste des trajets
+     // Affiche les éléments de la liste de trajets
     
 
     
