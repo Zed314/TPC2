@@ -34,6 +34,9 @@ static void testListe()
 	t1->ToString();
 	lt.AddT(t1);
 	lt.ToString();
+	TrajetSimple *t2=new TrajetSimple();
+	t2->ToString();
+	delete t2;
 	
 }
 
@@ -43,8 +46,8 @@ void testConstructeurDeCopie()
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	a.ToString();
 	{
-	TrajetSimple b(a);
-	b.ToString();
+		TrajetSimple b(a);
+		b.ToString();
 	}
 	a.ToString();
 }
@@ -60,7 +63,7 @@ int main(int argc, char** argv)
 
 	//test1();
 	//testListe();
-	testListe();
+	//testListe();
 	testConstructeurDeCopie();
 
 	return 0;

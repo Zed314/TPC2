@@ -35,7 +35,7 @@ public:
  // Mode d'emploi : Affiche le trajet simple
     void ToString() const;
     
-    void transportToString(const Transport transportAAfficher)const;  
+    void transportToString()const;  
  //Affiche l'énumération Transport passée en paramètre
 
 
@@ -47,7 +47,7 @@ public:
     TrajetSimple ( const TrajetSimple & unTrajet );
 
 	//Constructeur par défaut d'un trajet simple
-   // TrajetSimple ( );
+    TrajetSimple ( );
 	
 	//Constructeur paramétré
     TrajetSimple (const char* villeDep, const char* villeArr, const Transport transp );

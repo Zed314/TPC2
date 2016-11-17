@@ -21,7 +21,7 @@
 //
 //	Un trajet abstrait, reliant deux villes (départ et arrivée) entre elles.
 //------------------------------------------------------------------------
-enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana };
+enum Transport { Avion, Automobile, Tank, Canard_geant, Tramway, Bateau, DosDeMathieuMaranzana,Inconnu };
 
 class Trajet
 {

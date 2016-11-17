@@ -32,9 +32,9 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-void TrajetSimple::transportToString( const Transport transportAAfficher) const
+void TrajetSimple::transportToString() const
 {
-	switch(transportAAfficher)
+	switch(this->transportUtilise)
 	{
 		case(Avion):
 		cout<<"Avion";
@@ -57,6 +57,9 @@ void TrajetSimple::transportToString( const Transport transportAAfficher) const
 		case(DosDeMathieuMaranzana):
 		cout<<"Missile Nord Coréen";
 		break;
+		case(Inconnu):
+		cout<<"Inconnu";
+		break;
 	}
 }
 
@@ -64,7 +67,7 @@ void TrajetSimple::ToString() const
 {
 
 	cout<<"de "<<villeDepart<<" à "<<villeArrivee<<" en ";
-	this->transportToString(transportUtilise);
+	this->transportToString();
 	cout<<endl;
 	
 
@@ -98,16 +101,17 @@ this->transportUtilise=unTrajetSimple.transportUtilise;
 	 
  }  //--- Fin du constructeur
  
- /*
-TrajetSimple::TrajetSimple ( )
+ 
+TrajetSimple::TrajetSimple ( ):Trajet()
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+    cout << "Appel au constructeur sans paramètres de <TrajetSimple>" << endl;
 #endif
+this->transportUtilise=Inconnu;
 } //----- Fin de TrajetSimple
-*/
+
 
 TrajetSimple::~TrajetSimple ( )
 // Algorithme :

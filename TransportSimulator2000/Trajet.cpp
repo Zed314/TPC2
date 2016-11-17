@@ -66,8 +66,12 @@ Trajet::Trajet ( )
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur sans paramètres de <Trajet>" << endl;
 #endif
+this->villeDepart=new char[strlen("INCONNNU") + 1];
+strcpy(this->villeDepart, "INCONNNU");
+this->villeArrivee=new char[strlen("INCONNU") + 1];
+strcpy(this->villeArrivee, "INCONNU");
 } //----- Fin de Trajet
 
 Trajet::Trajet(const char* villeDep, const char* villeArr)
@@ -93,7 +97,7 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-
+	
 	delete[] this->villeDepart;
 	delete[] this->villeArrivee;
 
