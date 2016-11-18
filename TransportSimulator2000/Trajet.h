@@ -30,10 +30,10 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+	 
 	
 	//Méthode vérifiant si le trajet appellant peut être ajouté à la suite du Trajet en parametre
-	bool PeutServirDeBaseA(const Trajet &TrajetAAgrandir);
+	 bool PeutServirDeBaseA(const Trajet &TrajetAAgrandir);
 
     //Méthode vérifiant si le trajet mène de la ville 1 à la ville 2
     bool CheckIfGoesFromTo(const char* ville1, const char* ville2) const;
@@ -47,6 +47,8 @@ public:
     //Méthode abstraite d'affichage des trajets
     virtual void ToString() const = 0;
     
+    //Méthode abstraite permettant la copie d'un trajets
+    virtual Trajet * Clone() const = 0;
 //-------------------------------------------- Constructeurs - destructeur
    
    Trajet();

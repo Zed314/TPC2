@@ -34,7 +34,11 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-
+Trajet * TrajetCompose::Clone() const
+ {
+ 	TrajetCompose * copieDuTrajetCompose= new TrajetCompose(*this);
+ return copieDuTrajetCompose;
+ }
 
   void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
@@ -43,8 +47,7 @@ using namespace std;
 	if(this->PeutServirDeBaseA(trajetSimpleToAdd)||listeDesTrajets.EstVide())
 		{
 		this->MaJArrivee(trajetSimpleToAdd);
-		TrajetSimple * pointeurVersNouveauTrajet=new TrajetSimple(trajetSimpleToAdd);
-	  	listeDesTrajets.AddT(pointeurVersNouveauTrajet);
+	  	listeDesTrajets.AddT(trajetSimpleToAdd);
 	  }
 	  else
 	

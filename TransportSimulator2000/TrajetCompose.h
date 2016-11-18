@@ -43,10 +43,13 @@ public:
     //
     // Contrat :
 	
-   // Mode d'emploi : Permet d'afficher le trajet composé
+	 Trajet * Clone() const;
+	//Mode d'emploi : Renvoie un pointeur vers une copie de l'élément appelant
+  
 
     void ToString() const;
-
+		 // Mode d'emploi : Permet d'afficher le trajet composé
+		 
 
 //-------------------------------------------- Constructeurs - destructeur
 

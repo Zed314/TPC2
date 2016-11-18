@@ -99,6 +99,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 	
 	this->villeArrivee = new char[strlen(unTrajet.villeArrivee) + 1];
 	strcpy(this->villeArrivee, unTrajet.villeArrivee);
+
 	
 } //----- Fin de Trajet::Trajet (constructeur de copie)
 
@@ -127,7 +128,7 @@ Trajet::Trajet(const char* villeDep, const char* villeArr)
 	this->villeArrivee = new char[strlen(villeArr) + 1];
 	strcpy(this->villeArrivee, villeArr);
 	
-	
+		
 }  //-- Fin du constructeur paramétré
 
 

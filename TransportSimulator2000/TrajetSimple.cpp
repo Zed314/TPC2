@@ -32,6 +32,19 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+
+Trajet * TrajetSimple::Clone() const
+ {
+ 	#ifdef MAP
+
+    cout << "Appel au Clone() de TrajetSimple." << endl;
+
+	#endif
+
+return new TrajetSimple(*this);
+ }
+ 
+ 
 void TrajetSimple::transportToString() const
 {
 	switch(this->transportUtilise)
@@ -94,10 +107,12 @@ this->transportUtilise=unTrajetSimple.transportUtilise;
 //Constructeur paramétré
  TrajetSimple::TrajetSimple(const char* villeDep, const char* villeArr, const Transport transp ): Trajet (villeDep,villeArr),transportUtilise(transp) 
  {
-	 
+	
 	 #ifdef MAP
 		cout << "Appel au constructeur paramétré de <TrajetSimple>" << endl;
 	#endif
+ 
+	
 	 
  }  //--- Fin du constructeur
  

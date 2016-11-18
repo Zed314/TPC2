@@ -32,13 +32,16 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
- // Mode d'emploi : Affiche le trajet simple
+
     void ToString() const;
-    
+     // Mode d'emploi : Affiche le trajet simple
+     
+     
     void transportToString()const;  
  //Affiche l'énumération Transport passée en paramètre
 
-
+	 Trajet * Clone() const;
+	//Mode d'emploi : Renvoie un pointeur vers une copie de l'élément appelant
 
 //-------------------------------------------- Constructeurs - destructeur
 

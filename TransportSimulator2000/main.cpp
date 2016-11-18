@@ -30,8 +30,8 @@ static void testListe()
 {
 	ListeTrajets lt;
 	lt.ToString();
-	TrajetSimple *t1=new TrajetSimple("Lyon", "Paris", Transport::Automobile);
-	t1->ToString();
+	TrajetSimple t1("Lyon", "Paris", Transport::Automobile);
+	t1.ToString();
 	lt.AddT(t1);
 	lt.ToString();
 	TrajetSimple *t2=new TrajetSimple();
@@ -59,6 +59,23 @@ cout<<endl;
 	}
 	c.ToString();
 }
+
+void testConstructeurDeCopieListe()
+{
+	ListeTrajets a;
+	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
+
+	a.AddT(c);
+	a.ToString();
+
+	
+	{
+		ListeTrajets b(a);
+		b.ToString();
+		
+		
+	}
+}
 void testTrajetCompose()
 {
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
@@ -68,6 +85,7 @@ void testTrajetCompose()
 	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
 	TrajetSimple d("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
 	b.AddTrajet(c);
+
 	b.AddTrajet(d);
 	b.ToString();
 	
@@ -86,8 +104,9 @@ int main(int argc, char** argv)
 	//test1();
 	//testListe();
 	//testListe();
-	testConstructeurDeCopie();
-//	testTrajetCompose();
+	//testConstructeurDeCopie();
+	testConstructeurDeCopieListe();
+	//testTrajetCompose();
 
 	return 0;
 }  //----- Fin du main

@@ -18,6 +18,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
 #include "Trajet.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -56,25 +57,17 @@ void ListeTrajets::ToString() const
 	
 }
 
-void ListeTrajets::AddT(Trajet * trajetAAjouter)//Pas judicieux de faire une fonction où on ajoute des pointeurs
-//alors que cette fonction est publique et que elle ne fait pas de copie en profondeur...
-//A revoir entièrement
+void ListeTrajets::AddT(const TrajetSimple & trajetAAjouter)
 {
-	if(this->EstVide())
-	{
-		this->ptrDebut = new ElementListeTrajet;
-		this->ptrDebut->TrajetEnCours=trajetAAjouter;
-		this->ptrDebut->ElementTrajetSuivant=nullptr;
-		this->ptrFin=ptrDebut;
-	}
-	else
-	{
-		this->ptrFin->ElementTrajetSuivant=new ElementListeTrajet;
-		this->ptrFin->ElementTrajetSuivant->TrajetEnCours=trajetAAjouter;
-		this->ptrFin->ElementTrajetSuivant->ElementTrajetSuivant=nullptr;
-		this->ptrFin=this->ptrFin->ElementTrajetSuivant;
-	}
+	TrajetSimple * trajetSimpleAAjouter=new TrajetSimple(trajetAAjouter);
+	this->AddTInterne(trajetSimpleAAjouter);
 }
+void ListeTrajets::AddT(const TrajetCompose & trajetAAjouter)
+{
+	TrajetCompose * trajetComposeAAjouter=new TrajetCompose(trajetAAjouter);
+	this->AddTInterne(trajetComposeAAjouter);	
+}
+
 
 bool ListeTrajets::EstVide() const
 {
@@ -86,7 +79,7 @@ bool ListeTrajets::EstVide() const
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
+ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),ptrFin(nullptr)
 // Algorithme :
 //
 {
@@ -98,25 +91,26 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe )
 
 //Pour que ça fonctionne, il faudrait peut être passer par deux fonctions annexes renvoyant un pointeur sur Trajet
 //Pour pouvoir l'ajouter à la liste
-/*if(uneListe.EstVide())
+	if(uneListe.EstVide())
 	{
-		this->ptrDebut=nullptr;
-		this->ptrFin=nullptr;
+		
 	}
 	else
 	{
 		ElementListeTrajet * elementEnCours=uneListe.ptrDebut;
-	
+		Trajet * trajetAAjouter;
 		while(elementEnCours!=nullptr)
 		{
-			Trajet *elementAAjouter= new Trajet(elementEnCours->TrajetEnCours);
-			this->AddT(elementAAjouter);
+			//this->AddT(*(elementEnCours->TrajetEnCours));
+		trajetAAjouter=elementEnCours->TrajetEnCours->Clone();
+		
+			this->AddTInterne(trajetAAjouter);
 		
 			elementEnCours=elementEnCours->ElementTrajetSuivant;
 
 		}
 		
-	}*/
+	}
 	
 } //----- Fin de ListeTrajets::ListeTrajets (constructeur de copie)
 
@@ -155,5 +149,28 @@ ListeTrajets::~ListeTrajets ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+void ListeTrajets::AddTInterne(Trajet * trajetAAjouter)
+{
+	
+	
+	
+	if(this->EstVide())
+	{
+		this->ptrDebut = new ElementListeTrajet;
+		this->ptrDebut->TrajetEnCours=trajetAAjouter;
+		this->ptrDebut->ElementTrajetSuivant=nullptr;
+		this->ptrFin=this->ptrDebut;
 
+	}
+	else
+	{		
+			
+		this->ptrFin->ElementTrajetSuivant=new ElementListeTrajet;
+		this->ptrFin->ElementTrajetSuivant->TrajetEnCours=trajetAAjouter;
+		this->ptrFin->ElementTrajetSuivant->ElementTrajetSuivant=nullptr;
+		this->ptrFin=this->ptrFin->ElementTrajetSuivant;
+	
+	}
+
+}
 //------------------------------------------------------- Méthodes privées

@@ -13,6 +13,9 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
+#include "TrajetSimple.h"
+class TrajetCompose;
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -34,12 +37,16 @@ class ListeTrajets
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    void AddT(Trajet * trajetAAjouter);
-    // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
-    // L'ajout est fait en queue de liste chaînée
+
+   void AddT(const TrajetSimple & trajetAAjouter);
+    // Mode d'emploi :Ajoute un trajetSimple a la liste des trajets
+    // L'ajout à la fin de la liste
 	
-    // Contrat : Le pointeur passé en paramètre n'est pas NULL
-    //
+   
+	void AddT(const TrajetCompose & trajetAAjouter);
+    // Mode d'emploi :Ajoute un trajetCompose a la liste des trajets
+    // L'ajout à la fin de la liste
+	
 
     bool EstVide() const;
     // Renvoie true si la file est vide
@@ -77,7 +84,11 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+    void AddTInterne(Trajet * trajetAAjouter);
+    // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
+    // L'ajout est fait en queue de liste chaînée
+	
+    // Contrat : Le pointeur passé en paramètre n'est pas NULL
 private:
 //------------------------------------------------------- Méthodes privées
 
