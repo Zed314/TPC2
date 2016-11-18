@@ -64,17 +64,32 @@ void testConstructeurDeCopieListe()
 {
 	ListeTrajets a;
 	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
+	TrajetSimple d("Lyon", "Villeurbanne",Transport::Tank);
 
-	a.AddT(c);
+	TrajetCompose e(c);
+	e.ToString();
+	{
+		TrajetCompose t(e);
+		t.ToString();
+	}
 	a.ToString();
+	a.AddT(c);
+	a.AddT(d);
+	a.ToString();
+	{
+		ListeTrajets z(a);
+		z.ToString();
+		z.AddT(e);
+		z.ToString();
+	}
+	a.ToString();
+	e.ToString();
 
-	
+	/*
 	{
 		ListeTrajets b(a);
 		b.ToString();
-		
-		
-	}
+	}*/
 }
 void testTrajetCompose()
 {

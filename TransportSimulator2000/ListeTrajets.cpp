@@ -93,7 +93,7 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),p
 //Pour pouvoir l'ajouter à la liste
 	if(uneListe.EstVide())
 	{
-		
+		//Il n'y a rien à faire 
 	}
 	else
 	{

@@ -36,18 +36,23 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 Trajet * TrajetCompose::Clone() const
  {
- 	TrajetCompose * copieDuTrajetCompose= new TrajetCompose(*this);
- return copieDuTrajetCompose;
+ 	 	#ifdef MAP
+
+    cout << "Appel au Clone() de TrajetCompose." << endl;
+
+	#endif
+ 	
+ return new TrajetCompose(*this);
  }
 
   void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
 
 	//Pas conçu pour la suppression
-	if(this->PeutServirDeBaseA(trajetSimpleToAdd)||listeDesTrajets.EstVide())
+	if(this->PeutServirDeBaseA(trajetSimpleToAdd)||listeDesTrajets->EstVide())
 		{
 		this->MaJArrivee(trajetSimpleToAdd);
-	  	listeDesTrajets.AddT(trajetSimpleToAdd);
+	  	listeDesTrajets->AddT(trajetSimpleToAdd);
 	  }
 	  else
 	
@@ -62,7 +67,7 @@ Trajet * TrajetCompose::Clone() const
 	{
 		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl;
 		
-		listeDesTrajets.ToString();
+		listeDesTrajets->ToString();
 		
 	}  // --- Fin de ToString
 
@@ -74,7 +79,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(un
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
-this->listeDesTrajets=ListeTrajets(unTrajetCompose.listeDesTrajets);
+this->listeDesTrajets= new ListeTrajets(*(unTrajetCompose.listeDesTrajets));
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
 
@@ -86,6 +91,7 @@ TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transpo
     cout << "Appel au constructeur paramétré de <TrajetCompose>" << endl;
 #endif
 TrajetSimple trajetAAjouter(villeDep,villeArr,transportUtilise);
+listeDesTrajets=new ListeTrajets();
 AddTrajet(trajetAAjouter);
 
 } //----- Fin de TrajetCompose
@@ -97,7 +103,7 @@ TrajetCompose::TrajetCompose (const TrajetSimple &unTrajetSimple):Trajet(unTraje
 #ifdef MAP
     cout << "Appel au constructeur paramétré avec un TrajetSimple de <TrajetCompose>" << endl;
 #endif
-
+listeDesTrajets=new ListeTrajets();
 AddTrajet(unTrajetSimple);
 
 } //----- Fin de TrajetCompose
@@ -112,6 +118,7 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+delete listeDesTrajets;
 } //----- Fin de ~TrajetCompose
 
 

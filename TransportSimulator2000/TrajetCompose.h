@@ -85,7 +85,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 private:
-ListeTrajets listeDesTrajets;
+ListeTrajets * listeDesTrajets;
 //------------------------------------------------------- Attributs privés
 
 //---------------------------------------------------------- Classes amies
