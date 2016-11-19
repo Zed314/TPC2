@@ -104,7 +104,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(un
 this->listeDesTrajets= new ListeTrajets(*(unTrajetCompose.listeDesTrajets));
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
-TrajetCompose::TrajetCompose ():Trajet("INCONNUE","INCONNUE")
+TrajetCompose::TrajetCompose ():Trajet()
 // Algorithme :
 //
 {

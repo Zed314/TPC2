@@ -28,15 +28,31 @@ using namespace std;
 static void testListe()
 
 {
+	cout<<"Création d'un liste vide"<<endl;
 	ListeTrajets lt;
 	lt.ToString();
+	cout<<"Création d'un Trajet simple"<<endl;
 	TrajetSimple t1("Lyon", "Paris", Transport::Automobile);
+	cout<<"Création d'un Trajet simple"<<endl;
 	TrajetSimple t2("Paris","Buccarache",Transport::Avion);
+	cout<<"Création d'un Trajet composé sur la base du premier trajet simple"<<endl;
 	TrajetCompose t3(t1);
+	
+	cout<<"Ajout d'un Trajet simple au trajet composé"<<endl;
 	t3.AddTrajet(t2);	
+	
+	cout<<"Ajout d'un Trajet simple à la liste"<<endl;
 	lt.AddT(t1);
+	cout<<"Ajout d'un Trajet simple à la liste"<<endl;
 	lt.AddT(t2);
+	cout<<"Ajout d'un Trajet Composé à la liste"<<endl;
 	lt.AddT(t3);
+	lt.ToString();
+	{
+		cout<<"Création d'une liste de trajets copiant la liste précédente"<<endl;
+		ListeTrajets lt2(lt);
+		lt2.ToString();
+	}
 	lt.ToString();
 	
 }
@@ -111,7 +127,11 @@ void testTrajetCompose()
 		
 	}
 	e.ToString();
-	
+	{
+		TrajetCompose g(e);
+		g.ToString();
+	}
+	e.ToString();
 }
 void testCatalogue()
 {
@@ -177,13 +197,13 @@ void testCatalogue()
 int main(int argc, char** argv)
 {
 
-	//test1();
+	
 	//testListe();
-	//testListe();
+	testListe();
 	////testConstructeurDeCopie();
 	//testConstructeurDeCopieListe();
 	//testTrajetCompose();
-	testCatalogue();
+	//testCatalogue();
 
 	return 0;
 }  //----- Fin du main

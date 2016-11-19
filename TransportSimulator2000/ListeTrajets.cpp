@@ -86,14 +86,14 @@ bool ListeTrajets::CheckTrajet(const char* const ville1, const char* ville2)
 
 void ListeTrajets::AddT(const Trajet * trajetAAjouter)
 {
-	Trajet * trajetAAjouterALaListe=trajetAAjouter->Clone();
-	this->AddTInterne(trajetAAjouterALaListe);
+
+	this->AddTInterne(trajetAAjouter->Clone());
 }
 
 void ListeTrajets::AddT(const Trajet & trajetAAjouter)
 {
-	Trajet * trajetAAjouterListe=trajetAAjouter.Clone();
-	this->AddTInterne(trajetAAjouterListe);
+
+	this->AddTInterne(trajetAAjouter.Clone());
 }
 
 
@@ -109,7 +109,7 @@ bool ListeTrajets::EstVide() const
 
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),ptrFin(nullptr)
-// Algorithme :
+// Algorithme :Copie en profondeur, élément par élément, trajets par trajets, de la liste passée en paramètre
 //
 {
 #ifdef MAP
@@ -123,14 +123,11 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),p
 	else
 	{
 		ElementListeTrajet * elementEnCours=uneListe.ptrDebut;
-		//Trajet * trajetAAjouter;
+		
 		while(elementEnCours!=nullptr)
 		{
-			
-		//	trajetAAjouter=elementEnCours->TrajetEnCours->Clone();
-		
-			this->AddTInterne(elementEnCours->TrajetEnCours->Clone());
-		
+
+			this->AddTInterne(elementEnCours->TrajetEnCours->Clone());		
 			elementEnCours=elementEnCours->ElementTrajetSuivant;
 
 		}
@@ -145,7 +142,7 @@ ListeTrajets::ListeTrajets ( ): ptrDebut(nullptr),ptrFin(nullptr)
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <ListeTrajets>" << endl;
+	cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
 
 } //----- Fin de ListeTrajets
