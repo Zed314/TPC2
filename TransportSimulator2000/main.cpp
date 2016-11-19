@@ -107,13 +107,53 @@ void testCatalogue()
 	Catalogue catalogue;
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	TrajetSimple b("Paris", "Dourdan", Transport::Avion);
+	TrajetSimple c("Dourdan", "Bréthencourt", Transport::Tank);
 	TrajetCompose tc(a);
 
 	tc.AddTrajet(b);
 	catalogue.AddTrajet(a);
 	catalogue.AddTrajet(b);
+	catalogue.AddTrajet(c);
 	catalogue.AddTrajet(tc);
 	catalogue.ToString();
+	if(catalogue.CheckTrajet("Paris","Dourdan"))
+	{
+		cout<<endl;	
+		cout<<"Il existe bien un trajet partant de Paris et allant à Dourdan!"<<endl;
+	}
+	else
+	{
+		cout<<"Il n'existe pas de trajets partant de Paris et allant à Dourdan!"<<endl;
+	}
+	if(catalogue.CheckTrajet("Dourdan","Paris"))
+	{
+		cout<<endl;	
+		cout<<"Il existe bien un trajet partant de Dourdan et allant à Paris!"<<endl;
+	}
+	else
+	{
+		cout<<"Il n'existe pas de trajets partant de Dourdan et allant à Paris!"<<endl;
+	}
+	if(catalogue.CheckTrajet("Lyon","Dourdan"))
+	{
+		cout<<endl;	
+		cout<<"Il existe bien un trajet partant de Lyon et allant à Dourdan!"<<endl;
+	}
+	else
+	{
+		cout<<"Il n'existe pas de trajets partant de Lyon et allant à Dourdan!"<<endl;
+	}
+	if(catalogue.CheckTrajet("Lyon","Bréthencourt"))
+	{
+		cout<<endl;	
+		cout<<"Il existe bien un trajet partant de Lyon et allant à Bréthencourt!"<<endl;
+	}
+	else
+	{
+		cout<<"Il n'existe pas de trajets partant de Lyon et allant à Bréthencourt!"<<endl;
+	}
+	
+	
 }
 /*
 

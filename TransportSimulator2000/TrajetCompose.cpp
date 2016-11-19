@@ -36,10 +36,8 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 Trajet * TrajetCompose::Clone() const
  {
- 	 	#ifdef MAP
-
-    cout << "Appel au Clone() de TrajetCompose." << endl;
-
+ 	 #ifdef MAP
+    	cout << "Appel de la méthode Clone() de <TrajetCompose>" << endl;
 	#endif
  	
  return new TrajetCompose(*this);
@@ -65,7 +63,8 @@ void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
 
     void TrajetCompose::ToString() const
 	{
-		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl;
+		cout<<endl;
+		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl<<"\t";
 		
 		listeDesTrajets->ToString();
 		

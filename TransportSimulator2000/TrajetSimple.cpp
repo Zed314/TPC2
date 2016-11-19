@@ -37,7 +37,7 @@ Trajet * TrajetSimple::Clone() const
  {
  	#ifdef MAP
 
-    cout << "Appel au Clone() de TrajetSimple." << endl;
+    	cout << "Appel à la méthode Clone() de <TrajetSimple>" << endl;
 
 	#endif
 

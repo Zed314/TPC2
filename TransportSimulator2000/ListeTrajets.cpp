@@ -45,7 +45,7 @@ void ListeTrajets::ToString() const
 		while(elementEnCours!=nullptr)
 		{
 			elementEnCours->TrajetEnCours->ToString();
-			cout<<endl;
+			
 			elementEnCours=elementEnCours->ElementTrajetSuivant;
 			if (elementEnCours!=nullptr)
 			{
