@@ -53,8 +53,12 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
+	 TrajetCompose ();
+    // Mode d'emploi : constructeur par défaut d'un trajet
+
     TrajetCompose (const char* villeDep, const char* villeArr, const Transport transp );
     // Mode d'emploi : constructeur d'un trajet (paramétré)
+    
     TrajetCompose (const TrajetSimple & unTrajetSimple);
     // Mode d'emploi: Construit un TrajetComposé sur le modèle d'un TrajetSimple
     

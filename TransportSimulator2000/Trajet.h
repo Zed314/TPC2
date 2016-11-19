@@ -73,8 +73,14 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 	void MaJArrivee(const Trajet &TrajetSource);
 	//Mode d'emploi
-	//Change la valeur de ville arrivée par l'arrivée de TrajetSource
+	//Change la valeur de la ville d'arrivée par celle de TrajetSource
 	//Utilisée dans Trajet Composé
+	
+	void MaJDepart(const Trajet &TrajetSource);
+	//Mode d'emploi
+	//Change la valeur de ville de Départ par celle de TrajetSource
+	//Utilisée dans Trajet Composé
+	
 	
 private:
 //------------------------------------------------------- Méthodes privées

@@ -158,5 +158,12 @@ void Trajet::MaJArrivee(const Trajet &TrajetSource)
 	strcpy(this->villeArrivee, TrajetSource.villeArrivee);
 
 }
+
+void Trajet::MaJDepart(const Trajet &TrajetSource)
+{
+	delete[] this->villeDepart;
+	this->villeDepart = new char[strlen(TrajetSource.villeDepart) + 1];
+	strcpy(this->villeDepart, TrajetSource.villeDepart);
+}
 //------------------------------------------------------- Méthodes privées
 

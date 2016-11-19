@@ -31,12 +31,13 @@ static void testListe()
 	ListeTrajets lt;
 	lt.ToString();
 	TrajetSimple t1("Lyon", "Paris", Transport::Automobile);
-	t1.ToString();
+	TrajetSimple t2("Paris","Buccarache",Transport::Avion);
+	TrajetCompose t3(t1);
+	t3.AddTrajet(t2);	
 	lt.AddT(t1);
+	lt.AddT(t2);
+	lt.AddT(t3);
 	lt.ToString();
-	TrajetSimple *t2=new TrajetSimple();
-	t2->ToString();
-	delete t2;
 	
 }
 
@@ -99,6 +100,8 @@ void testTrajetCompose()
 
 	b.AddTrajet(d);
 	b.ToString();
+	TrajetCompose e;
+	e.ToString();
 	
 	
 }
@@ -168,10 +171,10 @@ int main(int argc, char** argv)
 	//test1();
 	//testListe();
 	//testListe();
-	//testConstructeurDeCopie();
+	////testConstructeurDeCopie();
 	//testConstructeurDeCopieListe();
-	//testTrajetCompose();
-	testCatalogue();
+	testTrajetCompose();
+	//testCatalogue();
 
 	return 0;
 }  //----- Fin du main

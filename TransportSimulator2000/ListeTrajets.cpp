@@ -84,7 +84,11 @@ bool ListeTrajets::CheckTrajet(const char* const ville1, const char* ville2)
 
 }
 
-
+void ListeTrajets::AddT(const Trajet * trajetAAjouter)
+{
+	Trajet * trajetAAjouterALaListe=trajetAAjouter->Clone();
+	this->AddTInterne(trajetAAjouterALaListe);
+}
 
 void ListeTrajets::AddT(const TrajetSimple & trajetAAjouter)
 {

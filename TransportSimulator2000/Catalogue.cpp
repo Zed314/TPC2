@@ -32,6 +32,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+
 void Catalogue::ToString() const
 {
 	this->listeTrajets->ToString();
@@ -48,7 +49,6 @@ void Catalogue::ToString() const
  
  bool Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
  {
- 	
 	 return listeTrajets->CheckTrajet(ville1,ville2);
  } //----- Fin de checkTrajet
  

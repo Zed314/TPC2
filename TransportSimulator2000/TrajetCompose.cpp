@@ -47,7 +47,11 @@ void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
 
 	//Pas conçu pour la suppression
-	if(this->PeutServirDeBaseA(trajetSimpleToAdd)||listeDesTrajets->EstVide())
+		if(listeDesTrajets->EstVide())
+		{
+			this->MaJDepart(trajetSimpleToAdd);
+		}
+		if(this->PeutServirDeBaseA(trajetSimpleToAdd))
 		{
 		this->MaJArrivee(trajetSimpleToAdd);
 	  	listeDesTrajets->AddT(trajetSimpleToAdd);
@@ -64,8 +68,7 @@ void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
     void TrajetCompose::ToString() const
 	{
 		cout<<endl;
-		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl<<"\t";
-		
+		cout<<"Trajet composé part de "<<villeDepart<<" et va à "<<villeArrivee<<" suivant ce chemin: "<<endl<<"\t";	
 		listeDesTrajets->ToString();
 		
 	}  // --- Fin de ToString
@@ -81,6 +84,17 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(un
 this->listeDesTrajets= new ListeTrajets(*(unTrajetCompose.listeDesTrajets));
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
+TrajetCompose::TrajetCompose ():Trajet("INCONNUE","INCONNUE")
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur par défaut de <TrajetCompose>" << endl;
+#endif
+
+listeDesTrajets=new ListeTrajets();
+
+} //----- Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transport transportUtilise):Trajet(villeDep,villeArr)
 // Algorithme :
