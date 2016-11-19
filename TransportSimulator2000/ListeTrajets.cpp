@@ -90,16 +90,12 @@ void ListeTrajets::AddT(const Trajet * trajetAAjouter)
 	this->AddTInterne(trajetAAjouterALaListe);
 }
 
-void ListeTrajets::AddT(const TrajetSimple & trajetAAjouter)
+void ListeTrajets::AddT(const Trajet & trajetAAjouter)
 {
-	TrajetSimple * trajetSimpleAAjouter=new TrajetSimple(trajetAAjouter);
-	this->AddTInterne(trajetSimpleAAjouter);
+	Trajet * trajetAAjouterListe=trajetAAjouter.Clone();
+	this->AddTInterne(trajetAAjouterListe);
 }
-void ListeTrajets::AddT(const TrajetCompose & trajetAAjouter)
-{
-	TrajetCompose * trajetComposeAAjouter=new TrajetCompose(trajetAAjouter);
-	this->AddTInterne(trajetComposeAAjouter);	
-}
+
 
 
 bool ListeTrajets::EstVide() const
@@ -119,8 +115,6 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),p
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ListeTrajets>" << endl;
 #endif
-//TODO
-//Après avoir fait le constructeur de copie de trajet
 
 	if(uneListe.EstVide())
 	{
@@ -129,13 +123,13 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),p
 	else
 	{
 		ElementListeTrajet * elementEnCours=uneListe.ptrDebut;
-		Trajet * trajetAAjouter;
+		//Trajet * trajetAAjouter;
 		while(elementEnCours!=nullptr)
 		{
-			//this->AddT(*(elementEnCours->TrajetEnCours));
-		trajetAAjouter=elementEnCours->TrajetEnCours->Clone();
+			
+		//	trajetAAjouter=elementEnCours->TrajetEnCours->Clone();
 		
-			this->AddTInterne(trajetAAjouter);
+			this->AddTInterne(elementEnCours->TrajetEnCours->Clone());
 		
 			elementEnCours=elementEnCours->ElementTrajetSuivant;
 

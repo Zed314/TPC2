@@ -63,23 +63,23 @@ void TrajetCompose::AddTrajet(const Trajet  * trajetToAdd)
 		}
 
   }   // --- Fin de AddTrajet
-void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
+void TrajetCompose::AddTrajet(const Trajet  & trajetToAdd)
   {
 
 	//Pas conçu pour la suppression
 		if(this->listeDesTrajets->EstVide())
 		{
-			this->MaJDepart(trajetSimpleToAdd);
+			this->MaJDepart(trajetToAdd);
 		}
-		if(this->PeutServirDeBaseA(trajetSimpleToAdd)||this->listeDesTrajets->EstVide())
+		if(this->PeutServirDeBaseA(trajetToAdd)||this->listeDesTrajets->EstVide())
 		{
-		this->MaJArrivee(trajetSimpleToAdd);
-	  	listeDesTrajets->AddT(trajetSimpleToAdd);
+		this->MaJArrivee(trajetToAdd);
+	  	listeDesTrajets->AddT(trajetToAdd);
 	  }
 	  else
 	
 		{
-			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet simple que l'on souhaite ajouter!"<<endl;
+			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet que l'on souhaite ajouter!"<<endl;
 		}
 
   }   // --- Fin de AddTrajet

@@ -41,17 +41,20 @@ public:
     // Affiche les Trajets en question si il en existe au moins un
     // Renvoie true si un Trajet a été trouvé, false sinon
     
+    
+   void AddT(const Trajet & trajetAAjouter);
+    
    void AddT(const Trajet * trajetAAjouter);
    // Mode d'emploi :Ajoute un trajet a la liste des trajets
    // L'ajout est effectué à la fin de la liste 
    // Le trajet pointé par le paramétre est copié.
    
-   void AddT(const TrajetSimple & trajetAAjouter);
+/*  void AddT(const TrajetSimple & trajetAAjouter);
     // Mode d'emploi :Ajoute un trajetSimple a la liste des trajets
     // L'ajout est effectué à la fin de la liste 
 	
    
-	void AddT(const TrajetCompose & trajetAAjouter);
+	void AddT(const TrajetCompose & trajetAAjouter);*/
     // Mode d'emploi :Ajoute un trajetCompose a la liste des trajets
     // L'ajout est effectué à la fin de la liste 
 	

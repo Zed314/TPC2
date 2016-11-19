@@ -37,16 +37,17 @@ void Catalogue::ToString() const
 {
 	this->listeTrajets->ToString();
 }
- void Catalogue::AddTrajet(const TrajetSimple & unTrajetSimple)
+ void Catalogue::AddTrajet(const Trajet* unTrajet)
  {
-	 this->listeTrajets->AddT(unTrajetSimple);
+	 this->listeTrajets->AddT(unTrajet);
  } //----- Fin de addTrajet
  
-  void Catalogue::AddTrajet(const TrajetCompose & unTrajetCompose)
+ void Catalogue::AddTrajet(const Trajet & unTrajet)
  {
-	 this->listeTrajets->AddT(unTrajetCompose);
+	 this->listeTrajets->AddT(unTrajet);
  } //----- Fin de addTrajet
  
+
  bool Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
  {
 	 return listeTrajets->CheckTrajet(ville1,ville2);

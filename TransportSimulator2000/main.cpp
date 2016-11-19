@@ -119,9 +119,10 @@ void testCatalogue()
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	TrajetSimple b("Paris", "Dourdan", Transport::Avion);
 	TrajetSimple c("Dourdan", "Bréthencourt", Transport::Tank);
-	TrajetCompose tc(a);
 
+	TrajetCompose tc(a);
 	tc.AddTrajet(b);
+	
 	catalogue.AddTrajet(a);
 	catalogue.AddTrajet(b);
 	catalogue.AddTrajet(c);
@@ -181,8 +182,8 @@ int main(int argc, char** argv)
 	//testListe();
 	////testConstructeurDeCopie();
 	//testConstructeurDeCopieListe();
-	testTrajetCompose();
-	//testCatalogue();
+	//testTrajetCompose();
+	testCatalogue();
 
 	return 0;
 }  //----- Fin du main

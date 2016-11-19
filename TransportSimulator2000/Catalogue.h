@@ -31,11 +31,13 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
- 	void AddTrajet(const TrajetSimple &unTrajetSimple);
+
+	void AddTrajet(const Trajet * unTrajet);
  	// Méthode ajoutant un trajet à la liste des trajets
  	
-	void AddTrajet(const TrajetCompose &unTrajetCompose);
-	// Méthode ajoutant un trajet à la liste des trajets
+ 	void AddTrajet(const Trajet &unTrajet);
+ 	// Méthode ajoutant un trajet simple à la liste des trajets
+ 
     
 	void ToString() const;
 	//Méthode affichant l'ensemble du catalogue
