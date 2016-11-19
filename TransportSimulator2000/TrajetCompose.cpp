@@ -43,9 +43,9 @@ Trajet * TrajetCompose::Clone() const
 	#endif
  	
  return new TrajetCompose(*this);
- }
+ }// --- Fin de Clone
 
-  void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
+void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
 
 	//Pas conçu pour la suppression
@@ -59,7 +59,7 @@ Trajet * TrajetCompose::Clone() const
 		{
 			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet que l'on souhaite ajouter!"<<endl;
 		}
-	  //listeDesTrajets.AddT(trajetToAdd);
+
   }   // --- Fin de AddTrajet
 	
 

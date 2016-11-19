@@ -31,11 +31,20 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // Méthode ajoutant un trajet à la liste des trajets
-    void addTrajet(const Trajet* unTrajet);
+ 	void AddTrajet(const TrajetSimple &unTrajetSimple);
+ 	// Méthode ajoutant un trajet à la liste des trajets
+ 	
+	void AddTrajet(const TrajetCompose &unTrajetCompose);
+	// Méthode ajoutant un trajet à la liste des trajets
     
-    // Méthode vérifiant si un trajet reliant une ville à une autre existe dans la liste
-    bool checkTrajet(const char* const ville1, const char* ville2);
+	void ToString() const;
+	//Méthode affichant l'ensemble du catalogue
+	
+    bool CheckTrajet(const char* const ville1, const char* ville2) const;
+    // Méthode vérifiant si un trajet reliant une ville à une autre existe dans le catalogue
+    // Affiche le Trajet en question si il en existe un
+    // Affiche un message d'erreur sinon
+    // Renvoie true si un Trajet a été trouvé, false sinon
     
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -63,7 +72,7 @@ protected:
 
 private:
 
-	ListeTrajets listeTrajets;		//Liste des trajets
+	ListeTrajets * listeTrajets;		//Liste des trajets
 
 //------------------------------------------------------- Attributs privés
 

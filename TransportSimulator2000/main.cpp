@@ -75,6 +75,7 @@ void testConstructeurDeCopieListe()
 	a.ToString();
 	a.AddT(c);
 	a.AddT(d);
+	e.AddTrajet(d);
 	a.ToString();
 	{
 		ListeTrajets z(a);
@@ -85,11 +86,6 @@ void testConstructeurDeCopieListe()
 	a.ToString();
 	e.ToString();
 
-	/*
-	{
-		ListeTrajets b(a);
-		b.ToString();
-	}*/
 }
 void testTrajetCompose()
 {
@@ -106,6 +102,19 @@ void testTrajetCompose()
 	
 	
 }
+void testCatalogue()
+{
+	Catalogue catalogue;
+	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
+	TrajetSimple b("Paris", "Dourdan", Transport::Avion);
+	TrajetCompose tc(a);
+
+	tc.AddTrajet(b);
+	catalogue.AddTrajet(a);
+	catalogue.AddTrajet(b);
+	catalogue.AddTrajet(tc);
+	catalogue.ToString();
+}
 /*
 
 	Méthode principale appelante de la classe
@@ -120,8 +129,9 @@ int main(int argc, char** argv)
 	//testListe();
 	//testListe();
 	//testConstructeurDeCopie();
-	testConstructeurDeCopieListe();
+	//testConstructeurDeCopieListe();
 	//testTrajetCompose();
+	testCatalogue();
 
 	return 0;
 }  //----- Fin du main

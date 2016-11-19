@@ -32,7 +32,26 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-
+void Catalogue::ToString() const
+{
+	this->listeTrajets->ToString();
+}
+ void Catalogue::AddTrajet(const TrajetSimple & unTrajetSimple)
+ {
+	 this->listeTrajets->AddT(unTrajetSimple);
+ } //----- Fin de addTrajet
+ 
+  void Catalogue::AddTrajet(const TrajetCompose & unTrajetCompose)
+ {
+	 this->listeTrajets->AddT(unTrajetCompose);
+ } //----- Fin de addTrajet
+ 
+ bool Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
+ {
+ 	
+	 return listeTrajets->CheckTrajet(ville1,ville2);
+ } //----- Fin de checkTrajet
+ 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
@@ -41,6 +60,7 @@ Catalogue::Catalogue ( const Catalogue & unCatalogue )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Catalogue>" << endl;
 #endif
+this->listeTrajets= new ListeTrajets(*(unCatalogue.listeTrajets));
 } //----- Fin de Catalogue::Catalogue (constructeur de copie)
 
 
@@ -49,6 +69,7 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+listeTrajets = new ListeTrajets();
 } //----- Fin de Catalogue
 
 
@@ -57,21 +78,11 @@ Catalogue::~Catalogue ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+delete listeTrajets;
 } //----- Fin de ~Catalogue
 
 
- void Catalogue::addTrajet(const Trajet* unTrajet)
- {
-	 
-	 
- } //----- Fin de addTrajet
- 
- 
 
- bool Catalogue::checkTrajet(const char* const ville1, const char* ville2)
- {
-	 return true;
- } //----- Fin de checkTrajet
 
 //------------------------------------------------------------------ PRIVE
 

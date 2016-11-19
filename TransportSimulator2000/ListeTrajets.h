@@ -36,8 +36,11 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
-
+	bool CheckTrajet(const char* const ville1, const char* ville2);
+    // Méthode vérifiant si un trajet reliant une ville à une autre existe dans la liste
+    // Affiche les Trajets en question si il en existe au moins un
+    // Renvoie true si un Trajet a été trouvé, false sinon
+    
    void AddT(const TrajetSimple & trajetAAjouter);
     // Mode d'emploi :Ajoute un trajetSimple a la liste des trajets
     // L'ajout à la fin de la liste

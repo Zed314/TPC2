@@ -45,7 +45,7 @@ void ListeTrajets::ToString() const
 		while(elementEnCours!=nullptr)
 		{
 			elementEnCours->TrajetEnCours->ToString();
-		
+			cout<<endl;
 			elementEnCours=elementEnCours->ElementTrajetSuivant;
 			if (elementEnCours!=nullptr)
 			{
@@ -56,6 +56,35 @@ void ListeTrajets::ToString() const
 	}
 	
 }
+bool ListeTrajets::CheckTrajet(const char* const ville1, const char* ville2)
+{
+	bool trajetTrouve = false;
+	if(this->EstVide())
+	{
+		return false;
+	}
+	else
+	{
+		ElementListeTrajet * elementEnCours=this->ptrDebut;
+	
+		while(elementEnCours!=nullptr)
+		{
+			if(elementEnCours->TrajetEnCours->CheckIfGoesFromTo(ville1,ville2))
+			{
+				elementEnCours->TrajetEnCours->ToString();
+				trajetTrouve = true;
+			}
+		
+			elementEnCours=elementEnCours->ElementTrajetSuivant;
+		
+		}
+		
+	}
+	return trajetTrouve;
+
+}
+
+
 
 void ListeTrajets::AddT(const TrajetSimple & trajetAAjouter)
 {
@@ -89,8 +118,6 @@ ListeTrajets::ListeTrajets ( const ListeTrajets & uneListe ):ptrDebut(nullptr),p
 //TODO
 //Après avoir fait le constructeur de copie de trajet
 
-//Pour que ça fonctionne, il faudrait peut être passer par deux fonctions annexes renvoyant un pointeur sur Trajet
-//Pour pouvoir l'ajouter à la liste
 	if(uneListe.EstVide())
 	{
 		//Il n'y a rien à faire 
