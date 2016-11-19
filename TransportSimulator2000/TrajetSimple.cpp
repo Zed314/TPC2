@@ -59,7 +59,7 @@ void TrajetSimple::transportToString() const
 		cout<<"Tank";
 		break;
 		case(Canard_geant):
-		cout<<"Canard géant";
+		cout<<"Canard geant";
 		break;
 		case(Tramway):
 		cout<<"Tramway";
@@ -68,7 +68,7 @@ void TrajetSimple::transportToString() const
 		cout<<"Bateau";
 		break;
 		case(DosDeMathieuMaranzana):
-		cout<<"Missile Nord Coréen";
+		cout<<"Missile Nord Coreen";
 		break;
 		case(Inconnu):
 		cout<<"Inconnu";
@@ -79,7 +79,7 @@ void TrajetSimple::transportToString() const
 void TrajetSimple::ToString() const
 {
 
-	cout<<"de "<<villeDepart<<" à "<<villeArrivee<<" en ";
+	cout<<"Transport simple de "<<villeDepart<<" a "<<villeArrivee<<" en ";
 	this->transportToString();
 	
 

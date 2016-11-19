@@ -38,12 +38,12 @@ public:
     //
     // Contrat :
     //
-    void AddTrajet(const Trajet  * trajetToAdd);
+    bool AddTrajet(const Trajet  * trajetToAdd);
     // Mode d'emploi :Ajoute un trajet à la fin du TrajetComposé appellant si la fin de celui-ci
     //correspond au début du trajet donné en paramètre
     // Contrat :
     
-    void AddTrajet(const Trajet  &trajetToAdd);
+    bool AddTrajet(const Trajet  &trajetToAdd);
     // Mode d'emploi :Ajoute un trajet simple à la fin du TrajetComposé appellant si la fin de celui-ci
     //correspond au début du trajet simple donné en paramètre
     // Contrat :
@@ -51,7 +51,9 @@ public:
 	 Trajet * Clone() const;
 	//Mode d'emploi : Renvoie un pointeur de Trajet vers une copie de l'élément appelant
   
-
+	bool EstVide() const;
+	//Renvoie vrai si la liste du trajet composé est vide
+	
     void ToString() const;
 	// Mode d'emploi : Permet d'afficher le trajet composé
 		 
