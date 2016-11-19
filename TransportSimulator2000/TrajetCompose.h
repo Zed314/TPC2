@@ -38,9 +38,14 @@ public:
     //
     // Contrat :
     //
+        void AddTrajet(const Trajet  * trajetToAdd);
+    // Mode d'emploi :Ajoute un trajet à la fin du TrajetComposé appellant si la fin de celui-ci
+    //correspond au début du trajet donné en paramètre
+    // Contrat :
+    
     void AddTrajet(const TrajetSimple  &trajetSimpleToAdd);
-    // Mode d'emploi :
-    //
+    // Mode d'emploi :Ajoute un trajet simple à la fin du TrajetComposé appellant si la fin de celui-ci
+    //correspond au début du trajet simple donné en paramètre
     // Contrat :
 	
 	 Trajet * Clone() const;
@@ -48,7 +53,7 @@ public:
   
 
     void ToString() const;
-		 // Mode d'emploi : Permet d'afficher le trajet composé
+	// Mode d'emploi : Permet d'afficher le trajet composé
 		 
 
 //-------------------------------------------- Constructeurs - destructeur

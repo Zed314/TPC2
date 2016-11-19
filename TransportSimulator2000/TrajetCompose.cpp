@@ -42,16 +42,36 @@ Trajet * TrajetCompose::Clone() const
  	
  return new TrajetCompose(*this);
  }// --- Fin de Clone
+ 
+void TrajetCompose::AddTrajet(const Trajet  * trajetToAdd)
+  {
 
+	//Pas conçu pour la suppression
+		if(this->listeDesTrajets->EstVide())
+		{
+			this->MaJDepart(*trajetToAdd);
+		}
+		if(this->PeutServirDeBaseA(*trajetToAdd)||this->listeDesTrajets->EstVide())
+		{
+		this->MaJArrivee(*trajetToAdd);
+	  	listeDesTrajets->AddT(trajetToAdd);
+	  }
+	  else
+	
+		{
+			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet que l'on souhaite ajouter!"<<endl;
+		}
+
+  }   // --- Fin de AddTrajet
 void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
   {
 
 	//Pas conçu pour la suppression
-		if(listeDesTrajets->EstVide())
+		if(this->listeDesTrajets->EstVide())
 		{
 			this->MaJDepart(trajetSimpleToAdd);
 		}
-		if(this->PeutServirDeBaseA(trajetSimpleToAdd))
+		if(this->PeutServirDeBaseA(trajetSimpleToAdd)||this->listeDesTrajets->EstVide())
 		{
 		this->MaJArrivee(trajetSimpleToAdd);
 	  	listeDesTrajets->AddT(trajetSimpleToAdd);
@@ -59,7 +79,7 @@ void TrajetCompose::AddTrajet(const TrajetSimple  & trajetSimpleToAdd)
 	  else
 	
 		{
-			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet que l'on souhaite ajouter!"<<endl;
+			cout<<"Ajout impossible! La fin du trajet actuel ne coïncide pas avec le début du trajet simple que l'on souhaite ajouter!"<<endl;
 		}
 
   }   // --- Fin de AddTrajet

@@ -93,6 +93,7 @@ void testTrajetCompose()
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 
 	TrajetCompose b(a);
+	b.ToString();
 	
 	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
 	TrajetSimple d("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
@@ -102,7 +103,14 @@ void testTrajetCompose()
 	b.ToString();
 	TrajetCompose e;
 	e.ToString();
-	
+	e.AddTrajet(&c);
+	e.ToString();
+	{
+		TrajetSimple f("Lyon", "Berlin", Transport::Avion);
+		e.AddTrajet(&f);
+		
+	}
+	e.ToString();
 	
 }
 void testCatalogue()
