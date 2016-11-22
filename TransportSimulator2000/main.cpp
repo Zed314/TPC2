@@ -11,10 +11,11 @@
 	 Application permettant de gérer, ajouter et rechercher des trajets entre plusieurs villes.
 *************************************************************************/
 #define MAP
-#define MAX_LENGTH 100
+#define MAX_LENGTH 100					//Nombre maximal de caractères significatifs dans une ville
 
 #include <iostream>
 #include <cstring>
+//#include <string>  //Inclusion non nécessaire, seulement utile pour déboguer l'interface
 
 #include "Trajet.h"
 #include "Catalogue.h"
@@ -26,6 +27,59 @@
 using namespace std;
 
 static TrajetSimple * createTrajetSimple();
+
+
+//Fonction de recherche d'un parcours complexe
+static void loadFindHCIComplexe(Catalogue & cat)
+{
+	
+	char* depart = new char[MAX_LENGTH +1];
+	char* arrivee = new char[MAX_LENGTH +1];
+	
+	cout << endl << "Entrer le nom de la ville de départ. " << endl << endl;
+	cin >> depart;
+	
+	cout << endl << "Entrer le nom de la ville d'arrivée." << endl;
+	cin >> arrivee;
+	int nbTrajets;
+	if((nbTrajets = cat.CheckTrajetComplexe(depart, arrivee)) == 0)
+	{
+		cout << endl << "La recherche complexe de parcours de la ville " << depart << " à la ville " << arrivee << " n'a donné aucun résultat " <<endl << endl;
+	}	
+	else {
+		cout << endl << "La recherche complexe a retourné " << nbTrajets << " résultat" << (nbTrajets>1?"s":"") << "."<< endl;
+	}
+	
+	delete[] depart;
+	delete[] arrivee;
+		
+}
+
+//Fonction de recherche d'un parcours simple
+static void loadFindHCISimple(Catalogue & cat)
+{
+	
+	char* depart = new char[MAX_LENGTH +1];
+	char* arrivee = new char[MAX_LENGTH +1];
+	
+	cout << endl << "Entrer le nom de la ville de départ. " << endl << endl;
+	cin >> depart;
+	
+	cout << endl << "Entrer le nom de la ville d'arrivée." << endl;
+	cin >> arrivee;
+	int nbTrajets;
+	if((nbTrajets = cat.CheckTrajet(depart, arrivee)) == 0)
+	{
+		cout << endl << "La recherche simple de parcours de la ville " << depart << " à la ville " << arrivee << " n'a donné aucun résultat " <<endl << endl;
+	}	
+	else {
+		cout << endl << "La recherche simple a retourné " << nbTrajets << " résultat" << (nbTrajets>1?"s":"") << "."<< endl;
+	}
+	
+	delete[] depart;
+	delete[] arrivee;
+		
+}
 
 //Fonction d'interface de l'ajout de trajet
 static void loadAddHCI(Catalogue & cat)
@@ -149,6 +203,8 @@ static void loadHCI()
 {
 	cout <<"                  *** TRAJET SIMULATOR 2000 ***"<<endl;                                                                       
     int response = 0;
+    string buf;
+    
 	Catalogue c;
 	while(response != -1)
 	{
@@ -156,9 +212,14 @@ static void loadHCI()
 		cout << endl << "Selectionner un mode. Entrer -1 pour quitter." << endl << endl;
 		cout<< "1. Ajouter un trajet au catalogue." << endl;
 		cout << "2. Afficher le catalogue."<< endl;
-		cout << "3. Rechercher un parcours" << endl;
-		
+		cout << "3. Recherche simple de parcours" << endl;
+		cout << "4. Recherche complexe de parcours" << endl;
 		cin >> response;
+	/*	cout << response;
+		cin.clear();
+		getline(cin, buf);
+		cout << buf << endl; */
+		
 		switch(response)
 		{
 			case 1 : 
@@ -175,7 +236,15 @@ static void loadHCI()
 			}
 			case 3 : 
 			{
-				cout << "TODO : fonction de recherche"<<endl; break;
+				 
+				 loadFindHCISimple(c);
+				 break;
+			}
+			
+			case 4: 
+			{
+				loadFindHCIComplexe(c);
+				break;
 			}
 			default : 
 			{

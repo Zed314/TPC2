@@ -36,7 +36,15 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	bool CheckTrajet(const char* const ville1, const char* ville2);
+
+
+	bool afficheTrajetsRechercheSimple(const char* depart, const char* arrivee) const;
+	
+	int afficheTrajetsRechercheComplexe(const char* depart, const char* arrivee) const ;
+	
+	int nbElements() const;
+
+	int CheckTrajet(const char* const ville1, const char* ville2) const;
     // Méthode vérifiant si un trajet reliant une ville à une autre existe dans la liste
     // Affiche les Trajets en question si il en existe au moins un
     // Renvoie true si un Trajet a été trouvé, false sinon
@@ -64,7 +72,6 @@ public:
 
     
 	
-
 
 //-------------------------------------------- Constructeurs - destructeur
     ListeTrajets ( const ListeTrajets & uneListe );
@@ -95,7 +102,11 @@ protected:
 	
     // Contrat : Le pointeur passé en paramètre n'est pas NULL
 private:
+	
 //------------------------------------------------------- Méthodes privées
+	bool shouldAddCity(char* ville, int & identifier, char** tab) const;
+	int indexOf(char* ville, char** tab) const;
+
 
 protected:
 //----------------------------------------------------- Attributs protégés

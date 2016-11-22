@@ -48,10 +48,15 @@ void Catalogue::ToString() const
  } //----- Fin de addTrajet
  
 
- bool Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
+ int Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
  {
 	 return listeTrajets->CheckTrajet(ville1,ville2);
  } //----- Fin de checkTrajet
+ 
+ int Catalogue::CheckTrajetComplexe(const char* ville1, const char* ville2) const
+ {
+	 return listeTrajets->afficheTrajetsRechercheComplexe(ville1, ville2);
+ }
  
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )

@@ -34,53 +34,44 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+char * Trajet::getCpyDep() const
+{
+	
+	char* vDep = new char[strlen(this->villeDepart) +1];
+	strcpy(vDep, this->villeDepart);
+	return vDep;
+	
+}  // --- Fin de getCpyDep
+
+char* Trajet::getCpyArr() const
+{
+	char* vArr = new char[strlen(this->villeArrivee) +1];
+	strcpy(vArr, this->villeArrivee);
+	return vArr;
+	
+} // --- Fin de getCpyArr
+
 bool Trajet::PeutServirDeBaseA(const Trajet &TrajetAAjouter)
 {
-	if(strcmp(this->villeArrivee,TrajetAAjouter.villeDepart)==0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (strcmp(this->villeArrivee,TrajetAAjouter.villeDepart)==0);
 }
 
 bool Trajet::CheckIfGoesFrom(const char* ville)const
 {
- 	if(strcmp(ville,this->villeDepart)==0)
- 	{
- 		return true;
- 	}
- 	else
-	{
-		return false;
-	}
+ 	return (strcmp(ville,this->villeDepart)==0);
+ 	
 }
 
  bool Trajet::CheckIfGoesTo(const char* ville)const
  {
- 	if(strcmp(ville,this->villeArrivee)==0)
- 	{
- 		return true;
- 	}
- 	else
-	{
-		return false;
-	}
+ 	return (strcmp(ville,this->villeArrivee)==0);
+ 	
  	
  }
 
  bool Trajet::CheckIfGoesFromTo(const char* ville1, const char* ville2) const
  {
- 	if(CheckIfGoesFrom(ville1)&&CheckIfGoesTo(ville2))
- 	{
-	 return true;
-	 }
-	 else
-	 {
-	 	return false;
-	 }
+ 	return (CheckIfGoesFrom(ville1)&&CheckIfGoesTo(ville2));
 	 
  }  // ------ Fin de checkIfGoesTo
     
