@@ -51,6 +51,11 @@ char* Trajet::getCpyArr() const
 	
 } // --- Fin de getCpyArr
 
+bool Trajet::PeutServirDeBaseA(const Trajet * TrajetAAjouter)
+{
+	return (strcmp(this->villeArrivee,TrajetAAjouter->villeDepart)==0);
+}
+
 bool Trajet::PeutServirDeBaseA(const Trajet &TrajetAAjouter)
 {
 	return (strcmp(this->villeArrivee,TrajetAAjouter.villeDepart)==0);

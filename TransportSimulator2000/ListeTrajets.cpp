@@ -32,8 +32,79 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-
-
+bool ListeTrajets::villeEstPresente(char * ville)
+{
+	ElementListeTrajet* elt = this->ptrDebut;
+	bool laVilleEstPresente=false;
+	
+	while(elt != nullptr&&!laVilleEstPresente)
+	{
+		if(elt->TrajetEnCours->CheckIfGoesFrom(ville)||elt->TrajetEnCours->CheckIfGoesFrom(ville))
+		{
+			laVilleEstPresente=true;
+		}
+		elt = elt->ElementTrajetSuivant;
+		
+		
+	}
+	return laVilleEstPresente;
+}
+bool ListeTrajets::removeLast()
+{
+	if(this->EstVide())
+	{
+		return false;
+	}
+	ElementListeTrajet* elt = this->ptrDebut;
+	if(this->ptrFin==this->ptrDebut)
+	{
+		delete this->ptrDebut->TrajetEnCours;
+		delete this->ptrDebut;
+		this->ptrDebut=nullptr;
+		this->ptrFin=nullptr;
+		return true;
+		
+	}
+	
+	while(elt->ElementTrajetSuivant!=this->ptrFin)
+	{
+		elt = elt->ElementTrajetSuivant;
+		
+	}
+	delete this->ptrFin->TrajetEnCours;
+	delete this->ptrFin;
+	elt->ElementTrajetSuivant=nullptr;
+	this->ptrFin=elt;
+	
+	
+	return true;
+	
+}
+char * ListeTrajets::getCopyOfLastArr()
+{
+	if(this->EstVide())
+	{
+		return nullptr;
+	}
+	else
+	{
+		return this->ptrFin->TrajetEnCours->getCpyArr();
+	}
+	
+}
+Trajet * ListeTrajets::getCopyOfLast()
+{
+	if(this->EstVide())
+	{
+		return nullptr;
+	}
+	else
+	{
+	
+		return this->ptrFin->TrajetEnCours->Clone();
+	}
+	
+}
 int ListeTrajets::nbElements() const
 {
 	ElementListeTrajet* elt = this->ptrDebut;
@@ -48,8 +119,8 @@ int ListeTrajets::nbElements() const
 	return nb;
 	
 }
-
-int ListeTrajets::indexOf(char* ville, char** tab) const
+/*
+int ListeTrajets::indexOf(const char* ville, char** tab) const
 {
 	int i;
 	for( i=0;strcmp(tab[i], ville)!=0;i++)
@@ -57,28 +128,181 @@ int ListeTrajets::indexOf(char* ville, char** tab) const
 		//for vide
 	}
 	return i;
+}*/
+
+int ListeTrajets::findTrajetComplexeRec( const char * villeEnCours, const char * villeArrivee,ListeTrajets &Parcours,Trajet ** ensembleDesTrajets,int nbParcoursComplets) const
+{
+	char * lecture;
+	lecture=Parcours.getCopyOfLastArr();
+	if(lecture!=nullptr && strcmp(lecture,villeArrivee)==0)
+	{
+		delete[] lecture;
+		cout<<endl<<"Trajet numéro "<<nbParcoursComplets<<endl;
+		Parcours.ToString();
+		cout<<endl;
+		return nbParcoursComplets+1;
+	}
+	else
+	{
+		delete[] lecture;
+		Trajet * dernierElementDuParcours=Parcours.getCopyOfLast();
+		int nbTrajets=this->nbElements();
+		for(int i=0;i<nbTrajets;i++)
+		{
+			if(dernierElementDuParcours!=nullptr)
+			{	
+				if(dernierElementDuParcours->PeutServirDeBaseA(ensembleDesTrajets[i]))
+				{
+					lecture=ensembleDesTrajets[i]->getCpyArr();
+					if(!Parcours.villeEstPresente(lecture))
+					{
+						Parcours.AddT(ensembleDesTrajets[i]);
+						char * nouvelleVilleEnCours=Parcours.getCopyOfLastArr();
+						nbParcoursComplets=findTrajetComplexeRec(nouvelleVilleEnCours,villeArrivee,Parcours,ensembleDesTrajets,nbParcoursComplets);
+						delete[] nouvelleVilleEnCours;
+						Parcours.removeLast();
+					}
+					delete[]lecture;
+				}
+			
+			}
+			else
+			{
+				if(ensembleDesTrajets[i]->CheckIfGoesFrom(villeEnCours))
+				{
+					Parcours.AddT(ensembleDesTrajets[i]);
+					char * nouvelleVilleEnCours=Parcours.getCopyOfLastArr();
+					nbParcoursComplets=findTrajetComplexeRec(nouvelleVilleEnCours,villeArrivee,Parcours,ensembleDesTrajets,nbParcoursComplets);
+					delete[] nouvelleVilleEnCours;
+					Parcours.removeLast();
+					
+				}
+				else
+				{
+					
+				}
+			}
+	
+		}
+	delete dernierElementDuParcours;	
+		
+	}
+	
+	return nbParcoursComplets;
+	
 }
+
+int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char* arrivee) const 
+{
+	int nbTrajets=this->nbElements();
+	ListeTrajets parcours;
+	
+	Trajet * tableauDesTrajets[nbTrajets];
+	int compteurTrajets=0;
+	ElementListeTrajet* cur = this->ptrDebut;
+	while(cur != nullptr)
+	{
+		tableauDesTrajets[compteurTrajets]=cur->TrajetEnCours->Clone();
+		compteurTrajets++;
+		cur = cur->ElementTrajetSuivant;
+	}
+	int nbTrajetsAffiches=findTrajetComplexeRec(depart,arrivee,parcours,tableauDesTrajets,0);
+	
+	
+	
+	for(int i=0;i<nbTrajets;i++)
+	{
+		delete tableauDesTrajets[i];
+	}
+	
+	//delete[] tableauDeListes;
+	return nbTrajetsAffiches;
+
+
+}
+
 
 /**
  * PARAM ensembleDesTrajets : ensemble des trajets existants
  * PARAM villeEnCours : la ville en cours de traitement
  * PARAM  villeArrivee : la ville d'arrivée finale
- * PARAM ensembleTrajets : l'ensemble total de tous les trajets de la liste
  * PARAM parcours : matrice des parcours trouvés (pointeurs sur trajet)
  * PARAM nbParcoursTrouves : le numéro de la ligne en cours sur parcours
  * PARAM nbTrajetsParcours : le nombre de trajets déjà parcourus au cours du parcours
  * PARAM nbTrajets : le nombre maximal de trajets 
  * PARAM tabCorrespondance : le tableau permettant de convertir une ville en nombre
- * PARAM tabVillesPrises : un tableau d'entiers
+ * PARAM tabVillesPrises : tableau de booléen permettant de savoir quelles villes sont prises
  * 
  * */
-int findTrajetComplexeRec(int villeEnCours, int villeArrivee, Trajet** ensembleDesTrajets , Trajet*** parcours, int nbParcoursTrouves , int nbTrajetsParcours,int nbTrajetsTotal, char** tabCorrespondance, int* tabVillesPrises) const
+ 
+/* 
+int ListeTrajets::findTrajetComplexeRec(  char  * villeEnCours, const char  *villeArrivee, Trajet** ensembleDesTrajets , Trajet* parcours[][], int nbParcoursTrouves , int nbTrajetsParcours,int nbTrajetsTotal,  char** tabCorrespondance, bool* tabVillesPrises) const
 {
-	if(villeEnCours == villeArrivee)
+	
+	if(strcmp(villeEnCours, villeArrivee))
 	{
-		parcours[nbParcoursTrouves][nbVillesParcourues] = villeEnCours;
+		if(nbParcoursTrouves<nbTrajetsTotal-1)
+		{
+			for(int i=0;i<nbTrajetsParcours-1;i++)
+			{
+				parcours[nbParcoursTrouves+1][i]=parcours[nbParcoursTrouves][i];
+			}
+		}
+	
+		//parcours[nbParcoursTrouves][nbVillesParcourues] = villeEnCours;
 		return nbParcoursTrouves+1;
 	}	
+	
+	else
+	{
+		char * villeAAjouter;
+		int indiceVilleAAjouter;
+		for(int i=0;i<nbTrajetsTotal;i++)
+		{
+			if(nbTrajetsParcours==0)
+			{
+				if(ensembleDesTrajets[i]->CheckIfGoesFrom(villeEnCours))
+				{
+					parcours[nbParcoursTrouves][nbTrajetsParcours]=ensembleDesTrajets[i];
+					villeAAjouter=ensembleDesTrajets[i]->getCpyArr();
+				
+					tabVillesPrises[indexOf(villeAAjouter,tabCorrespondance)]=true;
+				
+					nbParcoursTrouves=findTrajetComplexeRec(villeAAjouter,villeArrivee,ensembleDesTrajets,parcours,nbParcoursTrouves,nbTrajetsParcours+1,nbTrajetsTotal,tabCorrespondance,tabVillesPrises);
+					delete[] villeAAjouter;
+					tabVillesPrises[indiceVilleAAjouter]=false;
+					
+				}
+				else
+				{
+					
+				}
+			}
+			else if(parcours[nbParcoursTrouves][nbTrajetsParcours-1]->PeutServirDeBaseA(ensembleDesTrajets[i]))
+			{
+					villeAAjouter = ensembleDesTrajets[i]->getCpyArr();
+					indiceVilleAAjouter=indexOf(villeAAjouter,tabCorrespondance);
+					
+					if(!tabVillesPrises[indiceVilleAAjouter])
+					{
+						tabVillesPrises[indiceVilleAAjouter]=true;
+						nbParcoursTrouves=findTrajetComplexeRec(villeAAjouter,villeArrivee,ensembleDesTrajets,parcours,nbParcoursTrouves,nbTrajetsParcours+1,nbTrajetsTotal,tabCorrespondance,tabVillesPrises);
+						tabVillesPrises[indiceVilleAAjouter]=false;
+						
+					}
+					else
+					{
+						
+					}
+				delete[] villeAAjouter;
+
+			}
+		}
+	}
+	return nbParcoursTrouves;
+	
+	
+	
 }
 
 
@@ -86,12 +310,15 @@ int findTrajetComplexeRec(int villeEnCours, int villeArrivee, Trajet** ensembleD
 int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char* arrivee) const 
 {
 	char* tab[this->nbElements()*2];
-	for(int j=0;j<this->nbElements()*2;visited[j++] = false)
-	{}			//for vide => initialisation du  tableau des visités
+
 	int identifier = 0;
+	Trajet * tableauDesTrajets[this->nbElements()];
+	int compteurTrajets=0;
 	ElementListeTrajet* cur = this->ptrDebut;
 	while(cur != nullptr)
 	{
+		tableauDesTrajets[compteurTrajets]=cur->TrajetEnCours;
+		compteurTrajets++;
 		char* villeDep = cur->TrajetEnCours->getCpyDep();
 		char* villeArr = cur->TrajetEnCours->getCpyArr();
 		if(shouldAddCity(villeDep, identifier, tab))
@@ -114,30 +341,18 @@ int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char
 		}
 		cur = cur->ElementTrajetSuivant;
 	}
-	bool matriceAdj[identifier][identifier];
-	for(int i=0;i<identifier;i++)
-	{
-		for(int j=0;j<identifier;j++)
-		{
-			matriceAdj[i][j] = false;
-		}
-	}
-	cur = this->ptrDebut;
-	while(cur != nullptr)
-	{
-		char* villeDep = cur->TrajetEnCours->getCpyDep();
-		char* villeArr = cur->TrajetEnCours->getCpyArr();
-		
-		matriceAdj[indexOf(villeDep,tab)][indexOf(villeArr,tab)]=true;
-		delete[] villeArr;
-		delete[] villeDep;
-		cur = cur->ElementTrajetSuivant;
-	}
 	bool visited[identifier];
-	for(int i=0;i<identifier;visited[identifier]=false){} //for vide
+	//todo mettre depart a true
+	for(int i=0;i<identifier;visited[i++]=false){
+		//for vide => initialisation du  tableau des visités
+	} 
+	visited[indexOf(depart,tab)]=true;
+	Trajet* parcours[compteurTrajets][compteurTrajets];
 	
 	
-	/*
+	
+	
+	
 	for(int i =0 ;i <identifier;i++)
 	{
 		for(int j=0;j<identifier;j++)
@@ -146,15 +361,18 @@ int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char
 		}
 		cout<<endl;
 	}
-	//*/
+	
+	
+	//findTrajetComplexeRec(depart, arrivee, tableauDesTrajets ,  parcours, 0 ,0,compteurTrajets, tab, visited);
+	
 	
 	
 	
 	//TODO : désallouer les chaines de tab
 	//TODO: return value
-	return 0;
+	return findTrajetComplexeRec(depart, arrivee, tableauDesTrajets ,  parcours, 0 ,0,compteurTrajets, tab, visited);
 }
-
+//*/
 
 bool ListeTrajets::shouldAddCity(char* ville, int & identifier, char** tab) const
 {

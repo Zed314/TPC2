@@ -37,6 +37,11 @@ public:
 	//Renvoie une copie profonde de la ville d'arrivée
 	char* getCpyArr() const;
 	
+	
+	//Méthode vérifiant si le trajet appellant peut être ajouté à la suite du Trajet en parametre
+	 bool PeutServirDeBaseA(const Trajet * TrajetAAjouter);
+	
+	
 	//Méthode vérifiant si le trajet appellant peut être ajouté à la suite du Trajet en parametre
 	 bool PeutServirDeBaseA(const Trajet &TrajetAAgrandir);
 

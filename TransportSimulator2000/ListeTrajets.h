@@ -36,7 +36,22 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+	bool villeEstPresente(char * ville);
+	//Renvoie true si la ville passee en parametre est presente dans la liste
+	
+	bool removeLast();
+	//Retire le dernier element de la liste
+	//Renvoie true si la suppression a pû être effectuée et false si la liste est vide
+	
+	Trajet * getCopyOfLast();
+	//Renvoie une copie du dernier trajet de la liste
+	//Si la liste est vide, renvoie nullptr
+	//Contrat:Libérer la zone renvoyée par la méthode à la fin de son utilisation
+	
+	char * getCopyOfLastArr();
+	//Méthode renvoyant une copie de la ville d'arrivée du dernier élément de la liste
+	//Si la liste est vide, renvoit nullptr
+	//Contrat:Libérer la zone renvoyée par la méthode à la fin de son utilisation
 
 	bool afficheTrajetsRechercheSimple(const char* depart, const char* arrivee) const;
 	
@@ -105,8 +120,13 @@ private:
 	
 //------------------------------------------------------- Méthodes privées
 	bool shouldAddCity(char* ville, int & identifier, char** tab) const;
-	int indexOf(char* ville, char** tab) const;
-
+	int indexOf(const char* ville,  char** tab) const;
+	int findTrajetComplexeRec( const char * villeEnCours,const char * villeArrivee,
+	ListeTrajets &Parcours,Trajet ** ensembleDesTrajets,int nbParcoursComplets) const;
+	/*int findTrajetComplexeRec(char * villeEnCours, const char  *villeArrivee, 
+	Trajet** ensembleDesTrajets , Trajet* parcours[][], int nbParcoursTrouves , 
+	int nbTrajetsParcours,int nbTrajetsTotal,
+	  char** tabCorrespondance, bool* tabVillesPrises) const;*/
 
 protected:
 //----------------------------------------------------- Attributs protégés
