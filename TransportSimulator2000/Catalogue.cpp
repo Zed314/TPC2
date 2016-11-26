@@ -36,27 +36,27 @@ using namespace std;
 void Catalogue::ToString() const
 {
 	this->listeTrajets->ToString();
-}
+}//Fin de ToString()
  void Catalogue::AddTrajet(const Trajet* unTrajet)
  {
 	 this->listeTrajets->AddT(unTrajet);
- } //----- Fin de addTrajet
+ } //----- Fin de AddTrajet
  
  void Catalogue::AddTrajet(const Trajet & unTrajet)
  {
 	 this->listeTrajets->AddT(unTrajet);
- } //----- Fin de addTrajet
+ } //----- Fin de AddTrajet
  
 
- int Catalogue::CheckTrajet(const char* const ville1, const char* ville2) const
+int Catalogue::CheckTrajetSimple(const char* const ville1, const char* ville2) const
  {
-	 return listeTrajets->CheckTrajet(ville1,ville2);
- } //----- Fin de checkTrajet
+	 return listeTrajets->afficheTrajetsRechercheSimple(ville1,ville2);
+ } //----- Fin de CheckTrajetSimple
  
  int Catalogue::CheckTrajetComplexe(const char* ville1, const char* ville2) const
  {
 	 return listeTrajets->afficheTrajetsRechercheComplexe(ville1, ville2);
- }
+ }//----- Fin de CheckTrajetComplexe
  
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )

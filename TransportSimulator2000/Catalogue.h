@@ -42,14 +42,18 @@ public:
 	void ToString() const;
 	//Méthode affichant l'ensemble du catalogue
 	
-    int CheckTrajet(const char* const ville1, const char* ville2) const;
+    int CheckTrajetSimple(const char* const ville1, const char* ville2) const;
 
     // Méthode vérifiant si un trajet reliant une ville à une autre existe dans le catalogue
-    // Affiche le Trajet en question si il en existe un
+    // Affiche le Trajet en question si il en existe au moins un
     // Affiche un message d'erreur sinon
-    // Renvoie true si un Trajet a été trouvé, false sinon
+    // Renvoie le nombre de trajets trouvés
     
     int CheckTrajetComplexe(const char* ville1, const char* ville2) const;
+    // Méthode vérifiant si une combinaison de trajets reliant une ville à une autre existe dans le catalogue
+    // Affiche les combinaisons en question si il en existe
+    // Affiche un message d'erreur sinon
+    // Renvoie le nombre de combinaisons de trajets trouvés
     
 //-------------------------------------------- Constructeurs - destructeur
 

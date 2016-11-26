@@ -46,7 +46,7 @@ Trajet * TrajetCompose::Clone() const
 bool TrajetCompose::AddTrajet(const Trajet  * trajetToAdd)
   {
 
-	//Pas conçu pour la suppression
+	
 		if(this->listeDesTrajets->EstVide())
 		{
 			this->MaJDepart(*trajetToAdd);

@@ -68,7 +68,7 @@ static void loadFindHCISimple(Catalogue & cat)
 	cout << endl << "Entrer le nom de la ville d'arrivée." << endl;
 	cin >> arrivee;
 	int nbTrajets;
-	if((nbTrajets = cat.CheckTrajet(depart, arrivee)) == 0)
+	if((nbTrajets = cat.CheckTrajetSimple(depart, arrivee)) == 0)
 	{
 		cout << endl << "La recherche simple de parcours de la ville " << depart << " à la ville " << arrivee << " n'a donné aucun résultat " <<endl << endl;
 	}	
@@ -368,7 +368,7 @@ void testCatalogue()
 	catalogue.AddTrajet(c);
 	catalogue.AddTrajet(tc);
 	catalogue.ToString();
-	if(catalogue.CheckTrajet("Paris","Dourdan"))
+	if(catalogue.CheckTrajetSimple("Paris","Dourdan")!=0)
 	{
 		cout<<endl;	
 		cout<<"Il existe bien un trajet partant de Paris et allant à Dourdan!"<<endl;
@@ -377,7 +377,7 @@ void testCatalogue()
 	{
 		cout<<"Il n'existe pas de trajets partant de Paris et allant à Dourdan!"<<endl;
 	}
-	if(catalogue.CheckTrajet("Dourdan","Paris"))
+	if(catalogue.CheckTrajetSimple("Dourdan","Paris")!=0)
 	{
 		cout<<endl;	
 		cout<<"Il existe bien un trajet partant de Dourdan et allant à Paris!"<<endl;
@@ -386,7 +386,7 @@ void testCatalogue()
 	{
 		cout<<"Il n'existe pas de trajets partant de Dourdan et allant à Paris!"<<endl;
 	}
-	if(catalogue.CheckTrajet("Lyon","Dourdan"))
+	if(catalogue.CheckTrajetSimple("Lyon","Dourdan")!=0)
 	{
 		cout<<endl;	
 		cout<<"Il existe bien un trajet partant de Lyon et allant à Dourdan!"<<endl;
@@ -395,7 +395,7 @@ void testCatalogue()
 	{
 		cout<<"Il n'existe pas de trajets partant de Lyon et allant à Dourdan!"<<endl;
 	}
-	if(catalogue.CheckTrajet("Lyon","Bréthencourt"))
+	if(catalogue.CheckTrajetSimple("Lyon","Bréthencourt")!=0)
 	{
 		cout<<endl;	
 		cout<<"Il existe bien un trajet partant de Lyon et allant à Bréthencourt!"<<endl;
