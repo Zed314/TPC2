@@ -90,18 +90,18 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     ListeTrajets ( const ListeTrajets & uneListe );
     // Mode d'emploi (constructeur de copie) :
-    //Effectue une copie en profondeur de la liste
+    // Effectue une copie en profondeur de la liste
     // Contrat :
     //
 
     ListeTrajets ( );
-    // Mode d'emploi :
+    // Mode d'emploi : Génére une liste vide
     //
     // Contrat :
     //
 
     virtual ~ListeTrajets ( );
-    // Mode d'emploi :
+    // Mode d'emploi : Supprimer la liste et ses éléments en profondeur
     //
     // Contrat :
     //
@@ -114,14 +114,27 @@ protected:
 private:
 	
 //------------------------------------------------------- Méthodes privées
-	    void AddTInterne(Trajet * trajetAAjouter);
-    // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
-    // L'ajout est fait en queue de liste chaînée
-    // Contrat : Le pointeur passé en paramètre n'est pas NULL
+	void AddTInterne(Trajet * trajetAAjouter);
+   // Mode d'emploi :Ajoute un pointeur sur trajet à la liste des trajets
+   // N'effectue pas de copie en profondeur de trajetAAjouter, cette tache étant
+   // gérée par les méthodes publiques AddT() qu'il convient d'appeler si on désire
+   // ajouter un trajet à la liste
+   // L'ajout est fait en queue de liste chaînée
+   // Contrat : Le pointeur passé en paramètre n'est pas nullptr et doit correspondre à une zone
+   // mémoire qui exclusive à l'objet
     
 	int findTrajetComplexeRec( const char * villeEnCours,const char * villeArrivee,
 	ListeTrajets &Parcours,Trajet ** ensembleDesTrajets,int nbTrajets,int nbParcoursComplets) const;
-	//Methode récursive utilisée dans 
+	//Methode récursive utilisée dans  afficheTrajetsRechercheComplexe
+	//Affiche sur la sortie standard les combinaisons de trajet allant de la villeEnCours à la villeArrivee
+	//Parametres:
+	//villeEnCours contient le nom de la ville de départ
+	//villeArrivee contient le nom de la ville d'arrivee
+	//Parcours est une référence vers une liste de trajets désignant le chemin qu'on a parcouru précédemment
+	//ensembleDesTrajets est un tableau de pointeurs sur Trajets désignant le contenu de la liste appelante
+	//nbTrajet est un entier désignant le nombre de pointeurs sur Trajets dans le tableau ensembleDesTrajets
+	//nbParcoursComplets désigne le nombre de parcours allant de la ville de départ à la ville d'arrivée précédemment trouvés
+	//Contrat : le tableau ensembleDesTrajets contient bien les Trajets de la liste sous la forme d'un tableau
 	
 	bool removeLast();
 	//Retire le dernier element de la liste

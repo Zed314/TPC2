@@ -154,6 +154,9 @@ int ListeTrajets::findTrajetComplexeRec( const char * villeEnCours, const char *
 }
 
 int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char* arrivee) const 
+//Algorithme : Stocke le contenu de la liste appelante dans un tableau et l'envoie à une fonction
+//récursive avec d'autres paramètres dans le but d'effectuer un backtracking et d'afficher sur la 
+//sortie standard les combinaisons de trajet partant de depart et allant à arrivee
 {
 	int nbTrajets=this->nbElements();
 	ListeTrajets parcours;
@@ -161,6 +164,7 @@ int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char
 	Trajet * tableauDesTrajets[nbTrajets];
 	int compteurTrajets=0;
 	ElementListeTrajet* cur = this->ptrDebut;
+	//On met les Trajets contenus dans la liste dans un tableau pour faciliter la recherche
 	while(cur != nullptr)
 	{
 		tableauDesTrajets[compteurTrajets]=cur->TrajetEnCours->Clone();
