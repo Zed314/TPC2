@@ -38,7 +38,7 @@ public:
      
      
     void transportToString()const;  
- //Affiche l'énumération Transport passée en paramètre
+ 	//Mode d'emploi :  Affiche l'énumération Transport passée en paramètre
 
 	 Trajet * Clone() const;
 	//Mode d'emploi : Renvoie un pointeur vers une copie de l'élément appelant
@@ -46,19 +46,23 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
 
 
-	//Constructeur de copie d'un trajet simple
-    TrajetSimple ( const TrajetSimple & unTrajet );
-
-	//Constructeur par défaut d'un trajet simple
-    TrajetSimple ( );
 	
-	//Constructeur paramétré
+    TrajetSimple ( const TrajetSimple & unTrajet );
+//Constructeur de copie d'un trajet simple
+
+
+    TrajetSimple ( );
+    	//Mode d'emploi : Constructeur par défaut d'un trajet simple
+    	//Génére un trajet simple allant de INCONNU à INCONNU en moyen de transport inconnu
+	
+	
     TrajetSimple (const char* villeDep, const char* villeArr, const Transport transp );
     // Mode d'emploi : constructeur d'un trajet (paramétré)
 
 
-	//Destructeur d'un trajet simple
+	
     virtual ~TrajetSimple ( );
+    //Mode d'emploi : Destructeur d'un trajet simple
 
 
 //------------------------------------------------------------------ PRIVE

@@ -84,8 +84,8 @@ bool Trajet::CheckIfGoesFrom(const char* ville)const
 	
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
-// Algorithme :
-//
+// Algorithme : Copie en profondeur le nom des villes en utilisant la fonction strcpy()
+//sur le Trajet en parametre
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
@@ -101,7 +101,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 
 
 Trajet::Trajet ( )
-// Algorithme :
+// Algorithme : Initialise le nom des villes de départ et d'arrivée en se servant de strcpy()
 //
 {
 #ifdef MAP
@@ -114,6 +114,8 @@ strcpy(this->villeArrivee, "INCONNU");
 } //----- Fin de Trajet
 
 Trajet::Trajet(const char* villeDep, const char* villeArr)
+//Algorithme : Copie en profondeur le nom des villes en utilisant la fonction strcpy()
+//Sur les chaines de caracteres passes en parametre
 {
 	#ifdef MAP
     cout << "Appel au constructeur paramétré de <Trajet>" << endl;
@@ -130,7 +132,7 @@ Trajet::Trajet(const char* villeDep, const char* villeArr)
 
 
 Trajet::~Trajet ( )
-// Algorithme :
+// Algorithme : Detruit les zones allouees au stockage du nom des villes
 //
 {
 #ifdef MAP

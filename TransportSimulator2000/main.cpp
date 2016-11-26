@@ -201,9 +201,15 @@ static TrajetSimple * createTrajetSimple()
 //Fonction locale de chargement de l'interface
 static void loadHCI()
 {
-	cout <<"                  *** TRAJET SIMULATOR 2000 ***"<<endl;                                                                       
+cout<<"                                                         ___________________ "<<endl;  	
+cout<<"                    /\\      _____          _____        |   |     |    | |  \\"<<endl;  
+cout<<"     ,-----,       /  \\____/__|__\\_    ___/__|__\\___    |___|_____|____|_|___\\ "<<endl;  
+cout<<"  ,--'---:---`--, /  |  _     |     `| |      |      `| |              | |   °|"<<endl;  
+cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------(o)--| "<<endl;  
+
+	cout <<"\t\t\t*** TRAJET SIMULATOR 2000 ***"<<endl;                                                                       
     int response = 0;
-    string buf;
+
     
 	Catalogue c;
 	while(response != -1)
@@ -215,6 +221,7 @@ static void loadHCI()
 		cout << "3. Recherche simple de parcours" << endl;
 		cout << "4. Recherche complexe de parcours" << endl;
 		cin >> response;
+		
 	/*	cout << response;
 		cin.clear();
 		getline(cin, buf);
@@ -229,9 +236,9 @@ static void loadHCI()
 			case 2 : 
 			{
 				
-				cout << endl << "*** Contenu du catalogue : ***"<<endl; 
+				cout << endl << "\t\t\t*** Contenu du catalogue : ***"<<endl; 
 				c.ToString();
-				cout << "*** Fin du catalogue ***"<< endl;
+				cout << "\t\t\t*** Fin du catalogue ***"<< endl;
 				break;
 			}
 			case 3 : 
@@ -423,7 +430,7 @@ int main(int argc, char** argv)
 	//testListe();
 	////testConstructeurDeCopie();
 	//testConstructeurDeCopieListe();
-	//testTrajetCompose();
+//	testTrajetCompose();
 	//testCatalogue();
 	loadHCI();
 	return 0;

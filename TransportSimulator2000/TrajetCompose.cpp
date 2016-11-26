@@ -44,6 +44,9 @@ Trajet * TrajetCompose::Clone() const
  }// --- Fin de Clone
  
 bool TrajetCompose::AddTrajet(const Trajet  * trajetToAdd)
+//Algorithme : Ajoute le trajet à la fin et modifie si besoin la ville de départ et d'arrivée du trajet appelant
+//en utilisant les méthodes MaJDepart et MaJArrivee
+//On vérifie si on peut bien ajouter le trajet en utilisant la méthode PeutServirDeBaseA
   {
 
 	
@@ -103,8 +106,7 @@ bool TrajetCompose::AddTrajet(const Trajet  & trajetToAdd)
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(unTrajetCompose)
-// Algorithme :
-//
+// Algorithme : Fait appel au constructeur de copie de ListeTrajets et à un contructeur parametre de Trajet
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
@@ -113,7 +115,7 @@ this->listeDesTrajets= new ListeTrajets(*(unTrajetCompose.listeDesTrajets));
 } //----- Fin de TrajetCompose::TrajetCompose (constructeur de copie)
 
 TrajetCompose::TrajetCompose ():Trajet()
-// Algorithme :
+// Algorithme : Fait appel au constructeur par défaut de Trajet et à celui de ListeTrajets
 //
 {
 #ifdef MAP
@@ -125,8 +127,7 @@ listeDesTrajets=new ListeTrajets();
 } //----- Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose (const char* villeDep, const char* villeArr,Transport transportUtilise):Trajet(villeDep,villeArr)
-// Algorithme :
-//
+// Algorithme :Fait appel à un constructeur de Trajet et au contructeur de ListeTrajets
 {
 #ifdef MAP
     cout << "Appel au constructeur paramétré de <TrajetCompose>" << endl;
@@ -138,8 +139,7 @@ AddTrajet(trajetAAjouter);
 } //----- Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose (const TrajetSimple &unTrajetSimple):Trajet(unTrajetSimple)
-// Algorithme :
-//
+// Algorithme : Fait appel à un constructeur de copie Trajet et au contructeur de ListeTrajets
 {
 #ifdef MAP
     cout << "Appel au constructeur paramétré avec un TrajetSimple de <TrajetCompose>" << endl;
@@ -153,7 +153,7 @@ AddTrajet(unTrajetSimple);
 
 
 TrajetCompose::~TrajetCompose ( )
-// Algorithme :
+// Algorithme : Détruit le trajet composé en faisant appel au destructeur de liste
 //
 {
 #ifdef MAP

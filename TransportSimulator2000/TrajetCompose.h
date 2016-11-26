@@ -41,21 +41,24 @@ public:
     bool AddTrajet(const Trajet  * trajetToAdd);
     // Mode d'emploi :Ajoute un trajet à la fin du TrajetComposé appellant si la fin de celui-ci
     //correspond au début du trajet donné en paramètre
-    // Contrat :
+    //Change la ville de d'arrivée du TrajetComposé appelant et de départ si besoin 
+    // Contrat : le pointeur pointe vers une zone mémoire valide
     
     bool AddTrajet(const Trajet  &trajetToAdd);
     // Mode d'emploi :Ajoute un trajet simple à la fin du TrajetComposé appellant si la fin de celui-ci
     //correspond au début du trajet simple donné en paramètre
-    // Contrat :
+  
 	
 	 Trajet * Clone() const;
 	//Mode d'emploi : Renvoie un pointeur de Trajet vers une copie de l'élément appelant
+	//Contrat : L'utilisateur doit supprimer la zone pointée par le pointeur retourné
+	//quand il n'en a plus l'utilité
   
 	bool EstVide() const;
-	//Renvoie vrai si la liste du trajet composé est vide
+	//Mode d'emploi : Renvoie vrai si la liste du trajet composé est vide
 	
     void ToString() const;
-	// Mode d'emploi : Permet d'afficher le trajet composé
+	//Mode d'emploi : Permet d'afficher le trajet composé
 		 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -65,24 +68,26 @@ public:
 
     TrajetCompose (const char* villeDep, const char* villeArr, const Transport transp );
     // Mode d'emploi : constructeur d'un trajet (paramétré)
+    //Construit un trajet composé à partir des données passées en paramétre, données décrivant les informations
+		//que l'on peut retrouver dans un trajet simple
     
     TrajetCompose (const TrajetSimple & unTrajetSimple);
     // Mode d'emploi: Construit un TrajetComposé sur le modèle d'un TrajetSimple
+
     
     
 
     TrajetCompose ( const TrajetCompose & unTrajetCompose );
-    // Mode d'emploi (constructeur de copie) :
-    //
+    // Mode d'emploi (constructeur de copie) : créé un nouvel objet TrajetComposé
+    //en effectuant une copie en profondeur du trajet passé en paramétre
     // Contrat :
     //
 
 
     virtual ~TrajetCompose ( );
-    // Mode d'emploi :
+    // Mode d'emploi : Detruit le TrajetComposé
     //
-    // Contrat :
-    //
+  
 
 //------------------------------------------------------------------ PRIVE
 
@@ -96,9 +101,9 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 private:
-ListeTrajets * listeDesTrajets;
-//------------------------------------------------------- Attributs privés
 
+//------------------------------------------------------- Attributs privés
+ListeTrajets * listeDesTrajets;
 //---------------------------------------------------------- Classes amies
 
 //-------------------------------------------------------- Classes privées

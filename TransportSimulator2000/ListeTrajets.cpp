@@ -297,7 +297,7 @@ ListeTrajets::ListeTrajets ( ): ptrDebut(nullptr),ptrFin(nullptr)
 
 
 ListeTrajets::~ListeTrajets ( )
-// Algorithme :
+// Algorithme : Désalloue les éléments de la liste ainsi que les Trajets associés en partant du début
 //
 {
 #ifdef MAP
@@ -319,10 +319,10 @@ ListeTrajets::~ListeTrajets ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
+//------------------------------------------------------- Méthodes privées
 void ListeTrajets::AddTInterne(Trajet * trajetAAjouter)
 {
-	
-	
 	
 	if(this->EstVide())
 	{
@@ -343,7 +343,6 @@ void ListeTrajets::AddTInterne(Trajet * trajetAAjouter)
 	}
 
 }
-//------------------------------------------------------- Méthodes privées
 bool ListeTrajets::removeLast()
 {
 	if(this->EstVide())
