@@ -10,7 +10,7 @@
      
 	 Application permettant de gérer, ajouter et rechercher des trajets entre plusieurs villes.
 *************************************************************************/
-#define MAP
+//#define MAP
 #define MAX_LENGTH 100					//Nombre maximal de caractères significatifs dans une ville
 
 #include <iostream>
@@ -88,70 +88,78 @@ static void loadAddHCI(Catalogue & cat)
 	while(response != -1)
 	{
 		cout << endl << "Choisir un mode d'ajout (1 = simple, 2 = compose, -1 = quitter)." << endl << endl;
-		
 		cin >> response;
-		switch(response)
-		{
-			case 1 : 
+		
+		if(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+		}
+		else {
+		
+			switch(response)
 			{
-				TrajetSimple* trajetSimple = createTrajetSimple();
-				if(trajetSimple != nullptr)
+				case 1 : 
 				{
-					cat.AddTrajet(*trajetSimple);
-					cout << "Trajet simple ajoute : ";
-					trajetSimple->ToString();					//Ajout simple
-					cout << endl;
-					delete trajetSimple;
-					response = -1;
-				}
-				else {
-					cout << "Erreur : mode de transport incorrect." << endl;
-					response = -1;
-				}
-				break;
-			}
-			case 2 : 
-			{
-				TrajetCompose tc;
-				int response2 = 0;
-				do{
-					cout << "Creation d'un trajet compose. Veuillez entrer un trajet." << endl;
 					TrajetSimple* trajetSimple = createTrajetSimple();
 					if(trajetSimple != nullptr)
 					{
-						
-						if(tc.AddTrajet(*trajetSimple))
-						{
-							cout << "Trajet simple ajoute : ";
-							trajetSimple->ToString();					//Ajout simple
-						}
+						cat.AddTrajet(*trajetSimple);
+						cout << "Trajet simple ajoute : ";
+						trajetSimple->ToString();					//Ajout simple
 						cout << endl;
 						delete trajetSimple;
-						
-					} 
-					else {
-						cout << "Erreur : mode de transport incorrect. " << endl;
+						response = -1;
 					}
-										
-					cout << "Entrer -1 pour arreter d'entrer de nouveaux trajets simples ou toute autre valeur pour continuer.";
-					cin >> response2;
-				} while (response2 != -1);
-				
-				if (!tc.EstVide())
-				{
-					cat.AddTrajet(tc);				//Ajout seulement si le trajet composé n'est pas vide !
+					else {
+						cout << "Erreur : mode de transport incorrect." << endl;
+						response = -1;
+					}
+					break;
 				}
+				case 2 : 
+				{
+					TrajetCompose tc;
+					int response2 = 0;
+					do{
+						cout << "Creation d'un trajet compose. Veuillez entrer un trajet." << endl;
+						TrajetSimple* trajetSimple = createTrajetSimple();
+						if(trajetSimple != nullptr)
+						{
+							
+							if(tc.AddTrajet(*trajetSimple))
+							{
+								cout << "Trajet simple ajoute : ";
+								trajetSimple->ToString();					//Ajout simple
+							}
+							cout << endl;
+							delete trajetSimple;
+							
+						} 
+						else {
+							cout << "Erreur : mode de transport incorrect. " << endl;
+						}
+											
+						cout << "Entrer -1 pour arreter d'entrer de nouveaux trajets simples ou toute autre valeur pour continuer.";
+						cin >> response2;
+					} while (response2 != -1);
+					
+					if (!tc.EstVide())
+					{
+						cat.AddTrajet(tc);				//Ajout seulement si le trajet composé n'est pas vide !
+					}
+				}
+				
+				case -1 : break;
+				default : 
+				{
+					cout << endl << "Commande non reconnue.  Merci d'entrer un transport valide."<<endl;
+					break;
+		
+				}
+				
+				break;
 			}
-			
-			case -1 : break;
-			default : 
-			{
-				cout << "Commande non reconnue.  Merci d'entrer un transport valide."<<endl;
-				response = 0;
-	
-			}
-			
-			break;
 		}
 			
 		cout << endl;
@@ -166,36 +174,50 @@ static TrajetSimple * createTrajetSimple()
 {
 		char* depart = new char[MAX_LENGTH + 1];
 		char* arrivee = new char[MAX_LENGTH + 1];
-		int indxEnum;
+		bool shouldContinue = true;
 		
-		cout << "Entrer la ville de depart : " << endl;
-		cin >> depart;
-		cout << endl << "Entrer la ville d'arrivee" << endl;
-		cin >> arrivee;
-		cout << "Choisir un mode de transport : " <<endl;
+		do{
+			int indxEnum;
+			
+			cout << "Entrer la ville de depart : " << endl;
+			cin >> depart;
+			cout << endl << "Entrer la ville d'arrivee" << endl;
+			cin >> arrivee;
+			cout << "Choisir un mode de transport : " <<endl;
+			
+			cout << "1. Avion" << endl;
+			cout << "2. Automobile"<< endl;
+			cout << "3. Tank" << endl;
+			cout << "4. Canard geant" << endl;
+			cout << "5. Tramway" << endl;
+			cout << "6. Bateau" << endl;
+			cout << "7. Missile nord-coreen" << endl;
+			
+			cin >> indxEnum;
+			if(!cin){
+				cout << endl << "Merci d'entrer un nombre valide."<< endl;
+				cin.clear();
+				cin.ignore(256,'\n');
+			}
+			else {
+				shouldContinue = false;
+				if(indxEnum >= 1 and indxEnum <=7)
+				{
+					Transport t = static_cast<Transport>(indxEnum-1);			//On suppose l'ordre des enumérations inchangé 
+					TrajetSimple* ts = new TrajetSimple (depart, arrivee, t);
+					delete[] depart;
+					delete[] arrivee;
+					return ts;
+				}
+				else {
+					delete[] depart;
+					delete[] arrivee;
+					return nullptr;
+				}
+			}
+		} while(shouldContinue);
 		
-		cout << "1. Avion" << endl;
-		cout << "2. Automobile"<< endl;
-		cout << "3. Tank" << endl;
-		cout << "4. Canard geant" << endl;
-		cout << "5. Tramway" << endl;
-		cout << "6. Bateau" << endl;
-		cout << "7. Missile nord-coreen" << endl;
-		
-		cin >> indxEnum;
-		if(indxEnum >= 1 and indxEnum <=7)
-		{
-			Transport t = static_cast<Transport>(indxEnum-1);			//On suppose l'ordre des enumérations inchangé 
-			TrajetSimple* ts = new TrajetSimple (depart, arrivee, t);
-			delete[] depart;
-			delete[] arrivee;
-			return ts;
-		}
-		else {
-			delete[] depart;
-			delete[] arrivee;
-			return nullptr;
-		}
+		return nullptr;
 }
 
 //Fonction locale de chargement de l'interface
@@ -221,49 +243,50 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 		cout << "3. Recherche simple de parcours" << endl;
 		cout << "4. Recherche complexe de parcours" << endl;
 		cin >> response;
+		if(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+		}
+		else {
 		
-	/*	cout << response;
-		cin.clear();
-		getline(cin, buf);
-		cout << buf << endl; */
-		
-		switch(response)
-		{
-			case 1 : 
+			switch(response)
 			{
-				loadAddHCI(c); break;
-			}
-			case 2 : 
-			{
+				case 1 : 
+				{
+					loadAddHCI(c); break;
+				}
+				case 2 : 
+				{
+					
+					cout << endl << "\t\t\t*** Contenu du catalogue : ***"<<endl; 
+					c.ToString();
+					cout << "\t\t\t*** Fin du catalogue ***"<< endl;
+					break;
+				}
+				case 3 : 
+				{
+					 
+					 loadFindHCISimple(c);
+					 break;
+				}
 				
-				cout << endl << "\t\t\t*** Contenu du catalogue : ***"<<endl; 
-				c.ToString();
-				cout << "\t\t\t*** Fin du catalogue ***"<< endl;
-				break;
-			}
-			case 3 : 
-			{
-				 
-				 loadFindHCISimple(c);
-				 break;
-			}
-			
-			case 4: 
-			{
-				loadFindHCIComplexe(c);
-				break;
-			}
-			default : 
-			{
-				if(response != -1)
+				case 4: 
+				{
+					loadFindHCIComplexe(c);
+					break;
+				}
+				
+				case -1 : break;
+				
+				default : 
 				{
 					cout << "Commande non reconnue."<<endl;
-					response = 0;
-				}
-				break;
-			}		
+					break;
+				}		
+			}
+			cout << endl;
 		}
-		cout << endl;
 
 	}
 }
@@ -271,7 +294,7 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 
 
 
-
+/*
 //Methode de test de la liste
 static void testListe()
 
@@ -413,7 +436,7 @@ void testCatalogue()
 	}
 	
 	
-}
+}*/
 /*
 
 	Méthode principale appelante de la classe
