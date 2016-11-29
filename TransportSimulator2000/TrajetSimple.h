@@ -38,7 +38,7 @@ public:
      
      
     void transportToString()const;  
- 	//Mode d'emploi :  Affiche l'énumération Transport passée en paramètre
+ 	//Mode d'emploi :  Affiche l'énumération Transport correspondante au trajet simple
 
 	 Trajet * Clone() const;
 	//Mode d'emploi : Renvoie un pointeur vers une copie de l'élément appelant
@@ -57,7 +57,7 @@ public:
 	
 	
     TrajetSimple (const char* villeDep, const char* villeArr, const Transport transp );
-    // Mode d'emploi : constructeur d'un trajet (paramétré)
+    // Mode d'emploi : Constructeur d'un trajet simple à partir des villes de départ et d’arrivée, et du mode de transport
 
 
 	
@@ -78,7 +78,7 @@ protected:
 
 private:
 //------------------------------------------------------- Attributs privés
-Transport transportUtilise;
+Transport transportUtilise;			//Mode de transport utilisé
 
 //---------------------------------------------------------- Classes amies
 

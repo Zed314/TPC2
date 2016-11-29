@@ -10,7 +10,7 @@
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
-#define MAP
+//#define MAP
 //--------------------------------------------------- Interfaces utilisées
 //------------------------------------------------------------- Constantes
 
