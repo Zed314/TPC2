@@ -187,7 +187,7 @@ static TrajetSimple * createTrajetSimple()
 			
 			cout << "1. Avion" << endl;
 			cout << "2. Automobile"<< endl;
-			cout << "3. Tank" << endl;
+			cout << "3. Train" << endl;
 			cout << "4. Canard geant" << endl;
 			cout << "5. Tramway" << endl;
 			cout << "6. Bateau" << endl;
@@ -335,8 +335,8 @@ cout<<endl;
 void testConstructeurDeCopieListe()
 {
 	ListeTrajets a;
-	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
-	TrajetSimple d("Lyon", "Villeurbanne",Transport::Tank);
+	TrajetSimple c("Paris", "Lyon", Transport::Missile);
+	TrajetSimple d("Lyon", "Villeurbanne",Transport::Train);
 
 	TrajetCompose e(c);
 	e.ToString();
@@ -366,8 +366,8 @@ void testTrajetCompose()
 	TrajetCompose b(a);
 	b.ToString();
 	
-	TrajetSimple c("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
-	TrajetSimple d("Paris", "Lyon", Transport::DosDeMathieuMaranzana);
+	TrajetSimple c("Paris", "Lyon", Transport::Missile);
+	TrajetSimple d("Paris", "Lyon", Transport::Missile);
 	b.AddTrajet(c);
 
 	b.AddTrajet(d);
@@ -389,7 +389,7 @@ void testCatalogue()
 	Catalogue catalogue;
 	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
 	TrajetSimple b("Paris", "Dourdan", Transport::Avion);
-	TrajetSimple c("Dourdan", "Bréthencourt", Transport::Tank);
+	TrajetSimple c("Dourdan", "Bréthencourt", Transport::Train);
 	TrajetCompose tc(a);
 
 	tc.AddTrajet(b);
