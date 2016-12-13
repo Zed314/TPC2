@@ -36,6 +36,10 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
+
+	unsigned int nbTrajets() const;
+	//Retounre le nombres de trajets 
+
 	bool villeEstPresente(char * ville);
 	//Renvoie true si la ville passee en parametre est presente dans la liste
 	

@@ -32,7 +32,12 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
-
+	unsigned int nbTrajetsCoutenus() const
+	{
+		return 0;
+	}
+	//Mode d'emploi : retourne 0
+		
     void ToString() const;
      // Mode d'emploi : Affiche le trajet simple
      

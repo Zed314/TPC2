@@ -10,8 +10,10 @@
 //---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
-#include <string>
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+
 #include "ListeTrajets.h"
 #include "Trajet.h"
 //------------------------------------------------------------- Constantes
@@ -31,23 +33,23 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	string printRaw() const;
+	string PrintRaw() const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//du Catalogue
 	
-	string printRawFromTo(char * depart,char *arrivee) const;
+	string PrintRawFromTo(const char * depart,const char *arrivee) const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des Trajets partant de la ville nommée "depart" à une ville nommée "arrivee"
 	
-	string printRawSimples() const;
+	string PrintRawSimples() const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des Trajets simples
 	
-	string printRawComposes() const;
+	string PrintRawComposes() const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des Trajets composes
 	
-	string printRow(int min=0, int max=0) const;
+	string PrintRow(int min=0, int max=0) const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des trajets situés de l'emplacement "min" à l'emplacement "max" inclus.
 	

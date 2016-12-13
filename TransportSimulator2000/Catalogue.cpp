@@ -35,7 +35,33 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string Catalogue::PrintRaw() const
+{
+	return "";
+}
 
+string Catalogue::PrintRawFromTo(const char * depart,const char *arrivee) const
+{
+	return "";
+}
+
+	
+string Catalogue::PrintRawSimples() const
+{
+	return "";
+}
+
+	
+string Catalogue::PrintRawComposes() const
+{
+	return "";
+}
+
+	
+string Catalogue::PrintRow(int min, int max) const
+{
+	return "";
+}
 
 
 void Catalogue::ToString() const
