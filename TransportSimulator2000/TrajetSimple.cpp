@@ -33,6 +33,11 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+string TrajetSimple::PrintRaw()const
+{
+	return"";
+}
+
 Trajet * TrajetSimple::Clone() const
  {
  	#ifdef MAP

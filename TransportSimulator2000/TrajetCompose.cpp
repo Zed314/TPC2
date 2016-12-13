@@ -16,7 +16,7 @@
 using namespace std;
 #define MAP
 #include <iostream>
-
+#include <string>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 #include "ListeTrajets.h"
@@ -34,11 +34,20 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-unsigned int TrajetCompose::nbTrajetsCoutenus() const
+
+
+
+
+string TrajetCompose::PrintRaw()const
+{
+	return "";
+}
+    
+unsigned int TrajetCompose::NbTrajetsCoutenus() const
 {
 	if(listeDesTrajets!=nullptr)
 	{
-		return listeDesTrajets->nbTrajets();
+		return listeDesTrajets->NbTrajets();
 	}
 	return 0;
 }

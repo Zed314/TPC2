@@ -32,7 +32,11 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
-	unsigned int nbTrajetsCoutenus() const
+	 //Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//du trajet simple
+   string PrintRaw()const;
+
+	unsigned int NbTrajetsCoutenus() const
 	{
 		return 0;
 	}

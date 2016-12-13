@@ -10,6 +10,8 @@
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
+using namespace std;
+#include <string>
 //#define MAP
 //--------------------------------------------------- Interfaces utilisées
 //------------------------------------------------------------- Constantes
@@ -30,9 +32,16 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
+
+
+    //Méthode abstraite retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//du trajet
+    virtual string PrintRaw()const=0;
+
+	
 	//Methode abstraite. Renvoie le nombre de trajets contenus dans le trajet courant.
 	//Renvoie 0 si le trajet est un trajet simple
-	virtual unsigned int nbTrajetsCoutenus() const=0;
+	virtual unsigned int NbTrajetsCoutenus() const=0;
 
 	//Renvoie une copie profonde de la ville de départ
 	char* getCpyDep() const;

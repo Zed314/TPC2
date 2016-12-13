@@ -32,7 +32,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-unsigned int ListeTrajets::nbTrajets() const
+unsigned int ListeTrajets::NbTrajets() const
 {
 	ElementListeTrajet* elt = this->ptrDebut;
 	unsigned int nbVilles=0;

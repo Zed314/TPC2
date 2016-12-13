@@ -16,6 +16,7 @@
 #include "TrajetSimple.h"
 #include "ListeTrajets.h"
 #include <cstring>
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -38,9 +39,11 @@ public:
     //
     // Contrat :
     //
+    string PrintRaw()const;
+    //Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//du trajet composé
     
-    
-	unsigned int nbTrajetsCoutenus() const;
+	unsigned int NbTrajetsCoutenus() const;
 	//Mode d'emploi : Renvoie le nombre de trajets contenus par le trajet composé    
     
     

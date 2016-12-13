@@ -17,6 +17,7 @@ using namespace std;
 #define MAP
 #include <iostream>
 #include <cstring>
+#include <string>
 
 
 //------------------------------------------------------ Include personnel
