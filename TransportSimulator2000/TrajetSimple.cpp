@@ -35,7 +35,15 @@ using namespace std;
 
 string TrajetSimple::PrintRaw()const
 {
-	return"";
+	string strToReturn="0\r\n";
+	strToReturn+=villeDepart;
+	strToReturn+="\r\n";
+	strToReturn+=villeArrivee;
+	strToReturn+="\r\n";
+	
+	strToReturn+=transportUtilise;
+	return strToReturn;
+	
 }
 
 Trajet * TrajetSimple::Clone() const

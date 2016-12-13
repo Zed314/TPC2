@@ -10,7 +10,7 @@
 //---------- Interface de la classe <ListeTrajets> (fichier ListeTrajets.h) ----------------
 #if ! defined ( LISTETRAJETS_H )
 #define LISTETRAJETS_H
-
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "TrajetSimple.h"
@@ -37,6 +37,9 @@ class ListeTrajets
 public:
 //----------------------------------------------------- Méthodes publiques
 
+	string PrintRaw()const;
+	//Retourne de maniére non formattée les informations sur les trajets contenus dans la liste
+	
 	unsigned int NbTrajets() const;
 	//Retourne le nombres de trajets dans la liste
 

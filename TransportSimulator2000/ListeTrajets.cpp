@@ -15,7 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
-
+#include <string>
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
 #include "Trajet.h"
@@ -32,6 +32,11 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string ListeTrajets::PrintRaw() const
+{
+	return "";
+}
+
 unsigned int ListeTrajets::NbTrajets() const
 {
 	ElementListeTrajet* elt = this->ptrDebut;
