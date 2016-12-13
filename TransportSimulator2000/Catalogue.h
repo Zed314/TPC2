@@ -10,7 +10,7 @@
 //---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
-
+#include <string>
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
 #include "Trajet.h"
@@ -31,7 +31,16 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+	string printRaw() const;
+	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//du Catalogue
+	
+	string printRawFromTo(char * depart,char *arrivee) const;
+	
+	string printRawSimple() const;
+	
+	string printRow(int min=0, int max=0) const;
+	
 	void AddTrajet(const Trajet * unTrajet);
  	// Méthode ajoutant un trajet à la liste des trajets
  	

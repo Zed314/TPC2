@@ -15,11 +15,14 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <string>
 #define MAP
+
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "ListeTrajets.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -32,6 +35,8 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+
+
 
 void Catalogue::ToString() const
 {
