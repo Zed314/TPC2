@@ -444,6 +444,23 @@ void testCatalogue()
     argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
 */
 
+
+void testLoadTrajetSimple()
+{
+	TrajetDAO tdao("saveFile.txt");
+/*	tdao.DeleteSaves();
+	
+	Trajet* ts = new TrajetSimple("Lyon", "Marseille", static_cast<Transport>(1));
+	tdao.Serialize(ts->PrintRaw());
+	delete ts;*/
+	
+	Catalogue cat;
+	tdao.LoadAll(cat);
+	cat.ToString();
+	
+}
+
+
 void testSaveFile()
 {
 	TrajetDAO tdao("saveFile.txt");
@@ -477,6 +494,7 @@ int main(int argc, char** argv)
 //	testTrajetCompose();
 	//testCatalogue();
 	//loadHCI();
-	testSaveFile();
+	//testSaveFile();
+	testLoadTrajetSimple();
 	return 0;
 }  //----- Fin du main

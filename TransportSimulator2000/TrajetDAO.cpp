@@ -15,8 +15,11 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstring>
+#include <stdlib.h>
 
 //------------------------------------------------------ Include personnel
+#define MAP
 #include "TrajetDAO.h"
 #include "Catalogue.h"
 #include "Trajet.h"
@@ -51,7 +54,42 @@ using namespace std;
 	
 	int TrajetDAO::LoadAll(Catalogue & cat) 
 	{
-		return 0;
+		
+		int nbTrajets = 0;
+		string str;
+		
+		
+		while(getline(inputStream,str))
+		{
+			if(atoi(str.c_str()) == 0)
+			{
+				
+				char* vDep;
+				string vDepstr;
+				getline(inputStream, vDepstr);
+				vDepstr.erase(vDepstr.size() - 1);							//"Les retours chariot, c'est le cancer."   
+				vDep = new char[strlen(vDepstr.c_str()) + 1];				//                      Abraham Lincoln
+				strcpy(vDep, vDepstr.c_str());
+				
+				char* vArr;
+				string vArrstr;
+				getline(inputStream, vArrstr);
+				vArrstr.erase(vArrstr.size() - 1);
+				vArr = new char[strlen(vArrstr.c_str()) + 1];
+				strcpy(vArr, vArrstr.c_str());
+								
+				string transpStr;
+				getline(inputStream, transpStr);
+				Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+
+				
+				Trajet* ts = new TrajetSimple(vDep, vArr, t);
+				cat.AddTrajet(ts);
+				nbTrajets++;
+			}
+		}
+		
+		return nbTrajets;
 	}// -- Fin de LoadAll
 	
 	int TrajetDAO::LoadSimple(Catalogue & cat) 

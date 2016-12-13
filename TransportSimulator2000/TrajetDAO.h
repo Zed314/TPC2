@@ -34,7 +34,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 
-void Serialize(string rawString) ;
+void Serialize(string rawString);
 // Sauvegarde la chaîne de caractères correspondant aux caractéristiques du ou des trajets dans le fichier de sauvegarde
 
 
@@ -58,8 +58,8 @@ int LoadInterval(const int min, const int max, Catalogue & cat);
 
 //------------------------------------------------- Surcharge d'opérateurs
     
-    //Surcharge de l'affectation d'un TrajetDAO
-    TrajetDAO & operator = ( const TrajetDAO & unTrajetDAO);
+//Surcharge de l'affectation d'un TrajetDAO
+ TrajetDAO & operator = ( const TrajetDAO & unTrajetDAO);
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetDAO ( const TrajetDAO & unTrajetDAO);
