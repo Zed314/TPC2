@@ -36,10 +36,20 @@ public:
 	//du Catalogue
 	
 	string printRawFromTo(char * depart,char *arrivee) const;
+	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//des Trajets partant de la ville nommée "depart" à une ville nommée "arrivee"
 	
-	string printRawSimple() const;
+	string printRawSimples() const;
+	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//des Trajets simples
+	
+	string printRawComposes() const;
+	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//des Trajets composes
 	
 	string printRow(int min=0, int max=0) const;
+	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
+	//des trajets situés de l'emplacement "min" à l'emplacement "max" inclus.
 	
 	void AddTrajet(const Trajet * unTrajet);
  	// Méthode ajoutant un trajet à la liste des trajets
