@@ -34,8 +34,12 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 
-void Serialize(string rawString, bool append=true) ;
-// Sauvegarde la chaîne de caractères correspondant aux caractéristiques du trajet dans le fichier de sauvegarde
+void Serialize(string rawString) ;
+// Sauvegarde la chaîne de caractères correspondant aux caractéristiques du ou des trajets dans le fichier de sauvegarde
+
+
+void DeleteSaves();
+//Supprime toutes les entrées de sauvegarde
 
 int LoadAll(Catalogue & cat) ;
 // Charge tous les éléments du fichier de sauvegarde en mémoire

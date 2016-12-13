@@ -449,6 +449,13 @@ void testSaveFile()
 	TrajetDAO tdao("saveFile.txt");
 	string data = "ceci est un test";
 	tdao.Serialize(data);
+	tdao.DeleteSaves();
+	
+	Trajet* ts = new TrajetSimple("Lyon", "Marseille", static_cast<Transport>(1));
+	tdao.Serialize(ts->PrintRaw());
+	
+	
+	delete ts;
 	
 }
 

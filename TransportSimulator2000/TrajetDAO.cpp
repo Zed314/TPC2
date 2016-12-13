@@ -27,22 +27,32 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-	void TrajetDAO::Serialize(string rawString, bool append)
+	void TrajetDAO::Serialize(string rawString)
 	{
-			
 		if (outputStream)
 		{
 			const char *cstr = rawString.c_str();
-			outputStream.write(cstr, 100);
-	
+			outputStream.write(cstr, sizeof(char)*rawString.size());
 		}
-	}
+	}		//--- Fin de Serialize
+	
+	
+	void TrajetDAO::DeleteSaves()
+	{
+		if(outputStream)
+		{
+			outputStream.close();
+			outputStream.open(filename, std::ofstream::out | std::ofstream::trunc);
+			outputStream.close();
+			outputStream.open(filename, ios_base::app);
+		}
+	}  // ---Fin de DeleteSaves
 	
 	
 	int TrajetDAO::LoadAll(Catalogue & cat) 
 	{
 		return 0;
-	}
+	}// -- Fin de LoadAll
 	
 	int TrajetDAO::LoadSimple(Catalogue & cat) 
 	{

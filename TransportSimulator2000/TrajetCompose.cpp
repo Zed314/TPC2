@@ -40,7 +40,16 @@ using namespace std;
 
 string TrajetCompose::PrintRaw()const
 {
-	return "";
+	
+	string strToReturn = this->NbTrajetsCoutenus() + "\r\n";
+	strToReturn+=villeDepart;
+	strToReturn+="\r\n";
+	strToReturn+=villeArrivee;
+	strToReturn+="\r\n";
+	//strToReturn+=transportUtilise;
+	
+	return strToReturn;
+	
 }
     
 unsigned int TrajetCompose::NbTrajetsCoutenus() const

@@ -17,7 +17,9 @@ using namespace std;
 #define MAP
 #include <iostream>
 #include <cstring>
+#include <sstream>
 //------------------------------------------------------ Include personnel
+
 
 #include "TrajetSimple.h"
 #include "Trajet.h"
@@ -33,6 +35,9 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+
+std::string itos(int i);
+
 string TrajetSimple::PrintRaw()const
 {
 	string strToReturn="0\r\n";
@@ -40,8 +45,7 @@ string TrajetSimple::PrintRaw()const
 	strToReturn+="\r\n";
 	strToReturn+=villeArrivee;
 	strToReturn+="\r\n";
-	
-	strToReturn+=transportUtilise;
+	strToReturn+=itos(static_cast<int>(this->transportUtilise));
 	return strToReturn;
 	
 }
@@ -156,3 +160,9 @@ TrajetSimple::~TrajetSimple ( )
 
 //------------------------------------------------------- Méthodes privées
 
+//--------------- Fonctions globales	
+std::string itos(int i){
+    std::stringstream ss;
+    ss<<i;
+    return ss.str();
+}
