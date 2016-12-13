@@ -35,22 +35,23 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
+std::string itos(int i);
 
 
 string TrajetCompose::PrintRaw()const
 {
 	
-	string strToReturn = this->NbTrajetsCoutenus() + "\r\n";
+	string strToReturn = itos(this->NbTrajetsCoutenus());
+	strToReturn += "\r\n";
 	strToReturn+=villeDepart;
-	strToReturn+="\r\n";
-	strToReturn+=villeArrivee;
-	strToReturn+="\r\n";
-	//strToReturn+=transportUtilise;
-	
+	strToReturn+= "\r\n";
+	strToReturn+= villeArrivee;
+	strToReturn	+= "\r\n";
+	strToReturn += this->listeDesTrajets->PrintRaw();
+	strToReturn += "\r\n";
 	return strToReturn;
 	
-}
+}	// --- Fin de PrintRaw
     
 unsigned int TrajetCompose::NbTrajetsCoutenus() const
 {
@@ -59,7 +60,7 @@ unsigned int TrajetCompose::NbTrajetsCoutenus() const
 		return listeDesTrajets->NbTrajets();
 	}
 	return 0;
-}
+}   // ---- Fin de NbTrajetsCoutenus
 
 
 Trajet * TrajetCompose::Clone() const

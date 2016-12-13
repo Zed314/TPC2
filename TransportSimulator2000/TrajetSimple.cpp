@@ -46,6 +46,7 @@ string TrajetSimple::PrintRaw()const
 	strToReturn+=villeArrivee;
 	strToReturn+="\r\n";
 	strToReturn+=itos(static_cast<int>(this->transportUtilise));
+	strToReturn+="\r\n";
 	return strToReturn;
 	
 }

@@ -34,8 +34,17 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 string ListeTrajets::PrintRaw() const
 {
-	return "";
-}
+	string strToReturn = "";
+	ElementListeTrajet* elt = this->ptrDebut;
+	
+	while(elt != nullptr)
+	{
+		strToReturn+=elt->TrajetEnCours->PrintRaw();
+		elt = elt->ElementTrajetSuivant;
+	}
+	return strToReturn;
+	
+}  //--- Fin de PrintRaw
 
 unsigned int ListeTrajets::NbTrajets() const
 {
@@ -50,7 +59,10 @@ unsigned int ListeTrajets::NbTrajets() const
 		
 	}
 	return nbVilles;
-}
+}  //---- Fin de NbTrajets
+
+
+
 bool ListeTrajets::villeEstPresente(char * ville)
 {
 	ElementListeTrajet* elt = this->ptrDebut;
@@ -67,7 +79,7 @@ bool ListeTrajets::villeEstPresente(char * ville)
 		
 	}
 	return laVilleEstPresente;
-}
+}  // ----- Fin de villeEstPresente
 
 char * ListeTrajets::getCopyOfLastArr()
 {
@@ -80,7 +92,8 @@ char * ListeTrajets::getCopyOfLastArr()
 		return this->ptrFin->TrajetEnCours->getCpyArr();
 	}
 	
-}
+} // ---- Fin de getCopyOfLastArr
+
 Trajet * ListeTrajets::getCopyOfLast()
 {
 	if(this->EstVide())
@@ -93,7 +106,8 @@ Trajet * ListeTrajets::getCopyOfLast()
 		return this->ptrFin->TrajetEnCours->Clone();
 	}
 	
-}
+}// ----- Fin de getCopyOfLast
+
 int ListeTrajets::nbElements() const
 {
 	ElementListeTrajet* elt = this->ptrDebut;
@@ -107,7 +121,7 @@ int ListeTrajets::nbElements() const
 	}
 	return nb;
 	
-}
+} // ----- Fin de nbElements
 
 
 int ListeTrajets::findTrajetComplexeRec( const char * villeEnCours, const char * villeArrivee,ListeTrajets &Parcours,Trajet ** ensembleDesTrajets,int nbTrajets,int nbParcoursComplets) const
@@ -170,7 +184,7 @@ int ListeTrajets::findTrajetComplexeRec( const char * villeEnCours, const char *
 	
 	return nbParcoursComplets;
 	
-}
+} // ------ Fin de findTrajetComplexeRec
 
 int ListeTrajets::afficheTrajetsRechercheComplexe(const char* depart, const char* arrivee) const 
 //Algorithme : Stocke le contenu de la liste appelante dans un tableau et l'envoie à une fonction

@@ -1,4 +1,16 @@
 0
 Lyon
 Marseille
-1
+1
+2
+Paris
+Bordeaux
+0
+Paris
+Toulouse
+5
+0
+Toulouse
+Bordeaux
+3
+

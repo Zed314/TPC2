@@ -34,11 +34,7 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
     string PrintRaw()const;
     //Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//du trajet composé
