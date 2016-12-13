@@ -27,34 +27,39 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-	void TrajetDAO::serialize(string rawString, bool append) const
+	void TrajetDAO::Serialize(string rawString, bool append)
 	{
-		
-		
+			
+		if (outputStream)
+		{
+			const char *cstr = rawString.c_str();
+			outputStream.write(cstr, 100);
+	
+		}
 	}
 	
 	
-	int TrajetDAO::loadAll(Catalogue & cat) const
-	{
-		return 0;
-	}
-	
-	int TrajetDAO::loadSimple(Catalogue & cat) const
-	{
-		return 0;
-	}
-	
-	int TrajetDAO::loadComposes(Catalogue & cat) const
+	int TrajetDAO::LoadAll(Catalogue & cat) 
 	{
 		return 0;
 	}
 	
-	int TrajetDAO::loadVille(Catalogue & cat, const char* villeDep, const char* villeArr) const
+	int TrajetDAO::LoadSimple(Catalogue & cat) 
 	{
 		return 0;
 	}
 	
-	int TrajetDAO::loadInterval(const int min, const int max, Catalogue & cat) const
+	int TrajetDAO::LoadComposes(Catalogue & cat) 
+	{
+		return 0;
+	}
+	
+	int TrajetDAO::LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) 
+	{
+		return 0;
+	}
+	
+	int TrajetDAO::LoadInterval(const int min, const int max, Catalogue & cat) 
 	{
 		return 0;
 	}
@@ -78,7 +83,7 @@ using namespace std;
 			cout << "Construction par copie d'un <TrajetDAO>" << endl;
 		#endif
 		inputStream.open(filename);
-		outputStream.open(filename);
+		outputStream.open(filename, ios_base::app);
 	}
 		
 // Constructeur par défaut
@@ -89,7 +94,7 @@ TrajetDAO::TrajetDAO (string filename)
 	#endif
 	this->filename = filename;
 	inputStream.open(filename);
-	outputStream.open(filename);
+	outputStream.open(filename, ios_base::app);
 	
 } //----- Fin de TrajetDAO
 

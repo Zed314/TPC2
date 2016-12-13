@@ -22,7 +22,7 @@
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include "ListeTrajets.h"
-
+#include "TrajetDAO.h"
 
 using namespace std;
 
@@ -444,6 +444,14 @@ void testCatalogue()
     argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
 */
 
+void testSaveFile()
+{
+	TrajetDAO tdao("saveFile.txt");
+	string data = "ceci est un test";
+	tdao.Serialize(data);
+	
+}
+
 int main(int argc, char** argv)
 {
 
@@ -455,6 +463,7 @@ int main(int argc, char** argv)
 	//testConstructeurDeCopieListe();
 //	testTrajetCompose();
 	//testCatalogue();
-	loadHCI();
+	//loadHCI();
+	testSaveFile();
 	return 0;
 }  //----- Fin du main

@@ -34,22 +34,22 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 
-void serialize(string rawString, bool append=true) const;
+void Serialize(string rawString, bool append=true) ;
 // Sauvegarde la chaîne de caractères correspondant aux caractéristiques du trajet dans le fichier de sauvegarde
 
-int loadAll(Catalogue & cat) const;
+int LoadAll(Catalogue & cat) ;
 // Charge tous les éléments du fichier de sauvegarde en mémoire
 
-int loadSimple(Catalogue & cat) const;
+int LoadSimple(Catalogue & cat) ;
 // Charge tous les éléments de type 'trajet simple' en mémoire
 
-int loadComposes(Catalogue & cat) const;
+int LoadComposes(Catalogue & cat) ;
 // Charge tous les éléments de type 'trajet composé' en mémoire
 
-int loadVille(Catalogue & cat, const char* villeDep, const char* villeArr) const;
+int LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) ;
 // Charge en mémoire tous les trajets dont la ville de départ et d'arrivée correspondent avec les paramètres indiqués
 
-int loadInterval(const int min, const int max, Catalogue & cat) const;
+int LoadInterval(const int min, const int max, Catalogue & cat);
 // Charge en mémoire tous les trajets sauvegardés dans l'intervalle donné
 
 //------------------------------------------------- Surcharge d'opérateurs
