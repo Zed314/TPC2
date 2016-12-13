@@ -1,4 +1,4 @@
-OBJ= main.o Trajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
+OBJ= main.o Trajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o TrajetDAO.o
 COMP= g++
 COMPFLAG = -Wall -std=c++11
 
@@ -7,6 +7,9 @@ TrajetSimulator2000 : $(OBJ)
 	
 main.o : main.cpp Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h ListeTrajets.h
 	$(COMP) $(COMPFLAG) -c main.cpp 
+	
+TrajetDAO.o : TrajetDAO.h TrajetDAO.cpp Catalogue.h Trajet.h
+	$(COMP) $(COMPFLAG) -c TrajetDAO.cpp 
 
 Catalogue.o : Catalogue.h ListeTrajets.h Catalogue.cpp Trajet.h
 	$(COMP) $(COMPFLAG) -c Catalogue.cpp
