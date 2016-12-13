@@ -34,6 +34,16 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+unsigned int TrajetCompose::nbTrajetsCoutenus() const
+{
+	if(listeDesTrajets!=nullptr)
+	{
+		return listeDesTrajets->nbTrajets();
+	}
+	return 0;
+}
+
+
 Trajet * TrajetCompose::Clone() const
  {
  	 #ifdef MAP

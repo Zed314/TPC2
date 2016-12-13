@@ -38,7 +38,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 	unsigned int nbTrajets() const;
-	//Retounre le nombres de trajets 
+	//Retourne le nombres de trajets dans la liste
 
 	bool villeEstPresente(char * ville);
 	//Renvoie true si la ville passee en parametre est presente dans la liste

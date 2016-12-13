@@ -32,7 +32,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 	//Methode abstraite. Renvoie le nombre de trajets contenus dans le trajet courant.
 	//Renvoie 0 si le trajet est un trajet simple
-	unsigned int nbTrajetsCoutenus() const=0;
+	virtual unsigned int nbTrajetsCoutenus() const=0;
 
 	//Renvoie une copie profonde de la ville de départ
 	char* getCpyDep() const;

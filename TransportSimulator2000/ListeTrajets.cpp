@@ -32,6 +32,20 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+unsigned int ListeTrajets::nbTrajets() const
+{
+	ElementListeTrajet* elt = this->ptrDebut;
+	unsigned int nbVilles=0;
+	
+	while(elt != nullptr)
+	{
+		nbVilles++;
+		elt = elt->ElementTrajetSuivant;
+		
+		
+	}
+	return nbVilles;
+}
 bool ListeTrajets::villeEstPresente(char * ville)
 {
 	ElementListeTrajet* elt = this->ptrDebut;
@@ -39,7 +53,7 @@ bool ListeTrajets::villeEstPresente(char * ville)
 	
 	while(elt != nullptr&&!laVilleEstPresente)
 	{
-		if(elt->TrajetEnCours->CheckIfGoesFrom(ville)||elt->TrajetEnCours->CheckIfGoesFrom(ville))
+		if(elt->TrajetEnCours->CheckIfGoesFrom(ville)||elt->TrajetEnCours->CheckIfGoesTo(ville))
 		{
 			laVilleEstPresente=true;
 		}
