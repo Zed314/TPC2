@@ -14,7 +14,7 @@
 
 //-------------------------------------------------------- Include système
 using namespace std;
-#define MAP
+
 #include <iostream>
 #include <string>
 //------------------------------------------------------ Include personnel
@@ -48,7 +48,6 @@ string TrajetCompose::PrintRaw()const
 	strToReturn+= villeArrivee;
 	strToReturn	+= "\r\n";
 	strToReturn += this->listeDesTrajets->PrintRaw();
-	strToReturn += "\r\n";
 	return strToReturn;
 	
 }	// --- Fin de PrintRaw

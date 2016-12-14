@@ -16,7 +16,7 @@
 using namespace std;
 #include <iostream>
 #include <string>
-#define MAP
+
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"

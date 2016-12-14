@@ -19,10 +19,12 @@ using namespace std;
 #include <stdlib.h>
 
 //------------------------------------------------------ Include personnel
-#define MAP
+
 #include "TrajetDAO.h"
 #include "Catalogue.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -37,6 +39,7 @@ using namespace std;
 			const char *cstr = rawString.c_str();
 			outputStream.write(cstr, sizeof(char)*rawString.size());
 		}
+		outputStream.flush();
 	}		//--- Fin de Serialize
 	
 	
@@ -58,35 +61,81 @@ using namespace std;
 		int nbTrajets = 0;
 		string str;
 		
-		
 		while(getline(inputStream,str))
 		{
-			if(atoi(str.c_str()) == 0)
-			{
+			char* vDep;
+			char* vArr;
+			int nbTrajetsSimples = atoi(str.c_str());
+			
+			string vDepstr;
+			if(!getline(inputStream, vDepstr))
+				break;
+			
+			vDepstr.erase(vDepstr.size() - 1);							//"Les retours chariot, c'est le cancer."   
+			vDep = new char[strlen(vDepstr.c_str()) + 1];				//                      Abraham Lincoln
+			strcpy(vDep, vDepstr.c_str());
+			
+			string vArrstr;
+			if(!getline(inputStream, vArrstr)){
+				delete[] vDep;
+				break;
+			}
 				
-				char* vDep;
-				string vDepstr;
-				getline(inputStream, vDepstr);
-				vDepstr.erase(vDepstr.size() - 1);							//"Les retours chariot, c'est le cancer."   
-				vDep = new char[strlen(vDepstr.c_str()) + 1];				//                      Abraham Lincoln
-				strcpy(vDep, vDepstr.c_str());
-				
-				char* vArr;
-				string vArrstr;
-				getline(inputStream, vArrstr);
-				vArrstr.erase(vArrstr.size() - 1);
-				vArr = new char[strlen(vArrstr.c_str()) + 1];
-				strcpy(vArr, vArrstr.c_str());
-								
+			
+			
+			vArrstr.erase(vArrstr.size() - 1);
+			vArr = new char[strlen(vArrstr.c_str()) + 1];
+			strcpy(vArr, vArrstr.c_str());
+			
+			if(nbTrajetsSimples==0)
+			{								
 				string transpStr;
 				getline(inputStream, transpStr);
 				Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
-
 				
 				Trajet* ts = new TrajetSimple(vDep, vArr, t);
 				cat.AddTrajet(ts);
-				nbTrajets++;
+				delete ts;
 			}
+			else {
+				TrajetCompose* tc = new TrajetCompose();
+				for(int i=0;i<nbTrajetsSimples;i++)
+				{
+					char* vDepSimple;
+					char* vArrSimple;
+					
+					string vDepstrSimple;
+					getline(inputStream, str);
+					getline(inputStream, vDepstrSimple);				//Nombre de trajets du TS
+					vDepstrSimple.erase(vDepstrSimple.size() - 1);							  
+					vDepSimple = new char[strlen(vDepstrSimple.c_str()) + 1];				
+					strcpy(vDepSimple, vDepstrSimple.c_str());
+					
+					string vArrstrSimple;
+					getline(inputStream, vArrstrSimple);
+					vArrstrSimple.erase(vArrstrSimple.size() - 1);
+					vArrSimple = new char[strlen(vArrstrSimple.c_str()) + 1];
+					strcpy(vArrSimple, vArrstrSimple.c_str());
+					
+					string transpStr;
+					getline(inputStream, transpStr);
+					Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+					
+					Trajet* ts = new TrajetSimple(vDepSimple, vArrSimple, t);
+					tc->AddTrajet(ts);
+					
+					delete ts;
+					delete[] vDepSimple;
+					delete[] vArrSimple;
+				}
+				cat.AddTrajet(tc);
+				delete tc;
+			}
+			delete[] vDep;
+			delete[] vArr;
+			
+			nbTrajets++;
+		
 		}
 		
 		return nbTrajets;

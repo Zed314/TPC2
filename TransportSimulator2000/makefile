@@ -1,6 +1,6 @@
 OBJ= main.o Trajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o TrajetDAO.o
 COMP= g++
-COMPFLAG = -Wall -std=c++11
+COMPFLAG = -Wall -std=c++11 -DMAP -ggdb
 
 TrajetSimulator2000 : $(OBJ)
 	$(COMP) $(COMPFLAG) -o TrajetSimulator2000 $(OBJ)

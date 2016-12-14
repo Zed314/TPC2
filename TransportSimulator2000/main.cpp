@@ -445,14 +445,42 @@ void testCatalogue()
 */
 
 
+void testLoadTrajetCompose()
+{
+	
+	TrajetDAO tdao("saveFile.txt");
+	tdao.DeleteSaves();
+	
+	Trajet* ts2 = new TrajetSimple("Lyon", "Dijon", static_cast<Transport>(2));
+	tdao.Serialize(ts2->PrintRaw());
+	
+	TrajetCompose tc("Paris", "Toulouse", static_cast<Transport>(5));
+	Trajet* ts = new TrajetSimple("Toulouse", "Bordeaux", static_cast<Transport>(3));
+	tc.AddTrajet(ts);
+	tdao.Serialize(tc.PrintRaw());
+	
+	Trajet* ts3 = new TrajetSimple("Macon", "Auxerre", static_cast<Transport>(1));
+	tdao.Serialize(ts3->PrintRaw());
+
+	delete ts;
+	delete ts2;
+	delete ts3;
+	
+	Catalogue cat;
+	tdao.LoadAll(cat);
+	cat.ToString();
+	
+	
+}
+/*
 void testLoadTrajetSimple()
 {
 	TrajetDAO tdao("saveFile.txt");
-/*	tdao.DeleteSaves();
+	tdao.DeleteSaves();
 	
 	Trajet* ts = new TrajetSimple("Lyon", "Marseille", static_cast<Transport>(1));
 	tdao.Serialize(ts->PrintRaw());
-	delete ts;*/
+	delete ts;
 	
 	Catalogue cat;
 	tdao.LoadAll(cat);
@@ -463,6 +491,7 @@ void testLoadTrajetSimple()
 
 void testSaveFile()
 {
+	
 	TrajetDAO tdao("saveFile.txt");
 	string data = "ceci est un test";
 	tdao.Serialize(data);
@@ -480,7 +509,7 @@ void testSaveFile()
 	delete ts;
 	
 	
-}
+}*/
 
 int main(int argc, char** argv)
 {
@@ -495,6 +524,7 @@ int main(int argc, char** argv)
 	//testCatalogue();
 	//loadHCI();
 	//testSaveFile();
-	testLoadTrajetSimple();
+	//testLoadTrajetSimple();
+	testLoadTrajetCompose();
 	return 0;
 }  //----- Fin du main

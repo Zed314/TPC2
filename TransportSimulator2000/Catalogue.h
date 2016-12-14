@@ -30,7 +30,7 @@ using namespace std;
 class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
-
+	
 public:
 //----------------------------------------------------- Méthodes publiques
 	string PrintRaw() const;
@@ -58,8 +58,8 @@ public:
  	
  	void AddTrajet(const Trajet &unTrajet);
  	// Méthode ajoutant un trajet simple à la liste des trajets
- 
-    
+ 	
+	
 	void ToString() const;
 	//Méthode affichant l'ensemble du catalogue
 	
