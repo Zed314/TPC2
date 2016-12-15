@@ -15,7 +15,7 @@
 #include <string>
 #include <fstream>
 #include "Catalogue.h"
-
+#include "Trajet.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -34,7 +34,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 
-void Serialize(string rawString);
+void Serialize(Trajet* trajet);
 // Sauvegarde la chaîne de caractères correspondant aux caractéristiques du ou des trajets dans le fichier de sauvegarde
 
 

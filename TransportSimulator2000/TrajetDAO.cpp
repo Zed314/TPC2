@@ -32,8 +32,9 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-	void TrajetDAO::Serialize(string rawString)
+	void TrajetDAO::Serialize(Trajet * trajet)
 	{
+		string rawString = trajet->PrintRaw();
 		if (outputStream)
 		{
 			const char *cstr = rawString.c_str();
@@ -240,8 +241,8 @@ using namespace std;
 		#ifdef MAP
 			cout << "Surcharge de l'affectation de <TrajetDAO>" << endl;
 		#endif
-		
-	/*	if(unTrajetDAO != *this)
+	/*	
+		if(unTrajetDAO != *this)
 		{
 			this->filename = unTrajetDAO.filename;
 			inputStream.open(filename);

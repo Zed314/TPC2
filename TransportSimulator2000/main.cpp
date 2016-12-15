@@ -294,15 +294,15 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 void testSaveData(TrajetDAO & tdao)
 {
 	Trajet* ts2 = new TrajetSimple("Lyon", "Dijon", static_cast<Transport>(2));
-	tdao.Serialize(ts2->PrintRaw());
+	tdao.Serialize(ts2);
 	
 	TrajetCompose tc("Paris", "Toulouse", static_cast<Transport>(5));
 	Trajet* ts = new TrajetSimple("Toulouse", "Bordeaux", static_cast<Transport>(3));
 	tc.AddTrajet(ts);
-	tdao.Serialize(tc.PrintRaw());
+	tdao.Serialize(&tc);
 	
 	Trajet* ts3 = new TrajetSimple("Macon", "Auxerre", static_cast<Transport>(1));
-	tdao.Serialize(ts3->PrintRaw());
+	tdao.Serialize(ts3);
 
 	delete ts;
 	delete ts2;
