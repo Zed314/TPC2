@@ -82,6 +82,10 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
+
+private:
+	int instantiateTrajetSimple(Catalogue & cat);
+	int instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples);
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetDAO>

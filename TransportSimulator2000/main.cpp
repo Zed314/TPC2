@@ -385,7 +385,7 @@ int main(int argc, char** argv)
 	//loadHCI();
 	//testSaveFile();
 	//testLoadTrajetSimple();
-	//testLoadTrajetCompose();
-	testLoadTypeTrajet();
+	testLoadTrajetCompose();
+	//testLoadTypeTrajet();
 	return 0;
 }  //----- Fin du main
