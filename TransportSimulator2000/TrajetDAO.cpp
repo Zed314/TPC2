@@ -60,6 +60,8 @@ using namespace std;
 		
 		int nbTrajets = 0;
 		string str;
+		inputStream.clear();
+		inputStream.seekg(0, ios::beg);
 		
 		while(getline(inputStream,str))
 		{
@@ -81,8 +83,6 @@ using namespace std;
 				break;
 			}
 				
-			
-			
 			vArrstr.erase(vArrstr.size() - 1);
 			vArr = new char[strlen(vArrstr.c_str()) + 1];
 			strcpy(vArr, vArrstr.c_str());
@@ -139,16 +139,136 @@ using namespace std;
 		}
 		
 		return nbTrajets;
-	}// -- Fin de LoadAll
+	}  // -- Fin de LoadAll
 	
 	int TrajetDAO::LoadSimple(Catalogue & cat) 
 	{
-		return 0;
+		inputStream.clear();
+		inputStream.seekg(0, ios::beg);
+		
+		int nbTrajets = 0;
+		string str;
+		while(getline(inputStream,str))
+		{
+			char* vDep;
+			char* vArr;
+			int nbTrajetsSimples = atoi(str.c_str());
+			if(nbTrajetsSimples == 0)				//Chargement d'un trajet Simple => OK	
+			{
+				string vDepstr;
+				if(!getline(inputStream, vDepstr))
+					break;
+				
+				vDepstr.erase(vDepstr.size() - 1);							 
+				vDep = new char[strlen(vDepstr.c_str()) + 1];				
+				strcpy(vDep, vDepstr.c_str());
+				
+				string vArrstr;
+				if(!getline(inputStream, vArrstr)){
+					delete[] vDep;
+					break;
+				}
+					
+				vArrstr.erase(vArrstr.size() - 1);
+				vArr = new char[strlen(vArrstr.c_str()) + 1];
+				strcpy(vArr, vArrstr.c_str());
+		
+				string transpStr;
+				getline(inputStream, transpStr);
+				Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+					
+				Trajet* ts = new TrajetSimple(vDep, vArr, t);
+				cat.AddTrajet(ts);
+				delete ts;		
+				delete[] vDep;
+				delete[] vArr;
+				nbTrajets++;
+			}
+			else {								//Chargement d'un trajet composé => ignoré
+				getline(inputStream, str);
+				getline(inputStream, str);		//Villes du TC
+				for(int i=0;i<4*nbTrajetsSimples;i++, getline(inputStream, str));		//Boucle for vide : ignore les TC
+			}
+		}
+		
+		return nbTrajets;
 	}
 	
 	int TrajetDAO::LoadComposes(Catalogue & cat) 
 	{
-		return 0;
+		inputStream.clear();
+		inputStream.seekg(0, ios::beg);
+		
+		int nbTrajets = 0;
+		string str;
+		while(getline(inputStream,str))
+		{
+			char* vDep;
+			char* vArr;
+			int nbTrajetsSimples = atoi(str.c_str());
+			if(nbTrajetsSimples != 0)				//Chargement d'un trajet composé => OK	
+			{
+				string vDepstr;
+				if(!getline(inputStream, vDepstr))
+					break;
+				
+				vDepstr.erase(vDepstr.size() - 1);							 
+				vDep = new char[strlen(vDepstr.c_str()) + 1];				
+				strcpy(vDep, vDepstr.c_str());
+				
+				string vArrstr;
+				if(!getline(inputStream, vArrstr)){
+					delete[] vDep;
+					break;
+				}
+					
+				vArrstr.erase(vArrstr.size() - 1);
+				vArr = new char[strlen(vArrstr.c_str()) + 1];
+				strcpy(vArr, vArrstr.c_str());
+		
+				TrajetCompose* tc = new TrajetCompose();
+				for(int i=0;i<nbTrajetsSimples;i++)			//Chargement de tous les TS
+				{
+					char* vDepSimple;
+					char* vArrSimple;			
+					
+					string vDepstrSimple;
+					getline(inputStream, str);
+					getline(inputStream, vDepstrSimple);				
+					vDepstrSimple.erase(vDepstrSimple.size() - 1);							  
+					vDepSimple = new char[strlen(vDepstrSimple.c_str()) + 1];				
+					strcpy(vDepSimple, vDepstrSimple.c_str());
+					
+					string vArrstrSimple;
+					getline(inputStream, vArrstrSimple);
+					vArrstrSimple.erase(vArrstrSimple.size() - 1);
+					vArrSimple = new char[strlen(vArrstrSimple.c_str()) + 1];
+					strcpy(vArrSimple, vArrstrSimple.c_str());
+					
+					string transpStr;
+					getline(inputStream, transpStr);
+					Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+					
+					Trajet* ts = new TrajetSimple(vDepSimple, vArrSimple, t);
+					tc->AddTrajet(ts);
+					
+					delete ts;
+					delete[] vDepSimple;
+					delete[] vArrSimple;
+				}
+				
+				cat.AddTrajet(tc);
+				delete tc;
+				delete[] vDep;
+				delete[] vArr;
+				nbTrajets++;
+				
+			}
+			else {								//Chargement d'un trajet composé => ignoré
+				for(int i=0;i<3;i++, getline(inputStream, str));		//Boucle for vide : ignore les TS
+			}
+		}
+		return nbTrajets;
 	}
 	
 	int TrajetDAO::LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) 
@@ -168,6 +288,7 @@ using namespace std;
 		#ifdef MAP
 			cout << "Surcharge de l'affectation de <TrajetDAO>" << endl;
 		#endif
+		
 		return (*this);
 	}					
 

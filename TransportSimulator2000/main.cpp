@@ -291,166 +291,8 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 	}
 }
 
-
-
-
-/*
-//Methode de test de la liste
-static void testListe()
-
+void testSaveData(TrajetDAO & tdao)
 {
-	ListeTrajets lt;
-	lt.ToString();
-	TrajetSimple t1("Lyon", "Paris", Transport::Automobile);
-	TrajetSimple t2("Paris","Buccarache",Transport::Avion);
-	TrajetCompose t3(t1);
-	t3.AddTrajet(t2);	
-	lt.AddT(t1);
-	lt.AddT(t2);
-	lt.AddT(t3);
-	lt.ToString();
-	
-}
-
-
-void testConstructeurDeCopie()
-{
-	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
-	a.ToString();
-cout<<endl;
-	{
-		TrajetSimple b(a);
-		b.ToString();
-		cout<<endl;
-	}
-	a.ToString();
-	cout<<endl;
-	TrajetCompose c(a);
-	{
-		TrajetCompose d(c);
-	}
-	c.ToString();
-}
-
-void testConstructeurDeCopieListe()
-{
-	ListeTrajets a;
-	TrajetSimple c("Paris", "Lyon", Transport::Missile);
-	TrajetSimple d("Lyon", "Villeurbanne",Transport::Train);
-
-	TrajetCompose e(c);
-	e.ToString();
-	{
-		TrajetCompose t(e);
-		t.ToString();
-	}
-	a.ToString();
-	a.AddT(c);
-	a.AddT(d);
-	e.AddTrajet(d);
-	a.ToString();
-	{
-		ListeTrajets z(a);
-		z.ToString();
-		z.AddT(e);
-		z.ToString();
-	}
-	a.ToString();
-	e.ToString();
-
-}
-void testTrajetCompose()
-{
-	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
-
-	TrajetCompose b(a);
-	b.ToString();
-	
-	TrajetSimple c("Paris", "Lyon", Transport::Missile);
-	TrajetSimple d("Paris", "Lyon", Transport::Missile);
-	b.AddTrajet(c);
-
-	b.AddTrajet(d);
-	b.ToString();
-	TrajetCompose e;
-	e.ToString();
-	e.AddTrajet(&c);
-	e.ToString();
-	{
-		TrajetSimple f("Lyon", "Berlin", Transport::Avion);
-		e.AddTrajet(&f);
-		
-	}
-	e.ToString();
-	
-}
-void testCatalogue()
-{
-	Catalogue catalogue;
-	TrajetSimple a("Lyon", "Paris", Transport::Automobile);
-	TrajetSimple b("Paris", "Dourdan", Transport::Avion);
-	TrajetSimple c("Dourdan", "Bréthencourt", Transport::Train);
-	TrajetCompose tc(a);
-
-	tc.AddTrajet(b);
-	catalogue.AddTrajet(a);
-	catalogue.AddTrajet(b);
-	catalogue.AddTrajet(c);
-	catalogue.AddTrajet(tc);
-	catalogue.ToString();
-	if(catalogue.CheckTrajetSimple("Paris","Dourdan")!=0)
-	{
-		cout<<endl;	
-		cout<<"Il existe bien un trajet partant de Paris et allant à Dourdan!"<<endl;
-	}
-	else
-	{
-		cout<<"Il n'existe pas de trajets partant de Paris et allant à Dourdan!"<<endl;
-	}
-	if(catalogue.CheckTrajetSimple("Dourdan","Paris")!=0)
-	{
-		cout<<endl;	
-		cout<<"Il existe bien un trajet partant de Dourdan et allant à Paris!"<<endl;
-	}
-	else
-	{
-		cout<<"Il n'existe pas de trajets partant de Dourdan et allant à Paris!"<<endl;
-	}
-	if(catalogue.CheckTrajetSimple("Lyon","Dourdan")!=0)
-	{
-		cout<<endl;	
-		cout<<"Il existe bien un trajet partant de Lyon et allant à Dourdan!"<<endl;
-	}
-	else
-	{
-		cout<<"Il n'existe pas de trajets partant de Lyon et allant à Dourdan!"<<endl;
-	}
-	if(catalogue.CheckTrajetSimple("Lyon","Bréthencourt")!=0)
-	{
-		cout<<endl;	
-		cout<<"Il existe bien un trajet partant de Lyon et allant à Bréthencourt!"<<endl;
-	}
-	else
-	{
-		cout<<"Il n'existe pas de trajets partant de Lyon et allant à Bréthencourt!"<<endl;
-	}
-	
-	
-}*/
-/*
-
-	Méthode principale appelante de la classe
-	argc désigne le nombre d'éventuels arguments à fournir au programme
-    argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
-*/
-
-
-void testLoadTrajetCompose()
-{
-	
-	TrajetDAO tdao("saveFile.txt");
-	tdao.DeleteSaves();
-	
 	Trajet* ts2 = new TrajetSimple("Lyon", "Dijon", static_cast<Transport>(2));
 	tdao.Serialize(ts2->PrintRaw());
 	
@@ -465,12 +307,31 @@ void testLoadTrajetCompose()
 	delete ts;
 	delete ts2;
 	delete ts3;
+}
+
+void testLoadTypeTrajet()
+{
+	TrajetDAO tdao("saveFile.txt");
+	tdao.DeleteSaves();
+	testSaveData(tdao);
 	
 	Catalogue cat;
-	tdao.LoadAll(cat);
+	cout << "Un total de " << tdao.LoadSimple(cat) << " trajets simples ont été chargés depuis la sauvegarde" << endl;
+	cout << "Un total de " << tdao.LoadComposes(cat) << " trajets composés ont été chargés depuis la sauvegarde" << endl;
+	
 	cat.ToString();
+}
+
+
+void testLoadTrajetCompose()
+{
+	TrajetDAO tdao("saveFile.txt");
+	tdao.DeleteSaves();
+	testSaveData(tdao);
 	
-	
+	Catalogue cat;
+	cout << "Un total de " << tdao.LoadAll(cat) << " trajets ont été chargés depuis la sauvegarde" << endl;
+	cat.ToString();
 }
 /*
 void testLoadTrajetSimple()
@@ -511,20 +372,20 @@ void testSaveFile()
 	
 }*/
 
+/*
+
+	Méthode principale appelante de la classe
+	argc désigne le nombre d'éventuels arguments à fournir au programme
+    argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
+*/
+
 int main(int argc, char** argv)
 {
 
-
-	//test1();
-	//testListe();
-	//testListe();
-	////testConstructeurDeCopie();
-	//testConstructeurDeCopieListe();
-//	testTrajetCompose();
-	//testCatalogue();
 	//loadHCI();
 	//testSaveFile();
 	//testLoadTrajetSimple();
-	testLoadTrajetCompose();
+	//testLoadTrajetCompose();
+	testLoadTypeTrajet();
 	return 0;
 }  //----- Fin du main
