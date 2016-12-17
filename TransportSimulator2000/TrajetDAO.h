@@ -35,7 +35,9 @@ public:
 
 
 void Serialize(Trajet* trajet);
-// Sauvegarde la chaîne de caractères correspondant aux caractéristiques du ou des trajets dans le fichier de sauvegarde
+// Sauvegarde le trajet indiqué en paramètre dans le fichier de sauvegarde sous la forme d'une chaine de caractères
+// Le format d'enregistrement est le suivant : <nbTrajetsSimples><CR><LF><villeDepart><CR><LF><villeArrivée><CR><LF> 
+// + <indiceTransport> pour les TS OU <trajetsSimples> pour les TC + <CR><LF>
 
 
 void DeleteSaves();
@@ -54,7 +56,9 @@ int LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) ;
 // Charge en mémoire tous les trajets dont la ville de départ et d'arrivée correspondent avec les paramètres indiqués
 
 int LoadInterval(const int min, const int max, Catalogue & cat);
-// Charge en mémoire tous les trajets sauvegardés dans l'intervalle donné
+// Charge en mémoire tous les trajets sauvegardés dans l'intervalle donné (de min à max)
+// Contrat : l'intervalle entré doit être valide (intervalle correct avec min <= max, et min>=0)
+// Si la fonction reçoit un paramètre effectif max plus grand que le nombre de trajets enregistrés, elle se contentera de charger jusqu'au dernier trajet
 
 //------------------------------------------------- Surcharge d'opérateurs
     
@@ -85,7 +89,15 @@ protected:
 
 private:
 	int instantiateTrajetSimple(Catalogue & cat);
+	//Essaye d'instancier un trajet simple à partir de la position actuelle de lecture dans le fichier
+	//Les 3 lignes suivantes du fichier sont interprétées comme la ville d'arrivée, de départ et le mode de transport du trajet simple
+	//Une copie du trajet est ensuite ajoutée au catalogue. Renvoie 0 si l'instanciation a échoué (pas assez de lignes à lire)
+	
 	int instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples);
+	//Essaye d'instancier un trajet composé à partir de la position actuelle de lecture dans le fichier
+	//Les (2+nbTrajetsSimples*4) lignes suivantes du fichier sont interprétées comme la ville d'arrivée, de départ et les différents trajets simples du TC
+	//Une copie du trajet est ensuite ajoutée au catalogue. Renvoie 0 si l'instanciation a échoué (pas assez de lignes à lire)
+	
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetDAO>

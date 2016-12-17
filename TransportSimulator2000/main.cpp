@@ -333,6 +333,24 @@ void testLoadTrajetCompose()
 	cout << "Un total de " << tdao.LoadAll(cat) << " trajets ont été chargés depuis la sauvegarde" << endl;
 	cat.ToString();
 }
+
+void testLoadTrajetInterval()
+{
+	TrajetDAO tdao("saveFile.txt");
+	tdao.DeleteSaves();
+	testSaveData(tdao);
+	Catalogue cat;
+	
+	int min, max;
+	cout << "Min : ";
+	cin >> min;
+	cout << "Max : ";
+	cin >> max;
+	cout << "Un total de " << tdao.LoadInterval(min, max, cat) << " trajets ont été chargés depuis la sauvegarde (intervalle : [" << min << ", " << max << "])."; 
+	cat.ToString();
+}
+
+
 /*
 void testLoadTrajetSimple()
 {
@@ -385,7 +403,8 @@ int main(int argc, char** argv)
 	//loadHCI();
 	//testSaveFile();
 	//testLoadTrajetSimple();
-	testLoadTrajetCompose();
+	//testLoadTrajetCompose();
 	//testLoadTypeTrajet();
+	testLoadTrajetInterval();
 	return 0;
 }  //----- Fin du main

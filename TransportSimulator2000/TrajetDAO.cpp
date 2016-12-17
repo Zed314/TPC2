@@ -17,6 +17,7 @@ using namespace std;
 #include <fstream>
 #include <cstring>
 #include <stdlib.h>
+#include <assert.h>				//Include assertions
 
 //------------------------------------------------------ Include personnel
 
@@ -101,7 +102,7 @@ using namespace std;
 			}
 		}
 		return nbTrajets;
-	}
+	} //---- Fin de LoadSimple
 	
 	
 	int TrajetDAO::LoadComposes(Catalogue & cat) 
@@ -126,16 +127,58 @@ using namespace std;
 			}
 		}
 		return nbTrajets;
-	}
+	} // ----- Fin de LoadComposes
 	
 	int TrajetDAO::LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) 
 	{
+		
+		
+		
 		return 0;
 	}
 	
 	int TrajetDAO::LoadInterval(const int min, const int max, Catalogue & cat) 
 	{
-		return 0;
+		int nbTrajets = 0;
+		string str;
+		inputStream.clear();
+		inputStream.seekg(0, ios::beg);
+		int nbTrajetsSimples;
+		int i;
+		for(i=0;i<min;i++)						//Passe les min premiers trajets
+		{
+			getline(inputStream,str);
+			nbTrajetsSimples = atoi(str.c_str());
+			if(nbTrajetsSimples == 0)
+			{
+				for(int j=0;j<3;j++, getline(inputStream, str));		//Boucle for vide : passe un TS
+			}
+			else
+			{
+				for(int j=0;j< (4*nbTrajetsSimples)+2;j++, getline(inputStream, str));	//Boucle for vide : passe un TC
+			}
+		}
+		for(i=min;i<=max;i++)						//Chargement des Trajets dans l'intervalle [min;max]
+		{
+			if(!getline(inputStream,str))
+				break;
+			
+			nbTrajetsSimples = atoi(str.c_str());
+			if(nbTrajetsSimples == 0)
+			{
+				if(!instantiateTrajetSimple(cat))
+					break;
+				nbTrajets++;
+			}
+			else 
+			{
+				if(!instantiateTrajetCompose(cat, nbTrajetsSimples))
+					break;
+				nbTrajets++;
+			}
+		}
+		assert(nbTrajets <= (max-min)+1);
+		return nbTrajets;
 	}
 	
 	int TrajetDAO::instantiateTrajetSimple(Catalogue & cat)
@@ -161,9 +204,13 @@ using namespace std;
 		strcpy(vArr, vArrstr.c_str());
 	
 		string transpStr;
-		getline(inputStream, transpStr);
+		if(!getline(inputStream, transpStr))
+		{
+			delete[] vDep;
+			delete[] vArr;
+			return 0;
+		}
 		Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
-			
 		Trajet* ts = new TrajetSimple(vDep, vArr, t);
 		cat.AddTrajet(ts);
 		delete ts;		
@@ -202,26 +249,52 @@ using namespace std;
 			char* vArrSimple;			
 			
 			string vDepstrSimple;
-			getline(inputStream, vDepstrSimple);
-			getline(inputStream, vDepstrSimple);				
+			for(int j=0;j<2;j++)
+			{
+				if(!getline(inputStream, vDepstrSimple))
+				{
+					delete[] vDep;
+					delete[] vArr;
+					delete tc;				//Erreur de lecture
+					return 0;
+				}
+			}
+							
 			vDepstrSimple.erase(vDepstrSimple.size() - 1);							  
 			vDepSimple = new char[strlen(vDepstrSimple.c_str()) + 1];				
 			strcpy(vDepSimple, vDepstrSimple.c_str());
 			
 			string vArrstrSimple;
-			getline(inputStream, vArrstrSimple);
+			
+			if(!getline(inputStream, vArrstrSimple))
+			{
+				delete[] vDep;
+				delete[] vArr;						//Erreur de lecture
+				delete tc;
+				delete[] vDepSimple;
+				return 0;
+			}
+			
 			vArrstrSimple.erase(vArrstrSimple.size() - 1);
 			vArrSimple = new char[strlen(vArrstrSimple.c_str()) + 1];
 			strcpy(vArrSimple, vArrstrSimple.c_str());
 			
 			string transpStr;
-			getline(inputStream, transpStr);
+			if(!getline(inputStream, transpStr))
+			{
+				delete[] vDep;
+				delete[] vArr;
+				delete tc;								//Erreur de lecture
+				delete[] vDepSimple;
+				delete[] vArrSimple;
+				return 0;
+			}
 			Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
 			
 			Trajet* ts = new TrajetSimple(vDepSimple, vArrSimple, t);
 			tc->AddTrajet(ts);
 			
-			delete ts;
+			delete ts;						//Le TS est supprimé car TrajetCompose::AddTrajet ajoute une copie de celui-ci
 			delete[] vDepSimple;
 			delete[] vArrSimple;
 		}
