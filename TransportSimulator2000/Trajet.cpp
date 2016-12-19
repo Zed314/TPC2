@@ -107,8 +107,8 @@ Trajet::Trajet ( )
 #ifdef MAP
     cout << "Appel au constructeur sans paramètres de <Trajet>" << endl;
 #endif
-this->villeDepart=new char[strlen("INCONNNU") + 1];
-strcpy(this->villeDepart, "INCONNNU");
+this->villeDepart=new char[strlen("INCONNU") + 1];
+strcpy(this->villeDepart, "INCONNU");
 this->villeArrivee=new char[strlen("INCONNU") + 1];
 strcpy(this->villeArrivee, "INCONNU");
 } //----- Fin de Trajet

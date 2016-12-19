@@ -33,17 +33,41 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-	void TrajetDAO::Serialize(Trajet * trajet)
+	void TrajetDAO::SerializeCatalogIndex(Catalogue & catToSave,unsigned int min,unsigned int max)
 	{
-		string rawString = trajet->PrintRaw();
-		if (outputStream)
-		{
-			const char *cstr = rawString.c_str();
-			outputStream.write(cstr, sizeof(char)*rawString.size());
-		}
-		outputStream.flush();
-	}		//--- Fin de Serialize
+		serialize(catToSave.PrintRaw(min,max));
+	}//--- Fin de SerializeCatalogIndex
+	void TrajetDAO::SerializeCatalogTrajetsComposes(Catalogue & catToSave)
+	{
+		serialize(catToSave.PrintRawComposes());
+		
+	}		//--- Fin de SerializeCatalogTrajetsSimples
 	
+	void TrajetDAO::SerializeCatalogTrajetsSimples(Catalogue & catToSave)
+	{
+		serialize(catToSave.PrintRawSimples());
+		
+	}		//--- Fin de SerializeCatalogTrajetsSimples
+	
+	void TrajetDAO::SerializeCatalogFromTo(Catalogue & catToSave,const char *depart,const char * arrivee)
+	{
+		serialize(catToSave.PrintRawFromTo(depart, arrivee));
+		
+	}		//--- Fin de SerializeCatalogFromTo
+
+
+	void TrajetDAO::SerializeAllCatalog(Catalogue & catToSave)
+	{
+		serialize(catToSave.PrintRaw());
+
+	}		//--- Fin de SerializeAllCatalog
+
+	void TrajetDAO::SerializeTrajet(Trajet * trajet)
+	{
+		
+		serialize(trajet->PrintRaw());
+	}		
+
 	
 	void TrajetDAO::DeleteSaves()
 	{
@@ -365,4 +389,13 @@ TrajetDAO::~TrajetDAO ()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
+	void TrajetDAO::serialize(string stringToSave)
+	{
+		if (outputStream)
+		{
+			const char *cstr = stringToSave.c_str();
+			outputStream.write(cstr, sizeof(char)*stringToSave.size());
+		}
+		outputStream.flush();
+		
+	}//--- Fin de SerializeTrajet

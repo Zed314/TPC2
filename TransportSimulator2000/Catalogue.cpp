@@ -37,30 +37,32 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 string Catalogue::PrintRaw() const
 {
-	return "";
+	
+	return listeTrajets->PrintRaw();
 }
 
 string Catalogue::PrintRawFromTo(const char * depart,const char *arrivee) const
 {
-	return "";
+	return listeTrajets->PrintRawFromTo(depart,arrivee);
 }
 
 	
 string Catalogue::PrintRawSimples() const
 {
-	return "";
+	
+	return listeTrajets->PrintRawSimples();
 }
 
 	
 string Catalogue::PrintRawComposes() const
 {
-	return "";
+	return listeTrajets->PrintRawComposes();
 }
 
 	
-string Catalogue::PrintRow(int min, int max) const
+string Catalogue::PrintRaw(unsigned int min,unsigned int max) const
 {
-	return "";
+	return listeTrajets->PrintRaw(min, max);
 }
 
 

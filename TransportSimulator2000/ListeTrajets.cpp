@@ -32,6 +32,58 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string ListeTrajets::PrintRawComposes() const
+{
+	string strToReturn = "";
+	ElementListeTrajet* elt = this->ptrDebut;
+	
+	while(elt != nullptr)
+	{
+		if(elt->TrajetEnCours->NbTrajetsCoutenus()!=0)
+		{
+			strToReturn+=elt->TrajetEnCours->PrintRaw();
+		}
+		
+		elt = elt->ElementTrajetSuivant;
+	}
+	return strToReturn;
+}//---Fin de PrintRawComposes
+
+string ListeTrajets::PrintRawSimples() const
+{
+	string strToReturn = "";
+	ElementListeTrajet* elt = this->ptrDebut;
+	
+	while(elt != nullptr)
+	{
+		if(elt->TrajetEnCours->NbTrajetsCoutenus()==0)
+		{
+			strToReturn+=elt->TrajetEnCours->PrintRaw();
+		}
+		
+		elt = elt->ElementTrajetSuivant;
+	}
+	return strToReturn;
+}//--- Fin de PrintRawSimples
+
+string ListeTrajets::PrintRawFromTo(const char * depart,const char *arrivee) const
+{
+	string strToReturn = "";
+	ElementListeTrajet* elt = this->ptrDebut;
+	
+	while(elt != nullptr)
+	{
+		if(elt->TrajetEnCours->CheckIfGoesFromTo(depart,arrivee))
+		{
+			strToReturn+=elt->TrajetEnCours->PrintRaw();
+		}
+		
+		elt = elt->ElementTrajetSuivant;
+	}
+	return strToReturn;
+	
+}  //--- Fin de PrintRawFromTo
+
 string ListeTrajets::PrintRaw() const
 {
 	string strToReturn = "";
@@ -45,6 +97,32 @@ string ListeTrajets::PrintRaw() const
 	return strToReturn;
 	
 }  //--- Fin de PrintRaw
+
+string ListeTrajets::PrintRaw(unsigned int min, unsigned int max) const
+{
+	string strToReturn = "";
+	ElementListeTrajet* elt = this->ptrDebut;
+	unsigned int indice=0;
+	if(min>max)
+	{
+		int temp=min;
+		min=max;
+		max=temp;
+	}
+	while(elt != nullptr&&indice<=max)
+	{
+		if(indice>=min)
+		{
+			strToReturn+=elt->TrajetEnCours->PrintRaw();
+			
+		}	
+		elt = elt->ElementTrajetSuivant;	
+		indice++;
+	}
+	return strToReturn;
+	
+}  //--- Fin de PrintRaw(unsigned int min, unsigned int max)
+
 
 unsigned int ListeTrajets::NbTrajets() const
 {

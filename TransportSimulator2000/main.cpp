@@ -294,15 +294,15 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 void testSaveData(TrajetDAO & tdao)
 {
 	Trajet* ts2 = new TrajetSimple("Lyon", "Dijon", static_cast<Transport>(2));
-	tdao.Serialize(ts2);
+	tdao.SerializeTrajet(ts2);
 	
 	TrajetCompose tc("Paris", "Toulouse", static_cast<Transport>(5));
 	Trajet* ts = new TrajetSimple("Toulouse", "Bordeaux", static_cast<Transport>(3));
 	tc.AddTrajet(ts);
-	tdao.Serialize(&tc);
+	tdao.SerializeTrajet(&tc);
 	
 	Trajet* ts3 = new TrajetSimple("Macon", "Auxerre", static_cast<Transport>(1));
-	tdao.Serialize(ts3);
+	tdao.SerializeTrajet(ts3);
 
 	delete ts;
 	delete ts2;
@@ -346,7 +346,7 @@ void testLoadTrajetInterval()
 	cin >> min;
 	cout << "Max : ";
 	cin >> max;
-	cout << "Un total de " << tdao.LoadInterval(min, max, cat) << " trajets ont été chargés depuis la sauvegarde (intervalle : [" << min << ", " << max << "])."; 
+	cout << "Un total de " << tdao.LoadInterval(min, max, cat) << " trajets ont été chargés depuis la sauvegarde (intervalle : [" << min << ", " << max << "])."<<endl; 
 	cat.ToString();
 }
 
@@ -396,7 +396,85 @@ void testSaveFile()
 	argc désigne le nombre d'éventuels arguments à fournir au programme
     argv se comporte comme un tableau de chaînes de caractères contenant ces arguments
 */
+void testSaveAllCatalog()
+{
+	Catalogue cat;
+	TrajetDAO tdao("saveFileBis.txt");
+	tdao.DeleteSaves();
+	TrajetSimple a;
 
+	TrajetSimple b("Paris","Lyon",static_cast<Transport>(3));
+	TrajetCompose c("Paris","Lyon",static_cast<Transport>(3));
+	TrajetSimple d("Lyon","Orsay",static_cast<Transport>(2));
+	c.AddTrajet(d);
+	cat.AddTrajet(a);
+	cat.AddTrajet(b);
+		cat.AddTrajet(c);
+	tdao.SerializeAllCatalog(cat);
+	
+	
+}
+void testSaveTrajetFromTo()
+{
+	Catalogue cat;
+	TrajetDAO tdao("saveFileBis.txt");
+	tdao.DeleteSaves();
+	TrajetSimple a;
+	TrajetSimple b("Paris","Lyon",static_cast<Transport>(3));
+	TrajetCompose c("Paris","Lyon",static_cast<Transport>(3));
+	TrajetSimple d("Lyon","Orsay",static_cast<Transport>(2));
+	c.AddTrajet(d);
+	cat.AddTrajet(a);
+	cat.AddTrajet(b);
+		cat.AddTrajet(c);
+	tdao.SerializeCatalogFromTo(cat,"Paris","Orsay");
+	
+}
+void testSaveTrajetsSimples()
+{
+		Catalogue cat;
+	TrajetDAO tdao("saveFileBis.txt");
+	tdao.DeleteSaves();
+	TrajetSimple a;
+	TrajetSimple b("Paris","Lyon",static_cast<Transport>(3));
+	TrajetCompose c("Paris","Lyon",static_cast<Transport>(3));
+	TrajetSimple d("Lyon","Orsay",static_cast<Transport>(2));
+	c.AddTrajet(d);
+	cat.AddTrajet(a);
+	cat.AddTrajet(b);
+		cat.AddTrajet(c);
+	tdao.SerializeCatalogTrajetsSimples(cat);
+}
+void testSaveTrajetsComposes()
+{
+		Catalogue cat;
+	TrajetDAO tdao("saveFileBis.txt");
+	tdao.DeleteSaves();
+	TrajetSimple a;
+	TrajetSimple b("Paris","Lyon",static_cast<Transport>(3));
+	TrajetCompose c("Paris","Lyon",static_cast<Transport>(3));
+	TrajetSimple d("Lyon","Orsay",static_cast<Transport>(2));
+	c.AddTrajet(d);
+	cat.AddTrajet(a);
+	cat.AddTrajet(b);
+		cat.AddTrajet(c);
+	tdao.SerializeCatalogTrajetsComposes(cat);
+}
+void testSaveTrajetsIndices()
+{
+		Catalogue cat;
+	TrajetDAO tdao("saveFileBis.txt");
+	tdao.DeleteSaves();
+	TrajetSimple a;
+	TrajetSimple b("Paris","Lyon",static_cast<Transport>(3));
+	TrajetCompose c("Paris","Lyon",static_cast<Transport>(3));
+	TrajetSimple d("Lyon","Orsay",static_cast<Transport>(2));
+	c.AddTrajet(d);
+	cat.AddTrajet(a);
+	cat.AddTrajet(b);
+		cat.AddTrajet(c);
+	tdao.SerializeCatalogIndex(cat,2,1);
+}
 int main(int argc, char** argv)
 {
 
@@ -405,6 +483,11 @@ int main(int argc, char** argv)
 	//testLoadTrajetSimple();
 	//testLoadTrajetCompose();
 	//testLoadTypeTrajet();
-	testLoadTrajetInterval();
+	//testLoadTrajetInterval();
+	//testSaveTrajetFromTo();
+	//testSaveAllCatalog();
+	//testSaveTrajetsSimples();
+	//testSaveTrajetsComposes();
+	testSaveTrajetsIndices();
 	return 0;
 }  //----- Fin du main

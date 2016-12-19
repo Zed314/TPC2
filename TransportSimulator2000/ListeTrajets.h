@@ -14,6 +14,7 @@ using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "TrajetSimple.h"
+#include <string>
 class TrajetCompose;
 
 //------------------------------------------------------------- Constantes
@@ -37,8 +38,25 @@ class ListeTrajets
 public:
 //----------------------------------------------------- Méthodes publiques
 
+	string PrintRawComposes() const;
+	//Retourne de maniére non formattée les informations sur les trajets composes
+	//contenus dans la liste	
+	
+	string PrintRawSimples() const;
+	//Retourne de maniére non formattée les informations sur les trajets simples
+	//contenus dans la liste	
+
+	string PrintRawFromTo(const char * depart,const char *arrivee) const;
+	//Retourne de maniére non formattée les informations sur les trajets partant de depart et allant vers arrivee 
+	//contenus dans la liste
+	
 	string PrintRaw()const;
 	//Retourne de maniére non formattée les informations sur les trajets contenus dans la liste
+	
+	string PrintRaw(unsigned int min,unsigned int max)const;
+	//Retourne de maniére non formattée les informations sur les trajets dont le numéro est entre
+	//(min et max inclus) contenus dans la liste. Les trajets sont numérotés à partir de 0
+	
 	
 	unsigned int NbTrajets() const;
 	//Retourne le nombres de trajets dans la liste

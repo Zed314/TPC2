@@ -49,9 +49,10 @@ public:
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des Trajets composes
 	
-	string PrintRow(int min=0, int max=0) const;
+	string PrintRaw(unsigned int min,unsigned int max) const;
 	//Méthode retournant un string contenant l'affichage "brut", c'est-à-dire sans fioritures,
 	//des trajets situés de l'emplacement "min" à l'emplacement "max" inclus.
+	//Les trajets sont numérotés à partir de 0
 	
 	void AddTrajet(const Trajet * unTrajet);
  	// Méthode ajoutant un trajet à la liste des trajets
