@@ -219,7 +219,295 @@ static TrajetSimple * createTrajetSimple()
 		
 		return nullptr;
 }
+static void loadFromTo(Catalogue & catToSave,TrajetDAO & tdao)
+{
+	string depart;
+	string arrivee;
+	cout<<"Veuillez entrer la ville de départ"<<endl;
+	cin>>depart;
+	cout<<"Veuillez entrer la ville d'arrivée"<<endl;
+	cin>>arrivee;
+	const char * departChar;
+	const char * arriveeChar;
+	departChar=depart.c_str();
+	arriveeChar=arrivee.c_str();
+	
+	int nbTrajetsLoaded=tdao.LoadVille(catToSave,departChar,arriveeChar);
+	if(nbTrajetsLoaded>0)
+	{
+		 cout<<nbTrajetsLoaded<<" trajet"<<(nbTrajetsLoaded>1?"s":"")<<" chargé"<<(nbTrajetsLoaded>1?"s":"")<<" en mémoire"<<endl;
+	}
+	else
+	{
+		cout<<"Aucun trajet n'a été chargé en mémoire"<<endl;
+	}
 
+}
+static void loadInterval(Catalogue & cat,TrajetDAO & tdao)
+{
+	int borneInf=0;
+	int borneSup=0;
+	cout<<"Veuillez entrer le numéro de trajet du début."<<endl;
+	cout<<"Les indices commencent à 0"<<endl;
+	cout<<"Entrez un nombre négatif pour quitter"<<endl;
+ 	cin >> borneInf;
+	while(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+			cin >> borneInf;
+	}
+	if(borneInf>=0){
+					cin >> borneSup;
+				while(!cin){
+					cout << endl << "Merci d'entrer un nombre valide."<< endl;
+					cin.clear();
+					cin.ignore(256,'\n');
+					cin >> borneSup;
+					}
+				if(borneSup>=0){				
+					if(borneInf>borneSup){
+						int temp=borneSup;
+						borneSup=borneInf;
+						borneInf=temp;
+					}
+					int nbTrajetsLoaded=tdao.LoadInterval(borneInf,borneSup,cat);
+					if(nbTrajetsLoaded>0)
+					{
+						 cout<<nbTrajetsLoaded<<" trajet"<<(nbTrajetsLoaded>1?"s":"")<<" chargé"<<(nbTrajetsLoaded>1?"s":"")<<" en mémoire"<<endl;
+					}
+					else
+					{
+						cout<<"Aucun trajet n'a été chargé en mémoire"<<endl;
+					}
+				
+				}
+		
+	}
+	
+}
+
+
+static void loadFromBackup(Catalogue & cat)
+{
+	string fileName;
+	cout<<"Veuillez rentrer le nom du fichier depuis lequel vous souhaitez charger les données"<<endl;
+	cin>>fileName;
+	TrajetDAO tdao(fileName);
+	int response=0;
+	int nbTrajetsLoaded;
+	while(response != -1)
+	{
+		cout << endl << "Voulez vous :"<< endl;
+		cout << "1. Effacer tous les trajets de la sauvegarde" << endl;
+		cout << "2. Charger tous les trajets du fichier"<< endl;
+		cout << "3. Charger un intervalle de trajets" << endl;
+		cout << "4. Charger que les trajets simples" << endl;
+		cout << "5. Charger que les trajets composés" << endl;
+		cout << "6. Charger que les trajets partant d'une ville et allant à une autre" << endl;
+		cout << "-1 Retourner au menu principal"<<endl;
+		
+		cin >> response;
+		if(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+		}
+		else {
+		
+			switch(response)
+			{
+				case 1 : 
+				{
+					tdao.DeleteSaves();
+
+					break;
+				}
+				case 2 : 
+				{
+					nbTrajetsLoaded=tdao.LoadAll(cat);
+					if(nbTrajetsLoaded>0)
+					{
+						 cout<<nbTrajetsLoaded<<" trajet"<<(nbTrajetsLoaded>1?"s":"")<<" chargé"<<(nbTrajetsLoaded>1?"s":"")<<" en mémoire"<<endl;
+					}
+					else
+					{
+						cout<<"Aucun trajet n'a été chargé en mémoire"<<endl;
+					}
+					break;
+				}
+				case 3 : 
+				{
+					
+					loadInterval(cat,tdao);
+			
+					 break;
+				}
+				
+				case 4: 
+				{
+					nbTrajetsLoaded=tdao.LoadSimple(cat);
+								if(nbTrajetsLoaded>0)
+					{
+						 cout<<nbTrajetsLoaded<<" trajet"<<(nbTrajetsLoaded>1?"s":"")<<" chargé"<<(nbTrajetsLoaded>1?"s":"")<<" en mémoire"<<endl;
+					}
+					else
+					{
+						cout<<"Aucun trajet n'a été chargé en mémoire"<<endl;
+					}
+					break;
+				}
+				case 5: 
+				{
+					nbTrajetsLoaded=tdao.LoadComposes(cat);
+						if(nbTrajetsLoaded>0)
+					{
+						 cout<<nbTrajetsLoaded<<" trajet"<<(nbTrajetsLoaded>1?"s":"")<<" chargé"<<(nbTrajetsLoaded>1?"s":"")<<" en mémoire"<<endl;
+					}
+					else
+					{
+						cout<<"Aucun trajet n'a été chargé en mémoire"<<endl;
+					}
+					break;
+				}
+				case 6: 
+				{
+					loadFromTo(cat,tdao);
+				
+					break;
+				}
+				
+				case -1 : break;
+				
+				default : 
+				{
+					cout << "Commande non reconnue."<<endl;
+					break;
+				}		
+			}
+			cout << endl;
+			}
+	}
+}
+
+static void saveFromTo(Catalogue & catToSave,TrajetDAO & tdao)
+{
+	string depart;
+	string arrivee;
+	cout<<"Veuillez entrer la ville de départ"<<endl;
+	cin>>depart;
+	cout<<"Veuillez entrer la ville d'arrivée"<<endl;
+	cin>>arrivee;
+	const char * departChar;
+	const char * arriveeChar;
+	departChar=depart.c_str();
+	arriveeChar=arrivee.c_str();
+	tdao.SerializeCatalogFromTo(catToSave,departChar,arriveeChar);
+
+}
+static void saveIndex(Catalogue & catToSave,TrajetDAO & tdao)
+{
+	int borneInf=0;
+	int borneSup=0;
+	cout<<"Veuillez entrer le numéro de trajet du début."<<endl;
+	cout<<"Les indices commencent à 0"<<endl;
+	cout<<"Entrez un nombre négatif pour quitter"<<endl;
+ 	cin >> borneInf;
+	while(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+			cin >> borneInf;
+	}
+	if(borneInf>=0){
+		cin >> borneSup;
+		while(!cin){
+					cout << endl << "Merci d'entrer un nombre valide."<< endl;
+					cin.clear();
+					cin.ignore(256,'\n');
+					cin >> borneSup;
+		}
+		if(borneSup>=0){				
+				  tdao.SerializeCatalogIndex(catToSave,borneInf,borneSup);
+		}
+	}
+				
+}
+//Gére la sauvegarde vers un fichier
+static void saveToBackup(Catalogue & catToSave)
+{
+	string fileName;
+	cout<<"Veuillez rentrer le nom du fichier vers lequel vous souhaitez effectuer la sauvegarde"<<endl;
+	cin>>fileName;
+	TrajetDAO tdao(fileName);
+	int response=0;
+	while(response != -1)
+	{
+	cout << endl << "Voulez vous :"<< endl;
+	cout << "1. Effacer tous les trajets de la sauvegarde" << endl;
+	cout << "2. Sauvegarder tout le catalogue"<< endl;
+	cout << "3. Sauvegarder un intervalle de trajets" << endl;
+	cout << "4. Sauvegarder que les trajets simples" << endl;
+	cout << "5. Sauvegarder que les trajets composés" << endl;
+	cout << "6. Sauvegarder que les trajets partant d'une ville et allant à une autre" << endl;
+	cout << "-1 Retourner au menu principal"<<endl;
+		cin >> response;
+		if(!cin){
+			cout << endl << "Merci d'entrer un nombre valide."<< endl;
+			cin.clear();
+			cin.ignore(256,'\n');
+		}
+		else {
+		
+			switch(response)
+			{
+				case 1 : 
+				{
+					tdao.DeleteSaves();
+					break;
+				}
+				case 2 : 
+				{
+					tdao.SerializeAllCatalog(catToSave);				
+					break;
+				}
+				case 3 : 
+				{
+					saveIndex(catToSave,tdao);
+					 break;
+				}
+				
+				case 4: 
+				{
+					tdao.SerializeCatalogTrajetsSimples(catToSave);
+					break;
+				}
+				case 5: 
+				{
+					tdao.SerializeCatalogTrajetsComposes(catToSave);
+					break;
+				}
+				case 6: 
+				{
+					saveFromTo(catToSave,tdao);
+				
+					break;
+				}
+				
+				case -1 : break;
+				
+				default : 
+				{
+					cout << "Commande non reconnue."<<endl;
+					break;
+				}		
+			}
+			cout << endl;
+			}
+	}
+
+
+}
 //Fonction locale de chargement de l'interface
 static void loadHCI()
 {
@@ -242,6 +530,8 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 		cout << "2. Afficher le catalogue."<< endl;
 		cout << "3. Recherche simple de parcours" << endl;
 		cout << "4. Recherche complexe de parcours" << endl;
+		cout << "5. Chargement de données depuis une sauvegarde" << endl;
+		cout << "6. Sauvegarde des données" << endl;
 		cin >> response;
 		if(!cin){
 			cout << endl << "Merci d'entrer un nombre valide."<< endl;
@@ -274,6 +564,16 @@ cout<<" ==(o)-----(o)==J    `(o)-------(o)=   `(o)------(o)'   `--(o)(o)--------
 				case 4: 
 				{
 					loadFindHCIComplexe(c);
+					break;
+				}
+				case 5: 
+				{
+					loadFromBackup(c);
+					break;
+				}
+				case 6: 
+				{
+					saveToBackup(c);
 					break;
 				}
 				
@@ -478,7 +778,7 @@ void testSaveTrajetsIndices()
 int main(int argc, char** argv)
 {
 
-	//loadHCI();
+	loadHCI();
 	//testSaveFile();
 	//testLoadTrajetSimple();
 	//testLoadTrajetCompose();
@@ -488,6 +788,6 @@ int main(int argc, char** argv)
 	//testSaveAllCatalog();
 	//testSaveTrajetsSimples();
 	//testSaveTrajetsComposes();
-	testSaveTrajetsIndices();
+	//testSaveTrajetsIndices();
 	return 0;
 }  //----- Fin du main

@@ -17,3 +17,7 @@ Bordeaux
 Macon
 Auxerre
 1
+0
+Paris
+Bordeaux
+799

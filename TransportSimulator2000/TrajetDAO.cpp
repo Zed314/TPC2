@@ -146,7 +146,7 @@ using namespace std;
 				nbTrajets++;
 				
 			}
-			else {								//Chargement d'un trajet composé => ignoré
+			else {								//Chargement d'un trajet simple => ignoré
 				for(int i=0;i<3;i++, getline(inputStream, str));		//Boucle for vide : ignore les TS
 			}
 		}
@@ -155,10 +155,78 @@ using namespace std;
 	
 	int TrajetDAO::LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) 
 	{
+		int nbTrajets = 0;
+		string str;
+		inputStream.clear();
+		inputStream.seekg(0, ios::beg);
 		
-		
-		
-		return 0;
+		while(getline(inputStream,str))
+		{
+			int nbTrajetsSimples = atoi(str.c_str());
+			int posTemp=inputStream.tellg();
+			if(nbTrajetsSimples==0)
+			{				
+				string vDepstr;
+				if(!getline(inputStream, vDepstr))
+				{
+						break;		//Erreur de lecture
+				}
+				vDepstr.erase(vDepstr.size() - 1);
+				string vArrstr;
+				if(!getline(inputStream, vArrstr))
+				{
+						break;		//Erreur de lecture
+				}
+				vArrstr.erase(vArrstr.size() - 1);
+				inputStream.seekg (posTemp,ios::beg);
+				if(vDepstr.compare(villeDep)==0&&vArrstr.compare(villeArr)==0)
+				{
+					
+					if(!instantiateTrajetSimple(cat))
+					{
+						break;
+					}
+					
+					
+					nbTrajets++;
+				}
+				else
+				{
+					for(int i=0;i<3;i++, getline(inputStream, str));	
+				}			
+			}
+			else {		
+				string vDepstr;
+				if(!getline(inputStream, vDepstr))
+				{
+						break;		//Erreur de lecture
+				}
+				vDepstr.erase(vDepstr.size() - 1);
+				string vArrstr;
+				if(!getline(inputStream, vArrstr))
+				{
+						break;		//Erreur de lecture
+				}
+				vArrstr.erase(vArrstr.size() - 1);
+				inputStream.seekg (posTemp,ios::beg);
+				if(vDepstr.compare(villeDep)==0&&vArrstr.compare(villeArr)==0)
+				{
+					
+					if(!instantiateTrajetCompose(cat, nbTrajetsSimples))
+					{
+						break;
+					}
+					nbTrajets++;
+				}
+				else
+				{
+					for(int i=0;i< (4*nbTrajetsSimples)+2;i++, getline(inputStream, str));
+				}
+				
+			}
+			
+		}
+		return nbTrajets;
 	}
 	
 	int TrajetDAO::LoadInterval(const int min, const int max, Catalogue & cat) 
@@ -168,7 +236,7 @@ using namespace std;
 		inputStream.clear();
 		inputStream.seekg(0, ios::beg);
 		int nbTrajetsSimples;
-		int i;
+		 int i;
 		for(i=0;i<min;i++)						//Passe les min premiers trajets
 		{
 			getline(inputStream,str);
@@ -234,7 +302,12 @@ using namespace std;
 			delete[] vArr;
 			return 0;
 		}
-		Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+		int numTransport=atoi(transpStr.c_str());
+		if(numTransport>7)
+		{
+			numTransport=7;
+		}
+		Transport t = static_cast<Transport>(numTransport);
 		Trajet* ts = new TrajetSimple(vDep, vArr, t);
 		cat.AddTrajet(ts);
 		delete ts;		
@@ -313,7 +386,13 @@ using namespace std;
 				delete[] vArrSimple;
 				return 0;
 			}
-			Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
+			int numTransport=atoi(transpStr.c_str());
+			if(numTransport>7)
+			{
+				numTransport=7;
+			}
+			Transport t = static_cast<Transport>(numTransport);
+		//	Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
 			
 			Trajet* ts = new TrajetSimple(vDepSimple, vArrSimple, t);
 			tc->AddTrajet(ts);
