@@ -80,7 +80,7 @@ int LoadSimple(Catalogue & cat) ;
 int LoadComposes(Catalogue & cat) ;
 // Charge tous les éléments de type 'trajet composé' en mémoire
 
-int LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) ;
+int LoadVille(Catalogue & cat,const char* villeDep, const char* villeArr) ;
 // Charge en mémoire tous les trajets dont la ville de départ et d'arrivée correspondent avec les paramètres indiqués
 
 int LoadInterval(const int min, const int max, Catalogue & cat);
@@ -121,12 +121,12 @@ private:
 	 
 
 
-	int instantiateTrajetSimple(Catalogue & cat);
+	int instantiateTrajetSimple(Catalogue & cat, const char* villeDep=nullptr, const char* villeArr=nullptr);
 	//Essaye d'instancier un trajet simple à partir de la position actuelle de lecture dans le fichier
 	//Les 3 lignes suivantes du fichier sont interprétées comme la ville d'arrivée, de départ et le mode de transport du trajet simple
 	//Une copie du trajet est ensuite ajoutée au catalogue. Renvoie 0 si l'instanciation a échoué (pas assez de lignes à lire)
 	
-	int instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples);
+	int instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples,	const char* villeDep=nullptr, const char* villeArr=nullptr);
 	//Essaye d'instancier un trajet composé à partir de la position actuelle de lecture dans le fichier
 	//Les (2+nbTrajetsSimples*4) lignes suivantes du fichier sont interprétées comme la ville d'arrivée, de départ et les différents trajets simples du TC
 	//Une copie du trajet est ensuite ajoutée au catalogue. Renvoie 0 si l'instanciation a échoué (pas assez de lignes à lire)

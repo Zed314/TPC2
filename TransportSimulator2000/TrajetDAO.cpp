@@ -153,7 +153,7 @@ using namespace std;
 		return nbTrajets;
 	} // ----- Fin de LoadComposes
 	
-	int TrajetDAO::LoadVille(Catalogue & cat, const char* villeDep, const char* villeArr) 
+	int TrajetDAO::LoadVille(Catalogue & cat,const char* villeDep,const char* villeArr) 
 	{
 		int nbTrajets = 0;
 		string str;
@@ -163,68 +163,19 @@ using namespace std;
 		while(getline(inputStream,str))
 		{
 			int nbTrajetsSimples = atoi(str.c_str());
-			int posTemp=inputStream.tellg();
-			if(nbTrajetsSimples==0)
-			{				
-				string vDepstr;
-				if(!getline(inputStream, vDepstr))
-				{
-						break;		//Erreur de lecture
-				}
-				vDepstr.erase(vDepstr.size() - 1);
-				string vArrstr;
-				if(!getline(inputStream, vArrstr))
-				{
-						break;		//Erreur de lecture
-				}
-				vArrstr.erase(vArrstr.size() - 1);
-				inputStream.seekg (posTemp,ios::beg);
-				if(vDepstr.compare(villeDep)==0&&vArrstr.compare(villeArr)==0)
-				{
-					
-					if(!instantiateTrajetSimple(cat))
-					{
-						break;
-					}
-					
-					
-					nbTrajets++;
-				}
-				else
-				{
-					for(int i=0;i<3;i++, getline(inputStream, str));	
-				}			
-			}
-			else {		
-				string vDepstr;
-				if(!getline(inputStream, vDepstr))
-				{
-						break;		//Erreur de lecture
-				}
-				vDepstr.erase(vDepstr.size() - 1);
-				string vArrstr;
-				if(!getline(inputStream, vArrstr))
-				{
-						break;		//Erreur de lecture
-				}
-				vArrstr.erase(vArrstr.size() - 1);
-				inputStream.seekg (posTemp,ios::beg);
-				if(vDepstr.compare(villeDep)==0&&vArrstr.compare(villeArr)==0)
-				{
-					
-					if(!instantiateTrajetCompose(cat, nbTrajetsSimples))
-					{
-						break;
-					}
-					nbTrajets++;
-				}
-				else
-				{
-					for(int i=0;i< (4*nbTrajetsSimples)+2;i++, getline(inputStream, str));
-				}
-				
-			}
 			
+			int codeInstantiate;
+			if(nbTrajetsSimples==0)
+			{								
+				if(!(codeInstantiate = instantiateTrajetSimple(cat, villeDep, villeArr)))
+					break;
+			}
+			else {
+				if(!(codeInstantiate = instantiateTrajetCompose(cat, nbTrajetsSimples, villeDep, villeArr)))
+					break;
+			}
+			if(codeInstantiate != -1)				//Trajet non conforme à la condition de ville
+				nbTrajets++;
 		}
 		return nbTrajets;
 	}
@@ -273,10 +224,11 @@ using namespace std;
 		return nbTrajets;
 	}
 	
-	int TrajetDAO::instantiateTrajetSimple(Catalogue & cat)
+	int TrajetDAO::instantiateTrajetSimple(Catalogue & cat, const char* villeDep, const char* villeArr)
 	{
 		char* vDep;
 		char* vArr;
+		int i;
 		string vDepstr;
 		if(!getline(inputStream, vDepstr))
 			return 0;
@@ -284,7 +236,12 @@ using namespace std;
 		vDepstr.erase(vDepstr.size() - 1);							 
 		vDep = new char[strlen(vDepstr.c_str()) + 1];				
 		strcpy(vDep, vDepstr.c_str());
-		
+		if(villeDep!=nullptr && strcmp(vDep, villeDep))
+		{
+			delete[] vDep;
+			for(i=0;i<2;i++, getline(inputStream, vDepstr));	//On passe les lignes inutiles
+			return -1;		//-1 : le TS ne répond pas à la condition de ville
+		}
 		string vArrstr;
 		if(!getline(inputStream, vArrstr)){
 			delete[] vDep;
@@ -294,7 +251,13 @@ using namespace std;
 		vArrstr.erase(vArrstr.size() - 1);
 		vArr = new char[strlen(vArrstr.c_str()) + 1];
 		strcpy(vArr, vArrstr.c_str());
-	
+		if(villeArr!=nullptr && strcmp(vArr, villeArr))
+		{
+			delete[] vDep;
+			delete[] vArr;
+			getline(inputStream, vArrstr);		
+			return -1;		
+		}
 		string transpStr;
 		if(!getline(inputStream, transpStr))
 		{
@@ -317,10 +280,11 @@ using namespace std;
 		return 1;
 	}
 	
-	int TrajetDAO::instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples)
+	int TrajetDAO::instantiateTrajetCompose(Catalogue & cat, int nbTrajetsSimples, const char* villeDep, const char* villeArr)
 	{
 		char* vDep;
 		char* vArr;
+		int i;
 		string vDepstr;
 		if(!getline(inputStream, vDepstr))
 			return 0;		//Erreur de lecture
@@ -329,6 +293,14 @@ using namespace std;
 		vDep = new char[strlen(vDepstr.c_str()) + 1];				
 		strcpy(vDep, vDepstr.c_str());
 			
+		
+		if(villeDep!=nullptr && strcmp(vDep, villeDep))
+		{
+			delete[] vDep;
+			for(i=0;i<4*nbTrajetsSimples+1;i++, getline(inputStream, vDepstr));		//Passage des trajets inutiles
+			return -1;		//-1 : le TC ne répond pas à la condition de ville
+		}
+		
 		string vArrstr;
 		if(!getline(inputStream, vArrstr)){
 			delete[] vDep;
@@ -338,6 +310,14 @@ using namespace std;
 		vArrstr.erase(vArrstr.size() - 1);
 		vArr = new char[strlen(vArrstr.c_str()) + 1];
 		strcpy(vArr, vArrstr.c_str());
+	
+		if(villeArr!=nullptr && strcmp(vArr, villeArr))
+		{
+			delete[] vDep;
+			delete[] vArr;
+			for(i=0;i<4*nbTrajetsSimples;i++, getline(inputStream, vDepstr));			//Passage des trajets inutiles
+			return -1;				
+		}
 		
 		TrajetCompose* tc = new TrajetCompose();
 		for(int i=0;i<nbTrajetsSimples;i++)			//Chargement de tous les TS
