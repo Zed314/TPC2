@@ -601,12 +601,19 @@ void testSaveData(TrajetDAO & tdao)
 	tc.AddTrajet(ts);
 	tdao.SerializeTrajet(&tc);
 	
+	TrajetCompose tc2("Lyon", "Paris", static_cast<Transport>(3));
+	Trajet* ts5 = new TrajetSimple("Paris", "Dijon", static_cast<Transport>(5));
+	tc2.AddTrajet(ts5);
+	tdao.SerializeTrajet(&tc2);
+	
+	
 	Trajet* ts3 = new TrajetSimple("Macon", "Auxerre", static_cast<Transport>(1));
 	tdao.SerializeTrajet(ts3);
 
 	delete ts;
 	delete ts2;
 	delete ts3;
+	delete ts5;
 }
 
 void testLoadTypeTrajet()
@@ -618,6 +625,19 @@ void testLoadTypeTrajet()
 	Catalogue cat;
 	cout << "Un total de " << tdao.LoadSimple(cat) << " trajets simples ont été chargés depuis la sauvegarde" << endl;
 	cout << "Un total de " << tdao.LoadComposes(cat) << " trajets composés ont été chargés depuis la sauvegarde" << endl;
+	
+	cat.ToString();
+}
+
+void testLoadVilleTrajet()
+{
+	
+	TrajetDAO tdao("saveFile.txt");
+	tdao.DeleteSaves();
+	testSaveData(tdao);
+	
+	Catalogue cat;
+	cout << "Un total de " << tdao.LoadVille(cat, "Lyon", "Dijon") << " trajets correspondants ont été chargés depuis la sauvegarde" << endl;
 	
 	cat.ToString();
 }
@@ -777,7 +797,7 @@ void testSaveTrajetsIndices()
 }
 int main(int argc, char** argv)
 {
-
+	//testLoadVilleTrajet();
 	loadHCI();
 	//testSaveFile();
 	//testLoadTrajetSimple();

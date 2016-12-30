@@ -1,0 +1,15 @@
+0
+Paris
+Lyon
+3
+2
+Paris
+Orsay
+0
+Paris
+Lyon
+3
+0
+Lyon
+Orsay
+2
