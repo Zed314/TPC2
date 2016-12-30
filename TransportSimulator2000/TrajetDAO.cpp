@@ -303,9 +303,9 @@ using namespace std;
 			return 0;
 		}
 		int numTransport=atoi(transpStr.c_str());
-		if(numTransport>7)
+		if(numTransport>NB_TRANSPORTS)
 		{
-			numTransport=7;
+			numTransport=NB_TRANSPORTS;
 		}
 		Transport t = static_cast<Transport>(numTransport);
 		Trajet* ts = new TrajetSimple(vDep, vArr, t);
@@ -387,9 +387,9 @@ using namespace std;
 				return 0;
 			}
 			int numTransport=atoi(transpStr.c_str());
-			if(numTransport>7)
+			if(numTransport>NB_TRANSPORTS)
 			{
-				numTransport=7;
+				numTransport=NB_TRANSPORTS;
 			}
 			Transport t = static_cast<Transport>(numTransport);
 		//	Transport t = static_cast<Transport>(atoi(transpStr.c_str()));
